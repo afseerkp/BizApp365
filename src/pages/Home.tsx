@@ -1,14 +1,20 @@
 import React from 'react';
 import Hero from '../components/ui/Hero';
+import Highlights from './Highlights';
+import Features from './Features';
+import TechStack from './TechStack';
+import Testimonials from './Testimonials';
+import CTASection from '../components/ui/CTASection';
 
 const Home = () => {
     return (
         <div className="w-full">
             <Hero />
-            {/* Other sections will be added here: Features, Modules, Tech Stack, Testimonials, CTA */}
-            <div className="min-h-screen bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-24 flex items-center justify-center">
-                <h2 className="text-2xl text-slate-500 italic">Scroll for more features... (Coming soon)</h2>
-            </div>
+            <div id="highlights-section"><Highlights /></div>
+            <div id="features-section"><Features /></div>
+            <div id="tech-section"><TechStack /></div>
+            <div id="testimonials-section"><Testimonials /></div>
+            <CTASection />
         </div>
     );
 };
