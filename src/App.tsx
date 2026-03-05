@@ -15,7 +15,7 @@ import FloatingWhatsApp from './components/layout/FloatingWhatsApp';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/BizApp365">
       <div className="min-h-screen bg-[var(--background)] flex flex-col">
         <Navbar />
 
