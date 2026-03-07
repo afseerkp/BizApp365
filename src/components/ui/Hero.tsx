@@ -46,7 +46,7 @@ const Hero = () => {
                     </motion.div>
 
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
-                        Transform Your Business with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1976d2] to-[#9c27b0]">Complete ERP Solution</span>
+                        Transform Your Business with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1976d2] to-[#9c27b0]">Complete Accouting Solution</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl text-balance">
@@ -70,17 +70,7 @@ const Hero = () => {
                         </motion.button>
                     </div>
 
-                    <div className="mt-12 flex items-center justify-center lg:justify-start gap-8 opacity-70">
-                        <div className="flex flex-col items-center lg:items-start text-slate-600 dark:text-slate-400 font-medium">
-                            <span className="text-2xl font-bold text-slate-800 dark:text-white">10k+</span>
-                            <span className="text-sm">Trusted Companies</span>
-                        </div>
-                        <div className="w-px h-10 bg-slate-300 dark:bg-slate-700"></div>
-                        <div className="flex flex-col items-center lg:items-start text-slate-600 dark:text-slate-400 font-medium">
-                            <span className="text-2xl font-bold text-slate-800 dark:text-white">50M+</span>
-                            <span className="text-sm">Processed Transactions</span>
-                        </div>
-                    </div>
+
                 </motion.div>
 
                 {/* Right 3D Area */}
