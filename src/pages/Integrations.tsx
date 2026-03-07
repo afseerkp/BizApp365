@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { motion, useInView } from 'framer-motion';
 import { Float, Line, Sphere, Html } from '@react-three/drei';
 
 const NodeNetwork = () => {
@@ -51,6 +51,9 @@ const NodeNetwork = () => {
 };
 
 const Integrations = () => {
+    const canvasContainerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(canvasContainerRef, { margin: "200px" });
+
     return (
         <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex flex-col">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -69,13 +72,20 @@ const Integrations = () => {
                 </motion.div>
             </div>
 
-            <div className="flex-1 w-full relative min-h-[600px] bg-slate-100 dark:bg-slate-800/50 mt-8 shadow-inner">
-                <div className="absolute inset-0 bg-grid-slate-800/[0.05] bg-[size:20px_20px]"></div>
-                <Canvas camera={{ position: [0, 0, 8], fov: 50 }} className="cursor-grab active:cursor-grabbing">
-                    <ambientLight intensity={0.6} />
-                    <directionalLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
-                    <NodeNetwork />
-                </Canvas>
+            {/* Interactive 3D Node Map */}
+            <div ref={canvasContainerRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 h-[500px] lg:h-[700px] relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1976d2]/5 to-[#9c27b0]/5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-inner overflow-hidden">
+                    {isInView && (
+                        <Canvas camera={{ position: [0, 0, 8], fov: 50 }} className="cursor-grab active:cursor-grabbing">
+                            <ambientLight intensity={0.6} />
+                            <directionalLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
+                            <directionalLight position={[-10, -10, -10]} intensity={0.5} color="#9c27b0" />
+                            <Suspense fallback={null}>
+                                <NodeNetwork />
+                            </Suspense>
+                        </Canvas>
+                    )}
+                </div>
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { ContactShadows, Environment, Float, Sphere, MeshDistortMaterial } from '@react-three/drei';
 
@@ -25,6 +25,9 @@ const AbstractShape = () => {
 };
 
 const Contact = () => {
+    const canvasContainerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(canvasContainerRef, { margin: "200px" });
+
     return (
         <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,18 +100,21 @@ const Contact = () => {
 
                     {/* 3D Visual Side */}
                     <motion.div
+                        ref={canvasContainerRef}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="w-full lg:w-1/2 h-[500px] lg:h-[600px] relative"
                     >
-                        <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-                            <ambientLight intensity={0.5} />
-                            <directionalLight position={[10, 10, 5]} intensity={1.5} />
-                            <AbstractShape />
-                            <Environment preset="city" />
-                            <ContactShadows position={[0, -2.5, 0]} opacity={0.5} scale={10} blur={2} far={4} />
-                        </Canvas>
+                        {isInView && (
+                            <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+                                <ambientLight intensity={0.5} />
+                                <directionalLight position={[10, 10, 5]} intensity={1.5} />
+                                <AbstractShape />
+                                <Environment preset="city" />
+                                <ContactShadows position={[0, -2.5, 0]} opacity={0.5} scale={10} blur={2} far={4} />
+                            </Canvas>
+                        )}
                     </motion.div>
 
                 </div>

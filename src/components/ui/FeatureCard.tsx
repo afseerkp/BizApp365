@@ -1,6 +1,6 @@
-import React, { ReactNode, Suspense } from 'react';
+import React, { ReactNode, Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 interface FeatureCardProps {
     title: string;
@@ -11,6 +11,9 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ title, description, features, canvasContent, delay = 0 }: FeatureCardProps) => {
+    const canvasContainerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(canvasContainerRef, { margin: "200px" });
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -21,16 +24,18 @@ const FeatureCard = ({ title, description, features, canvasContent, delay = 0 }:
             className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-slate-700 flex flex-col group h-full"
         >
             {/* 3D Canvas Header Area */}
-            <div className="h-64 sm:h-72 w-full bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+            <div ref={canvasContainerRef} className="h-64 sm:h-72 w-full bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
                 <div className="absolute inset-0 z-0 bg-gradient-to-br from-transparent to-black/5 dark:to-white/5"></div>
-                <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-                    <ambientLight intensity={0.6} />
-                    <directionalLight position={[10, 10, 10]} intensity={1.5} />
-                    <directionalLight position={[-10, -10, -10]} intensity={0.5} color="#9c27b0" />
-                    <Suspense fallback={null}>
-                        {canvasContent}
-                    </Suspense>
-                </Canvas>
+                {isInView && (
+                    <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+                        <ambientLight intensity={0.6} />
+                        <directionalLight position={[10, 10, 10]} intensity={1.5} />
+                        <directionalLight position={[-10, -10, -10]} intensity={0.5} color="#9c27b0" />
+                        <Suspense fallback={null}>
+                            {canvasContent}
+                        </Suspense>
+                    </Canvas>
+                )}
             </div>
 
             {/* Content Area */}

@@ -1,19 +1,27 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import ParticleBackground from '../canvas/ParticleBackground';
 import DashboardMockup from '../canvas/DashboardMockup';
 
 const Hero = () => {
+    const bgContainerRef = useRef<HTMLDivElement>(null);
+    const isBgInView = useInView(bgContainerRef, { margin: "200px" });
+
+    const dashboardContainerRef = useRef<HTMLDivElement>(null);
+    const isDashboardInView = useInView(dashboardContainerRef, { margin: "200px" });
+
     return (
         <section className="relative min-h-screen pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
             {/* 3D Background Canvas */}
-            <div className="absolute inset-0 z-0">
-                <Canvas camera={{ position: [0, 0, 10], fov: 60 }}>
-                    <ambientLight intensity={0.5} />
-                    <ParticleBackground />
-                </Canvas>
+            <div ref={bgContainerRef} className="absolute inset-0 z-0">
+                {isBgInView && (
+                    <Canvas camera={{ position: [0, 0, 10], fov: 60 }}>
+                        <ambientLight intensity={0.5} />
+                        <ParticleBackground />
+                    </Canvas>
+                )}
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full h-full flex flex-col lg:flex-row items-center gap-16">
@@ -76,15 +84,17 @@ const Hero = () => {
                 </motion.div>
 
                 {/* Right 3D Area */}
-                <div className="w-full lg:w-1/2 h-[500px] lg:h-[700px] relative mt-12 lg:mt-0">
-                    <Canvas camera={{ position: [0, 0, 8], fov: 45 }} className="w-full h-full cursor-grab active:cursor-grabbing">
-                        <ambientLight intensity={0.4} />
-                        <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" castShadow />
-                        <directionalLight position={[-10, -10, -5]} intensity={1} color="#9c27b0" />
-                        <Suspense fallback={null}>
-                            <DashboardMockup />
-                        </Suspense>
-                    </Canvas>
+                <div ref={dashboardContainerRef} className="w-full lg:w-1/2 h-[500px] lg:h-[700px] relative mt-12 lg:mt-0">
+                    {isDashboardInView && (
+                        <Canvas camera={{ position: [0, 0, 8], fov: 45 }} className="w-full h-full cursor-grab active:cursor-grabbing">
+                            <ambientLight intensity={0.4} />
+                            <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" castShadow />
+                            <directionalLight position={[-10, -10, -5]} intensity={1} color="#9c27b0" />
+                            <Suspense fallback={null}>
+                                <DashboardMockup />
+                            </Suspense>
+                        </Canvas>
+                    )}
                     <div className="absolute inset-0 z-[-1] bg-gradient-to-tr from-[#1976d2]/10 to-[#9c27b0]/10 rounded-full blur-[100px] animate-pulse"></div>
                 </div>
             </div>

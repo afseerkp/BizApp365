@@ -1,6 +1,7 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { OrbitControls } from '@react-three/drei';
 import StackCanvas from '../components/canvas/StackCanvas';
 import { Layers, Database, Globe, Lock, Workflow, Cpu } from 'lucide-react';
 
@@ -44,8 +45,11 @@ const TechStack = () => {
         }
     ];
 
+    const canvasContainerRef = useRef(null);
+    const isInView = useInView(canvasContainerRef, { margin: "200px" });
+
     return (
-        <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+        <section className="py-24 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-hidden">
 
             {/* 3D Hero Section for Tech Stack */}
             <div className="w-full h-[400px] mb-12 relative overflow-hidden bg-slate-900">
@@ -59,14 +63,21 @@ const TechStack = () => {
                     </h1>
                 </div>
 
-                <Canvas camera={{ position: [0, 0, 6], fov: 60 }} className="z-0">
-                    <ambientLight intensity={0.5} />
-                    <directionalLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
-                    <directionalLight position={[-10, -5, -10]} intensity={0.5} color="#9c27b0" />
-                    <Suspense fallback={null}>
-                        <StackCanvas />
-                    </Suspense>
-                </Canvas>
+                {/* 3D Tech Sphere Area */}
+                <div ref={canvasContainerRef} className="max-w-7xl mx-auto h-[500px] lg:h-[600px] relative">
+                    <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-[#1976d2]/5 to-transparent rounded-full blur-3xl"></div>
+                    {isInView && (
+                        <Canvas camera={{ position: [0, 0, 6], fov: 60 }} className="z-0">
+                            <ambientLight intensity={0.5} />
+                            <directionalLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
+                            <directionalLight position={[-10, -5, -10]} intensity={0.5} color="#9c27b0" />
+                            <Suspense fallback={null}>
+                                <StackCanvas />
+                            </Suspense>
+                            <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+                        </Canvas>
+                    )}
+                </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +119,7 @@ const TechStack = () => {
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
