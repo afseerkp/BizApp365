@@ -1,17 +1,22 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Features from './pages/Features';
-import TechStack from './pages/TechStack';
-import Pricing from './pages/Pricing';
-import Contact from './pages/Contact';
-import Highlights from './pages/Highlights';
-import Integrations from './pages/Integrations';
-import Demo from './pages/Demo';
-import Testimonials from './pages/Testimonials';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import FloatingWhatsApp from './components/layout/FloatingWhatsApp';
+
+const Home = lazy(() => import('./pages/Home'));
+const Features = lazy(() => import('./pages/Features'));
+const TechStack = lazy(() => import('./pages/TechStack'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Integrations = lazy(() => import('./pages/Integrations'));
+const Demo = lazy(() => import('./pages/Demo'));
+
+const PageLoader = () => (
+  <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-[#1976d2] border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 function App() {
   return (
@@ -20,18 +25,17 @@ function App() {
         <Navbar />
 
         <main className="flex-grow pt-[72px]">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/tech" element={<TechStack />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/highlights" element={<Highlights />} />
-            <Route path="/integrations" element={<Integrations />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/testimonials" element={<Testimonials />} />
-            {/* Additional routes will be added here */}
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/features" element={<Features />} />
+              <Route path="/tech" element={<TechStack />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/integrations" element={<Integrations />} />
+              <Route path="/demo" element={<Demo />} />
+            </Routes>
+          </Suspense>
         </main>
 
         <Footer />

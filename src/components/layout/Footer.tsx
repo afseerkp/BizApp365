@@ -32,8 +32,6 @@ const Footer = () => {
                         <h3 className="text-white font-semibold mb-4">Resources</h3>
                         <ul className="space-y-2 text-sm">
                             <li><Link to="/tech" className="hover:text-white transition-colors">Tech Stack</Link></li>
-                            <li><Link to="/documentation" className="hover:text-white transition-colors">Documentation</Link></li>
-                            <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                         </ul>
                     </div>
 
