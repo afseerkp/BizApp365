@@ -11,6 +11,7 @@ const Pricing = lazy(() => import('./pages/Pricing'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Integrations = lazy(() => import('./pages/Integrations'));
 const Demo = lazy(() => import('./pages/Demo'));
+const Terms = lazy(() => import('./pages/Terms'));
 
 const PageLoader = () => (
   <div className="min-h-[50vh] flex items-center justify-center">
@@ -34,6 +35,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/demo" element={<Demo />} />
+              <Route path="/terms" element={<Terms />} />
             </Routes>
           </Suspense>
         </main>

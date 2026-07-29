@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, PlayCircle } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -24,36 +23,19 @@ const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#1976d2]" />
             </span>
-            BizApp365 Next-Gen ERP
+            BizApp365 Multi-Tenant ERP
           </motion.div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
-            Transform Your Business with{' '}
+            The Complete ERP for{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1976d2] to-[#9c27b0]">
-              Complete Accouting Solution
+              Growing SMEs
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl text-balance">
-            Multi-tenant accounting, inventory, production, HR, and more. All seamlessly integrated into a single powerful platform.
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl text-balance">
+            Accounting, inventory, sales & purchases, CRM, service center, HR/payroll, barcode labeling, and VAN field sales — on web, Android, and silent-print extension.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#1976d2] hover:bg-[#1565c0] text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 transition-all"
-            >
-              Start Free Trial <ArrowRight size={20} />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white dark:bg-slate-800 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-sm transition-all"
-            >
-              <PlayCircle size={20} className="text-[#9c27b0]" /> Watch Demo
-            </motion.button>
-          </div>
         </motion.div>
 
         <motion.div
@@ -64,7 +46,7 @@ const Hero = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-[#1976d2]/20 to-[#9c27b0]/20 rounded-3xl blur-3xl scale-95" />
           <img
-            src="/features/hero-dashboard.jpg"
+            src="/features/hero-dashboard.png"
             alt="BizApp365 ERP Dashboard"
             className="relative w-full rounded-2xl shadow-2xl border border-slate-200/80 dark:border-slate-700/80"
           />

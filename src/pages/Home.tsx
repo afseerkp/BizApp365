@@ -3,6 +3,7 @@ import Hero from '../components/ui/Hero';
 import CTASection from '../components/ui/CTASection';
 
 const Highlights = lazy(() => import('./Highlights'));
+const Platforms = lazy(() => import('../components/ui/Platforms'));
 const Features = lazy(() => import('./Features'));
 const TechStack = lazy(() => import('./TechStack'));
 const Testimonials = lazy(() => import('./Testimonials'));
@@ -13,6 +14,9 @@ const Home = () => {
   return (
     <div className="w-full">
       <Hero />
+      <Suspense fallback={<SectionLoader />}>
+        <Platforms />
+      </Suspense>
       <Suspense fallback={<SectionLoader />}>
         <div id="highlights-section"><Highlights /></div>
       </Suspense>

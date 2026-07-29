@@ -14,7 +14,7 @@ const Footer = () => {
                             <span className="font-bold text-xl text-white">BizApp365</span>
                         </Link>
                         <p className="text-sm text-slate-400 mb-6">
-                            Complete Business Management Solution with Multi-tenant accounting, HR, production, and more.
+                            Multi-tenant ERP for SMEs — accounting, inventory, CRM, service center, HR, VAN field sales, and silent printing. Web · Android · Extension.
                         </p>
                     </div>
 
@@ -32,6 +32,7 @@ const Footer = () => {
                         <h3 className="text-white font-semibold mb-4">Resources</h3>
                         <ul className="space-y-2 text-sm">
                             <li><Link to="/tech" className="hover:text-white transition-colors">Tech Stack</Link></li>
+                            <li><Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
                         </ul>
                     </div>
 
