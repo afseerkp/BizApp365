@@ -1,20 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const TOP_REVEAL_ZONE = 16;
+
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const lastScrollY = useRef(0);
     const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            const currentScrollY = window.scrollY;
+            setIsScrolled(currentScrollY > 20);
+
+            if (currentScrollY <= 20) {
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current + 4) {
+                setIsVisible(false);
+            }
+
+            lastScrollY.current = currentScrollY;
         };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
+
+    useEffect(() => {
+        setMobileMenuOpen(false);
+    }, [location.pathname]);
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -25,12 +46,26 @@ const Navbar = () => {
     ];
 
     return (
-        <nav
-            className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
-                    ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm py-3'
-                    : 'bg-transparent py-5'
+        <>
+            {!isVisible && !mobileMenuOpen && (
+                <div
+                    aria-hidden="true"
+                    className="fixed top-0 left-0 right-0 z-[60]"
+                    style={{ height: TOP_REVEAL_ZONE }}
+                    onMouseEnter={() => setIsVisible(true)}
+                />
+            )}
+
+            <nav
+                style={{
+                    transform: isVisible || mobileMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
+                }}
+                className={`fixed w-full z-50 transition-transform duration-300 ease-in-out will-change-transform ${
+                    isScrolled || mobileMenuOpen
+                        ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm py-3'
+                        : 'bg-transparent py-5'
                 }`}
-        >
+            >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
@@ -126,6 +161,7 @@ const Navbar = () => {
                 )}
             </AnimatePresence>
         </nav>
+        </>
     );
 };
 

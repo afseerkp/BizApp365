@@ -40,7 +40,6 @@ const Footer = () => {
                         <h3 className="text-white font-semibold mb-4">Contact</h3>
                         <ul className="space-y-2 text-sm">
                             <li className="mb-2">Support: support@bizapp365.com</li>
-                            <li className="mb-2">Sales: sales@bizapp365.com</li>
                             <li className="mb-2">Phone: +971582885633</li>
                         </ul>
                     </div>
