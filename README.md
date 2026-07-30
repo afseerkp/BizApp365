@@ -13,9 +13,9 @@ npm install
 npm run dev       # local dev server
 npm run build     # production build
 npm run preview   # preview production build
-npm run deploy    # deploy to GitHub Pages
+npm run deploy    # build into docs/ for GitHub Pages
 ```
 
 ## Deploy
 
-The site deploys to GitHub Pages via `gh-pages`. Custom domain config lives in `public/CNAME`.
+GitHub Pages serves the **`/docs` folder on `main`**. Run `npm run deploy`, commit the `docs/` output, and push to `main`. Custom domain config lives in `public/CNAME` (copied into `docs/` on build).
