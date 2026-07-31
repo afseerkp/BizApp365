@@ -6,13 +6,16 @@ import tailwindcss from '@tailwindcss/vite'
 
 const docsDir = path.resolve(__dirname, 'docs')
 
-/** GitHub Pages: skip Jekyll and support client-side routes on refresh. */
+/** GitHub Pages: skip Jekyll, SPA fallbacks, and static legal pages (HTTP 200 for store crawlers). */
 function githubPages(): import('vite').Plugin {
   return {
     name: 'github-pages',
-    closeBundle() {
+    async closeBundle() {
       fs.writeFileSync(path.join(docsDir, '.nojekyll'), '')
       fs.copyFileSync(path.join(docsDir, 'index.html'), path.join(docsDir, '404.html'))
+
+      const { generateLegalStaticPages } = await import('./scripts/generateLegalStaticPages.mjs')
+      generateLegalStaticPages()
     },
   }
 }

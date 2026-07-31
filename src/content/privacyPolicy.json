@@ -1,0 +1,127 @@
+{
+  "title": "Privacy Policy",
+  "effectiveDate": "28 July 2026",
+  "serviceProvider": "Afseer",
+  "application": "BizApp365",
+  "contactEmail": "mail@afseer.com",
+  "supportEmail": "support@bizapp365.com",
+  "intro": [
+    "This Privacy Policy describes how Afseer (\"Service Provider\", \"we\", \"us\", or \"our\") collects, uses, stores, and shares information when you use the BizApp365 application for mobile devices and web browsers, together with any related services (collectively, the \"Application\").",
+    "By using the Application, you agree to the collection and use of information in accordance with this Privacy Policy. If you do not agree, please do not use the Application."
+  ],
+  "sections": [
+    {
+      "id": "information-we-collect",
+      "title": "Information We Collect",
+      "paragraphs": [
+        "We collect information you provide directly, information generated through your use of the Application, and limited technical information needed to operate and secure the service."
+      ],
+      "bullets": [
+        "Account and profile information such as name, email address, phone number, company name, and login credentials",
+        "Business data you enter into the Application, including accounting, inventory, CRM, HR, and transaction records",
+        "Communications you send to us, including support requests and feedback",
+        "Device and usage information such as IP address, browser type, operating system, app version, and diagnostic logs",
+        "Cookies and similar technologies on the web version of the Application, where applicable"
+      ]
+    },
+    {
+      "id": "how-we-use",
+      "title": "How We Use Your Information",
+      "paragraphs": ["We use personal and business information to:"],
+      "bullets": [
+        "Provide, maintain, and improve the Application and related services",
+        "Authenticate users and enforce security, including multi-tenant data isolation",
+        "Process transactions and deliver features you request",
+        "Respond to support inquiries and communicate service updates",
+        "Monitor performance, troubleshoot errors, and prevent fraud or abuse",
+        "Comply with legal obligations and enforce our Terms and Conditions"
+      ]
+    },
+    {
+      "id": "legal-bases",
+      "title": "Legal Bases for Processing (EEA, UK, and Similar Regions)",
+      "paragraphs": ["Where applicable law requires a legal basis, we process personal data on the following grounds:"],
+      "bullets": [
+        "Performance of a contract when providing the Application you requested",
+        "Legitimate interests in securing and improving our services, subject to your rights",
+        "Consent where required, such as for optional communications or non-essential cookies",
+        "Compliance with legal obligations"
+      ]
+    },
+    {
+      "id": "sharing",
+      "title": "How We Share Information",
+      "paragraphs": [
+        "We do not sell your personal information. We may share information only as described below:"
+      ],
+      "bullets": [
+        "With service providers who help us host, maintain, analyze, or support the Application, under contractual confidentiality and security obligations",
+        "With your organization’s authorized administrators when you use the Application as part of a business account",
+        "When required by law, regulation, legal process, or governmental request",
+        "To protect the rights, property, or safety of the Service Provider, users, or others",
+        "In connection with a merger, acquisition, or sale of assets, with appropriate safeguards"
+      ]
+    },
+    {
+      "id": "third-party",
+      "title": "Third-Party Services",
+      "paragraphs": [
+        "The Application may rely on third-party services that collect information according to their own policies. For example, Google Play Services may be used on Android devices. Review the Google terms at https://policies.google.com/privacy.",
+        "We are not responsible for the privacy practices of third-party websites or services linked from the Application."
+      ]
+    },
+    {
+      "id": "retention",
+      "title": "Data Retention",
+      "paragraphs": [
+        "We retain personal and business data for as long as your account is active or as needed to provide the Application, comply with legal obligations, resolve disputes, and enforce our agreements.",
+        "When data is no longer required, we delete or anonymize it in accordance with our retention practices and applicable law."
+      ]
+    },
+    {
+      "id": "security",
+      "title": "Security",
+      "paragraphs": [
+        "We implement administrative, technical, and organizational measures designed to protect your information, including tenant isolation for business data.",
+        "No method of transmission or storage is completely secure. You are responsible for safeguarding your device, credentials, and access to the Application."
+      ]
+    },
+    {
+      "id": "international",
+      "title": "International Transfers",
+      "paragraphs": [
+        "Your information may be processed in countries other than your own. Where required, we use appropriate safeguards for cross-border transfers of personal data."
+      ]
+    },
+    {
+      "id": "your-rights",
+      "title": "Your Privacy Rights",
+      "paragraphs": [
+        "Depending on your location, you may have rights to access, correct, delete, restrict, or object to certain processing of your personal data, and to data portability or withdrawal of consent where processing is consent-based.",
+        "To exercise these rights, contact us at mail@afseer.com. We may need to verify your identity before responding. You may also lodge a complaint with your local data protection authority."
+      ]
+    },
+    {
+      "id": "children",
+      "title": "Children's Privacy",
+      "paragraphs": [
+        "The Application is not directed to children under 16. We do not knowingly collect personal data from children under 16 without appropriate parental consent. Contact us if you believe we have collected such data."
+      ]
+    },
+    {
+      "id": "changes",
+      "title": "Changes to This Privacy Policy",
+      "paragraphs": [
+        "We may update this Privacy Policy from time to time. We will post the updated policy on this page and update the effective date. Material changes may also be communicated through the Application or by email where appropriate.",
+        "Previous versions are available upon request at mail@afseer.com."
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "Contact Us",
+      "paragraphs": [
+        "If you have questions about this Privacy Policy or our data practices, contact the Service Provider at mail@afseer.com or support@bizapp365.com."
+      ]
+    }
+  ]
+}

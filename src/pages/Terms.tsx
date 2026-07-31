@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const sections = [
   { id: 'license', label: 'License to use the Application' },
@@ -181,7 +182,7 @@ const Terms = () => {
           </p>
           <p>
             Your content may include personal data. Processing of personal data related to User-Generated Content
-            is governed by the Privacy Policy. Do not post personal data of others without their consent.
+            is governed by the <Link to="/privacy">Privacy Policy</Link>. Do not post personal data of others without their consent.
           </p>
           <p>
             The Service Provider is dedicated to ensuring that the Application is as beneficial and efficient
@@ -370,7 +371,7 @@ const Terms = () => {
 
           <h2 id="entire-agreement">Entire Agreement</h2>
           <p>
-            These Terms and Conditions, together with the Privacy Policy, constitute the entire agreement
+            These Terms and Conditions, together with the <Link to="/privacy">Privacy Policy</Link>, constitute the entire agreement
             between you and the Service Provider concerning your use of the Application, superseding any prior
             agreements or understandings.
           </p>
