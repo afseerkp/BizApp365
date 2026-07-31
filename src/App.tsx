@@ -13,6 +13,7 @@ const Integrations = lazy(() => import('./pages/Integrations'));
 const Demo = lazy(() => import('./pages/Demo'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Privacy = lazy(() => import('./pages/Privacy'));
+const AppAccess = lazy(() => import('./pages/AppAccess'));
 
 const PageLoader = () => (
   <div className="min-h-[50vh] flex items-center justify-center">
@@ -38,6 +39,7 @@ function App() {
               <Route path="/demo" element={<Demo />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/app-access" element={<AppAccess />} />
             </Routes>
           </Suspense>
         </main>

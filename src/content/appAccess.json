@@ -1,0 +1,43 @@
+{
+  "title": "App Access for Reviewers",
+  "lastUpdated": "31 July 2026",
+  "application": "BizApp365",
+  "intro": [
+    "This page provides login details for Google Play and other store reviewers to access restricted areas of the BizApp365 Android app and related services.",
+    "The demo account below is configured for Enterprise edition access across accounting, inventory, CRM, service center, HR, barcode, and VAN field sales modules."
+  ],
+  "credentials": {
+    "username": "play.review@bizapp365.com",
+    "password": "BizApp365Review2026!",
+    "companyCode": "DEMO",
+    "companyName": "Demo Trading LLC"
+  },
+  "server": {
+    "host": "demo.bizapp365.com",
+    "port": "443",
+    "protocol": "HTTPS"
+  },
+  "androidSteps": [
+    "Open the BizApp365 Android app.",
+    "On server setup, enter Host: demo.bizapp365.com, Port: 443, and enable HTTPS/SSL.",
+    "Select company code DEMO (Demo Trading LLC).",
+    "Sign in with Username play.review@bizapp365.com and Password BizApp365Review2026!",
+    "If license activation appears, use the pre-configured Enterprise demo license for the DEMO company.",
+    "Two-factor authentication is disabled for this reviewer account."
+  ],
+  "webSteps": [
+    "Open the BizApp365 web client configured for the DEMO company on the same server host.",
+    "Sign in with the same username and password listed above."
+  ],
+  "playConsoleInstructions": [
+    "In Google Play Console, go to Policy and programs > App content > App access.",
+    "Select \"All or some functionality is restricted\".",
+    "Choose \"Provide instructions for access\" (and credentials where requested).",
+    "Username: play.review@bizapp365.com",
+    "Password: BizApp365Review2026!",
+    "Additional instructions: Use server host demo.bizapp365.com (port 443, HTTPS), company code DEMO, then sign in with the credentials above. No 2FA. Enterprise modules are enabled on the demo company.",
+    "Instructions URL (optional): https://bizapp365.com/app-access.html"
+  ],
+  "supportEmail": "support@bizapp365.com",
+  "contactEmail": "mail@afseer.com"
+}

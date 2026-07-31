@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Access for Reviewers | BizApp365</title>
+  <meta name="description" content="Reviewer login credentials and instructions for BizApp365." />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 48rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: 2rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.25rem; margin-top: 2rem; }
+    p, ul, ol, pre { margin: 0.75rem 0; }
+    ul, ol { padding-left: 1.25rem; }
+    a { color: #1976d2; }
+    .meta { color: #64748b; font-size: 0.875rem; margin-bottom: 1.5rem; }
+    .nav { margin-bottom: 2rem; font-size: 0.875rem; }
+    .credentials { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem; }
+    .credentials dt { font-weight: 600; color: #64748b; font-size: 0.875rem; }
+    .credentials dd { margin: 0.25rem 0 0.75rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    pre { background: #0f172a; color: #f8fafc; padding: 1rem; border-radius: 0.75rem; white-space: pre-wrap; font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <p class="nav"><a href="/">BizApp365</a> · <a href="/privacy.html">Privacy Policy</a></p>
+  <h1>App Access for Reviewers</h1>
+  <p class="meta">Last updated 31 July 2026</p>
+  <p>This page provides login details for Google Play and other store reviewers to access restricted areas of the BizApp365 Android app and related services.</p><p>The demo account below is configured for Enterprise edition access across accounting, inventory, CRM, service center, HR, barcode, and VAN field sales modules.</p>
+  <h2>Reviewer login credentials</h2>
+  <dl class="credentials">
+    <dt>Username</dt><dd>play.review@bizapp365.com</dd>
+    <dt>Password</dt><dd>BizApp365Review2026!</dd>
+    <dt>Company code</dt><dd>DEMO</dd>
+    <dt>Company name</dt><dd>Demo Trading LLC</dd>
+  </dl>
+  <h2>Server connection (Android)</h2>
+  <ul>
+    <li>Host: demo.bizapp365.com</li>
+    <li>Port: 443</li>
+    <li>Protocol: HTTPS</li>
+  </ul>
+  <h2>Android sign-in steps</h2>
+  <ol><li>Open the BizApp365 Android app.</li><li>On server setup, enter Host: demo.bizapp365.com, Port: 443, and enable HTTPS/SSL.</li><li>Select company code DEMO (Demo Trading LLC).</li><li>Sign in with Username play.review@bizapp365.com and Password BizApp365Review2026!</li><li>If license activation appears, use the pre-configured Enterprise demo license for the DEMO company.</li><li>Two-factor authentication is disabled for this reviewer account.</li></ol>
+  <h2>Web sign-in steps</h2>
+  <ol><li>Open the BizApp365 web client configured for the DEMO company on the same server host.</li><li>Sign in with the same username and password listed above.</li></ol>
+  <h2>Google Play Console declaration</h2>
+  <pre>In Google Play Console, go to Policy and programs &gt; App content &gt; App access.
+Select &quot;All or some functionality is restricted&quot;.
+Choose &quot;Provide instructions for access&quot; (and credentials where requested).
+Username: play.review@bizapp365.com
+Password: BizApp365Review2026!
+Additional instructions: Use server host demo.bizapp365.com (port 443, HTTPS), company code DEMO, then sign in with the credentials above. No 2FA. Enterprise modules are enabled on the demo company.
+Instructions URL (optional): https://bizapp365.com/app-access.html</pre>
+  <p class="meta">Support: <a href="mailto:support@bizapp365.com">support@bizapp365.com</a></p>
+</body>
+</html>
