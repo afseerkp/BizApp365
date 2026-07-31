@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import heroDashboard from '../../assets/hero-dashboard.png';
 
 const Hero = () => {
   return (
@@ -46,7 +47,7 @@ const Hero = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-[#1976d2]/20 to-[#9c27b0]/20 rounded-3xl blur-3xl scale-95" />
           <img
-            src="/features/hero-dashboard.png"
+            src={heroDashboard}
             alt="BizApp365 ERP Dashboard"
             className="relative w-full rounded-2xl shadow-2xl border border-slate-200/80 dark:border-slate-700/80"
           />
