@@ -6,7 +6,6 @@ const Highlights = lazy(() => import('./Highlights'));
 const Platforms = lazy(() => import('../components/ui/Platforms'));
 const Features = lazy(() => import('./Features'));
 const TechStack = lazy(() => import('./TechStack'));
-const Testimonials = lazy(() => import('./Testimonials'));
 
 const SectionLoader = () => <div className="min-h-[40vh]" aria-hidden />;
 
@@ -25,9 +24,6 @@ const Home = () => {
       </Suspense>
       <Suspense fallback={<SectionLoader />}>
         <div id="tech-section"><TechStack /></div>
-      </Suspense>
-      <Suspense fallback={<SectionLoader />}>
-        <div id="testimonials-section"><Testimonials /></div>
       </Suspense>
       <CTASection />
     </div>

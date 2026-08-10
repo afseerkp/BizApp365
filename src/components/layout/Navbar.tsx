@@ -21,6 +21,8 @@ const Navbar = () => {
                 setIsVisible(true);
             } else if (currentScrollY > lastScrollY.current + 4) {
                 setIsVisible(false);
+            } else if (currentScrollY < lastScrollY.current - 4) {
+                setIsVisible(true);
             }
 
             lastScrollY.current = currentScrollY;
@@ -62,7 +64,7 @@ const Navbar = () => {
                 }}
                 className={`fixed w-full z-50 transition-transform duration-300 ease-in-out will-change-transform ${
                     isScrolled || mobileMenuOpen
-                        ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm py-3'
+                        ? 'bg-white dark:bg-slate-900 shadow-sm py-3'
                         : 'bg-transparent py-5'
                 }`}
             >
