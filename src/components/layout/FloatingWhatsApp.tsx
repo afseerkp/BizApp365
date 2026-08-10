@@ -1,7 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 const FloatingWhatsApp = () => {
+    const { t } = useLanguage();
     const phoneNumber = '+971582885633';
     const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}`;
 
@@ -10,13 +11,13 @@ const FloatingWhatsApp = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#1ebe57] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center cursor-pointer"
+            className="fixed bottom-6 end-6 z-50 bg-[#25D366] hover:bg-[#1ebe57] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center cursor-pointer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            aria-label="Chat with us on WhatsApp"
+            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            aria-label={t('whatsapp.aria')}
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"

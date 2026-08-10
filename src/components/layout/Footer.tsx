@@ -1,7 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 const Footer = () => {
+    const { t } = useLanguage();
+
     return (
         <footer className="bg-slate-950 border-t border-slate-800 text-slate-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -14,31 +16,31 @@ const Footer = () => {
                             <span className="font-bold text-xl text-white tracking-tight">BizApp365</span>
                         </Link>
                         <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-                            Multi-tenant ERP for SMEs — accounting, inventory, CRM, service center, HR, VAN field sales, and silent printing. Web · Android · Extension.
+                            {t('footer.tagline')}
                         </p>
                     </div>
 
                     <div>
-                        <h3 className="text-white font-semibold mb-4 tracking-tight">Product</h3>
+                        <h3 className="text-white font-semibold mb-4 tracking-tight">{t('footer.product')}</h3>
                         <ul className="space-y-2.5 text-sm">
-                            <li><Link to="/features" className="hover:text-white transition-colors">Features</Link></li>
-                            <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-                            <li><Link to="/integrations" className="hover:text-white transition-colors">Integrations</Link></li>
-                            <li><Link to="/demo" className="hover:text-white transition-colors">Book a Demo</Link></li>
+                            <li><Link to="/features" className="hover:text-white transition-colors">{t('footer.features')}</Link></li>
+                            <li><Link to="/pricing" className="hover:text-white transition-colors">{t('footer.pricing')}</Link></li>
+                            <li><Link to="/integrations" className="hover:text-white transition-colors">{t('footer.integrations')}</Link></li>
+                            <li><Link to="/demo" className="hover:text-white transition-colors">{t('footer.demo')}</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-white font-semibold mb-4 tracking-tight">Resources</h3>
+                        <h3 className="text-white font-semibold mb-4 tracking-tight">{t('footer.resources')}</h3>
                         <ul className="space-y-2.5 text-sm">
-                            <li><Link to="/tech" className="hover:text-white transition-colors">Tech Stack</Link></li>
-                            <li><Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
-                            <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                            <li><Link to="/tech" className="hover:text-white transition-colors">{t('footer.tech')}</Link></li>
+                            <li><Link to="/terms" className="hover:text-white transition-colors">{t('footer.terms')}</Link></li>
+                            <li><Link to="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-white font-semibold mb-4 tracking-tight">Contact</h3>
+                        <h3 className="text-white font-semibold mb-4 tracking-tight">{t('footer.contact')}</h3>
                         <ul className="space-y-2.5 text-sm">
                             <li>
                                 <a href="mailto:sales@bizapp365.com" className="hover:text-white transition-colors">
@@ -55,7 +57,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col justify-center items-center text-sm text-slate-500">
-                    <p>&copy; {new Date().getFullYear()} BizApp365. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} BizApp365. {t('footer.rights')}</p>
                 </div>
             </div>
         </footer>

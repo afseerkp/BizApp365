@@ -7,7 +7,13 @@
   --color-success-500: #2e7d32;
   --color-warning-500: #ff9800;
   --color-error-500: #d32f2f;
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Arabic", ui-sans-serif, sans-serif;
+}
+
+html[dir="rtl"],
+html[dir="rtl"] body,
+html[dir="rtl"] #root {
+  font-family: "Noto Sans Arabic", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
 }
 
 @layer base {

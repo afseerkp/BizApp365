@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Contact = () => {
+  const { t, tm } = useLanguage();
+
   return (
     <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,10 +14,10 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
-            Get in <span className="text-[#9c27b0]">Touch</span>
+            {t('contact.titleBefore')} <span className="text-[#9c27b0]">{t('contact.titleHighlight')}</span>
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-balance">
-            Ready to transform your business? Request a demo or contact our sales team to discuss your customized ERP solution.
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -29,48 +32,47 @@ const Contact = () => {
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">First Name</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('contact.firstName')}</label>
                     <input
                       type="text"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1976d2] focus:border-transparent transition-all outline-none"
-                      placeholder="John"
+                      placeholder={t('contact.placeholderFirst')}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Last Name</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('contact.lastName')}</label>
                     <input
                       type="text"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1976d2] focus:border-transparent transition-all outline-none"
-                      placeholder="Doe"
+                      placeholder={t('contact.placeholderLast')}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Work Email</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('contact.email')}</label>
                   <input
                     type="email"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1976d2] focus:border-transparent transition-all outline-none"
-                    placeholder="john@company.com"
+                    placeholder={t('contact.placeholderEmail')}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Company Size</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('contact.companySize')}</label>
                   <select className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1976d2] focus:border-transparent transition-all outline-none">
-                    <option>1-10 employees</option>
-                    <option>11-50 employees</option>
-                    <option>51-200 employees</option>
-                    <option>201+ employees</option>
+                    {tm.contact.sizes.map((size) => (
+                      <option key={size}>{size}</option>
+                    ))}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">How can we help?</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('contact.help')}</label>
                   <textarea
                     rows={4}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#1976d2] focus:border-transparent transition-all outline-none resize-none"
-                    placeholder="Tell us about your requirements..."
+                    placeholder={t('contact.placeholderHelp')}
                   />
                 </div>
 
@@ -79,7 +81,7 @@ const Contact = () => {
                   whileTap={{ scale: 0.98 }}
                   className="w-full bg-gradient-to-r from-[#1976d2] to-[#9c27b0] text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-purple-500/30"
                 >
-                  Request Demo
+                  {t('contact.submit')}
                 </motion.button>
               </form>
             </div>
@@ -93,7 +95,7 @@ const Contact = () => {
           >
             <img
               src="/features/contact-visual.png"
-              alt="Contact our support team"
+              alt={t('contact.imageAlt')}
               loading="lazy"
               className="w-full rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 object-cover"
             />

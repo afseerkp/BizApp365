@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 const docsDir = path.join(root, 'docs')
-const policyPath = path.join(root, 'src/content/privacyPolicy.json')
+const policyPath = path.join(root, 'src/content/privacyPolicy.en.json')
 
 function escapeHtml(value) {
   return value
