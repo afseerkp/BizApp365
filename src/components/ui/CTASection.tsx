@@ -28,7 +28,7 @@ const CTASection = () => {
                         Join thousands of companies using BizApp365 to run their entire operations. Start your 30-day free trial today.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div className="flex justify-center items-center">
                         <Link to="/contact">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
@@ -36,15 +36,6 @@ const CTASection = () => {
                                 className="bg-white text-[#1976d2] hover:bg-slate-50 px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-xl"
                             >
                                 Start Free Trial <ArrowRight size={20} />
-                            </motion.button>
-                        </Link>
-                        <Link to="/demo">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-colors"
-                            >
-                                Watch Demo
                             </motion.button>
                         </Link>
                     </div>

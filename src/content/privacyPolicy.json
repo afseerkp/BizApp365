@@ -4,7 +4,7 @@
   "serviceProvider": "Afseer",
   "application": "BizApp365",
   "contactEmail": "mail@afseer.com",
-  "supportEmail": "support@bizapp365.com",
+  "supportEmail": "sales@bizapp365.com",
   "intro": [
     "This Privacy Policy describes how Afseer (\"Service Provider\", \"we\", \"us\", or \"our\") collects, uses, stores, and shares information when you use the BizApp365 application for mobile devices and web browsers, together with any related services (collectively, the \"Application\").",
     "By using the Application, you agree to the collection and use of information in accordance with this Privacy Policy. If you do not agree, please do not use the Application."
@@ -120,7 +120,7 @@
       "id": "contact",
       "title": "Contact Us",
       "paragraphs": [
-        "If you have questions about this Privacy Policy or our data practices, contact the Service Provider at mail@afseer.com or support@bizapp365.com."
+        "If you have questions about this Privacy Policy or our data practices, contact the Service Provider at mail@afseer.com or sales@bizapp365.com."
       ]
     }
   ]
