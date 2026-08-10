@@ -1,33 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const TOP_REVEAL_ZONE = 16;
-
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const lastScrollY = useRef(0);
     const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            setIsScrolled(currentScrollY > 20);
-
-            if (currentScrollY <= 20) {
-                setIsVisible(true);
-            } else if (currentScrollY > lastScrollY.current + 4) {
-                setIsVisible(false);
-            } else if (currentScrollY < lastScrollY.current - 4) {
-                setIsVisible(true);
-            }
-
-            lastScrollY.current = currentScrollY;
+            setIsScrolled(window.scrollY > 8);
         };
 
+        handleScroll();
         window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => {
@@ -48,31 +34,17 @@ const Navbar = () => {
     ];
 
     return (
-        <>
-            {!isVisible && !mobileMenuOpen && (
-                <div
-                    aria-hidden="true"
-                    className="fixed top-0 left-0 right-0 z-[60]"
-                    style={{ height: TOP_REVEAL_ZONE }}
-                    onMouseEnter={() => setIsVisible(true)}
-                />
-            )}
-
-            <nav
-                style={{
-                    transform: isVisible || mobileMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
-                }}
-                className={`fixed w-full z-50 transition-transform duration-300 ease-in-out will-change-transform ${
-                    isScrolled || mobileMenuOpen
-                        ? 'bg-white dark:bg-slate-900 shadow-sm py-3'
-                        : 'bg-transparent py-5'
-                }`}
-            >
+        <nav
+            className={`fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-900 transition-[padding,box-shadow] duration-300 ${
+                isScrolled || mobileMenuOpen
+                    ? 'py-3 shadow-sm border-b border-slate-200 dark:border-slate-800'
+                    : 'py-5 border-b border-transparent'
+            }`}
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
-                    {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1976d2] to-[#9c27b0] flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    <Link to="/" className="flex items-center gap-2.5">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1976d2] to-[#9c27b0] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">
                             B
                         </div>
                         <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">
@@ -80,17 +52,17 @@ const Navbar = () => {
                         </span>
                     </Link>
 
-                    {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-8">
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-1">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     to={link.path}
-                                    className={`text-sm font-medium transition-colors hover:text-[#1976d2] ${location.pathname === link.path
-                                            ? 'text-[#1976d2]'
+                                    className={`text-sm font-medium px-3 py-2 rounded-lg transition-colors hover:text-[#1976d2] hover:bg-slate-100 dark:hover:bg-slate-800 ${
+                                        location.pathname === link.path
+                                            ? 'text-[#1976d2] bg-blue-50 dark:bg-slate-800'
                                             : 'text-slate-600 dark:text-slate-300'
-                                        }`}
+                                    }`}
                                 >
                                     {link.name}
                                 </Link>
@@ -98,17 +70,17 @@ const Navbar = () => {
                         </div>
                         <a
                             href="https://login.bizapp365.com"
-                            className="bg-[#1976d2] hover:bg-[#1565c0] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                            className="bg-[#1976d2] hover:bg-[#1565c0] text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:-translate-y-0.5"
                         >
                             Login
                         </a>
                     </div>
 
-                    {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             className="text-slate-600 dark:text-slate-300 hover:text-[#1976d2]"
+                            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
@@ -116,7 +88,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Nav */}
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
@@ -149,7 +120,6 @@ const Navbar = () => {
                 )}
             </AnimatePresence>
         </nav>
-        </>
     );
 };
 

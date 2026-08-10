@@ -7,7 +7,7 @@
   --color-success-500: #2e7d32;
   --color-warning-500: #ff9800;
   --color-error-500: #d32f2f;
-  --font-sans: "Inter", "Roboto", "Helvetica", "Arial", sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, sans-serif;
 }
 
 @layer base {
@@ -16,10 +16,14 @@
     --foreground: #0f172a;
   }
 
-  /* Optional dark mode baseline */
   .dark {
     --background: #0f172a;
     --foreground: #f8fafc;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, #1976d2 28%, white);
+    color: #0f172a;
   }
 }
 
@@ -34,4 +38,10 @@ html, body, #root {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Soft page scroll feel */
+html {
+  scroll-behavior: smooth;
 }

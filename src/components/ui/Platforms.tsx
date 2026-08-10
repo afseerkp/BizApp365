@@ -36,7 +36,7 @@ const platforms = [
 
 const Platforms = () => {
   return (
-    <section className="py-24 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+    <section className="py-24 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,9 +45,9 @@ const Platforms = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium text-sm mb-6 border border-slate-200 dark:border-slate-700">
-            Three ways to work
-          </div>
+          <p className="text-sm font-semibold tracking-[0.16em] uppercase text-[#1976d2] mb-4">
+            Platforms
+          </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
             Web · Android · Extension
           </h2>
@@ -56,25 +56,25 @@ const Platforms = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {platforms.map(({ icon: Icon, title, subtitle, description, highlights, color, delay }) => (
             <motion.div
               key={title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay }}
-              className="bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 flex flex-col"
+              className="group relative bg-slate-50/80 dark:bg-slate-800/60 rounded-3xl p-8 border border-slate-200/80 dark:border-slate-700/80 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-[#1976d2]/30 hover:shadow-xl hover:shadow-blue-500/5"
             >
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mb-6 shadow-lg`}>
+              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mb-6 shadow-lg shadow-slate-900/10 transition-transform duration-300 group-hover:scale-105`}>
                 <Icon className="w-7 h-7 text-white" />
               </div>
               <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">{subtitle}</p>
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{title}</h3>
-              <p className="text-slate-600 dark:text-slate-300 mb-6 flex-1">{description}</p>
-              <ul className="space-y-2">
+              <p className="text-slate-600 dark:text-slate-300 mb-6 flex-1 leading-relaxed">{description}</p>
+              <ul className="space-y-2.5">
                 {highlights.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
+                  <li key={item} className="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-300">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#1976d2] shrink-0" />
                     {item}
                   </li>
