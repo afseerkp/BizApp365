@@ -94,20 +94,12 @@ const Navbar = () => {
                                 </Link>
                             ))}
                         </div>
-                        <div className="flex items-center gap-4">
-                            <Link
-                                to="/contact"
-                                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#1976d2] transition-colors"
-                            >
-                                Sign In
-                            </Link>
-                            <Link
-                                to="/contact"
-                                className="bg-[#1976d2] hover:bg-[#1565c0] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                            >
-                                Request Demo
-                            </Link>
-                        </div>
+                        <a
+                            href="https://login.bizapp365.com"
+                            className="bg-[#1976d2] hover:bg-[#1565c0] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                        >
+                            Login
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -142,19 +134,13 @@ const Navbar = () => {
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="pt-4 flex flex-col gap-3">
-                                <Link
-                                    to="/contact"
-                                    className="block text-center w-full py-2.5 text-slate-600 dark:text-slate-300 font-medium border border-slate-200 dark:border-slate-700 rounded-lg"
-                                >
-                                    Sign In
-                                </Link>
-                                <Link
-                                    to="/contact"
+                            <div className="pt-4">
+                                <a
+                                    href="https://login.bizapp365.com"
                                     className="block text-center w-full py-2.5 bg-[#1976d2] text-white font-medium rounded-lg"
                                 >
-                                    Request Demo
-                                </Link>
+                                    Login
+                                </a>
                             </div>
                         </div>
                     </motion.div>
