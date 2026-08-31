@@ -109,6 +109,7 @@
     "tech": "التقنيات",
     "terms": "الشروط والأحكام",
     "privacy": "سياسة الخصوصية",
+    "deleteAccount": "حذف الحساب",
     "rights": "جميع الحقوق محفوظة."
   },
   "whatsapp": {
@@ -555,10 +556,15 @@
   "legal": {
     "onThisPage": "في هذه الصفحة",
     "effectiveAsOf": "ساري اعتباراً من {date}",
+    "effectiveDate": "تاريخ السريان: {date}",
+    "lastUpdated": "آخر تحديث: {date}",
+    "serviceProvider": "مزود الخدمة: {name}",
     "privacyTitleBefore": "سياسة",
     "privacyTitleHighlight": "الخصوصية",
     "termsTitleBefore": "الشروط",
     "termsTitleHighlight": "والأحكام",
+    "deleteTitleBefore": "حذف",
+    "deleteTitleHighlight": "الحساب",
     "privacyFooter": "إذا كانت لديك أسئلة حول سياسة الخصوصية هذه، تواصل معنا على"
   }
 }

@@ -94,6 +94,7 @@
     "tech": "Tech Stack",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
+    "deleteAccount": "Delete Account",
     "rights": "All rights reserved."
   },
   "whatsapp": {
@@ -412,10 +413,15 @@
   "legal": {
     "onThisPage": "On this page",
     "effectiveAsOf": "Effective as of {date}",
+    "effectiveDate": "Effective Date: {date}",
+    "lastUpdated": "Last Updated: {date}",
+    "serviceProvider": "Service Provider: {name}",
     "privacyTitleBefore": "Privacy",
     "privacyTitleHighlight": "Policy",
     "termsTitleBefore": "Terms &",
     "termsTitleHighlight": "Conditions",
+    "deleteTitleBefore": "Delete",
+    "deleteTitleHighlight": "Account",
     "privacyFooter": "If you have questions about this Privacy Policy, contact us at"
   }
 }

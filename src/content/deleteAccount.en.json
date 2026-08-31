@@ -1,0 +1,80 @@
+{
+  "title": "Delete Your BizApp365 Account",
+  "application": "BizApp365",
+  "serviceProvider": "Afseer",
+  "website": "https://bizapp365.com/",
+  "privacyUrl": "https://bizapp365.com/privacy/",
+  "termsUrl": "https://bizapp365.com/terms/",
+  "contactEmail": "mail@afseer.com",
+  "lastUpdated": "31 August 2026",
+  "metaDescription": "Request deletion of your BizApp365 account and associated personal data. This page is provided by Afseer and does not require the Android app.",
+  "intro": [
+    "This page is the public account-deletion resource for BizApp365, operated by Afseer.",
+    "You can use this page without installing or reinstalling the Android app, and without signing in to this website.",
+    "Send a deletion request to mail@afseer.com. We will verify that you are authorized to make the request, then delete the account and associated personal data we control, except information we must keep for legal, tax, security, or accounting reasons."
+  ],
+  "sections": [
+    {
+      "id": "how-to-request",
+      "title": "How to request deletion",
+      "paragraphs": [
+        "Email mail@afseer.com with the subject \"BizApp365 Account Deletion Request\". Include:"
+      ],
+      "bullets": [
+        "The email address used for the BizApp365 account",
+        "Company / tenant name if you use a business account",
+        "A phone number associated with the account, if any",
+        "A clear statement that you want the account and associated personal data deleted"
+      ],
+      "paragraphsAfter": [
+        "You can also use the form on this page. It opens your email app with a pre-filled message to mail@afseer.com. If you prefer, write the email yourself.",
+        "Do not include your password."
+      ]
+    },
+    {
+      "id": "what-is-deleted",
+      "title": "What we delete",
+      "paragraphs": [
+        "After we verify the request, we delete:"
+      ],
+      "bullets": [
+        "The user account and login access we control",
+        "Personal profile information associated with that account",
+        "Personal data that is not required to be retained by law"
+      ],
+      "paragraphsAfter": [
+        "Business records that belong to an organization (for example invoices, inventory, and customer files of a company tenant) may remain available to remaining administrators of that tenant until the organization requests deletion of the tenant. We will explain what is retained and why."
+      ]
+    },
+    {
+      "id": "what-may-be-kept",
+      "title": "What may be retained",
+      "paragraphs": [
+        "We may retain limited information when we must, including:"
+      ],
+      "bullets": [
+        "Records required for tax, accounting, or other legal obligations",
+        "Information needed to resolve disputes, prevent abuse, or establish a legal claim",
+        "Backups that have not yet rotated, until they are overwritten in the ordinary backup cycle",
+        "Copies you stored in a destination you control, such as Google Drive, which you can delete from that account"
+      ]
+    },
+    {
+      "id": "confirmation",
+      "title": "Confirmation",
+      "paragraphs": [
+        "Deletion is permanent for data we delete. We will confirm when the request has been processed, or explain if we cannot complete it (for example if we cannot verify the requester).",
+        "Related policies: https://bizapp365.com/privacy/ and https://bizapp365.com/terms/"
+      ]
+    }
+  ],
+  "form": {
+    "heading": "Send a deletion request",
+    "emailLabel": "Account email",
+    "companyLabel": "Company / tenant name (optional)",
+    "detailsLabel": "Anything else we should know (optional)",
+    "submit": "Open email to mail@afseer.com",
+    "mailtoSubject": "BizApp365 Account Deletion Request",
+    "note": "This form opens your email app. It does not upload data to this website. If no email app opens, write directly to mail@afseer.com."
+  }
+}

@@ -1,17 +1,24 @@
 import { motion } from 'framer-motion';
 import policyEn from '../content/privacyPolicy.en.json';
 import policyAr from '../content/privacyPolicy.ar.json';
+import type { PrivacyPolicyContent } from '../content/legalTypes';
+import { LegalSections } from '../components/legal/LegalSections';
+import { legalArticleClassName } from '../components/legal/legalStyles';
+import Seo from '../components/seo/Seo';
 import { useLanguage } from '../i18n/LanguageContext';
-
-const articleClassName =
-  'rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 md:p-12 shadow-xl text-slate-700 dark:text-slate-300 leading-relaxed space-y-6 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:dark:text-white [&_h2]:pt-4 [&_h2]:border-t [&_h2]:border-slate-200 [&_h2]:dark:border-slate-700 [&_section:first-of-type_h2]:border-t-0 [&_section:first-of-type_h2]:pt-0 [&_ul]:list-disc [&_ul]:ps-6 [&_ul]:space-y-2 [&_a]:text-[#1976d2] [&_a]:hover:underline';
+import { renderRichText } from '../utils/richText';
 
 const Privacy = () => {
   const { lang, t } = useLanguage();
-  const policy = lang === 'ar' ? policyAr : policyEn;
+  const policy = (lang === 'ar' ? policyAr : policyEn) as PrivacyPolicyContent;
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <Seo
+        title="BizApp365 Privacy Policy"
+        description={policy.metaDescription}
+        canonical="https://bizapp365.com/privacy/"
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,8 +30,15 @@ const Privacy = () => {
             {t('legal.privacyTitleBefore')}{' '}
             <span className="text-[#9c27b0]">{t('legal.privacyTitleHighlight')}</span>
           </h1>
+          <p className="text-lg font-semibold text-slate-900 dark:text-white">{policy.application}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+            {t('legal.serviceProvider').replace('{name}', policy.serviceProvider)}
+          </p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-3">
+            {t('legal.effectiveDate').replace('{date}', policy.effectiveDate)}
+          </p>
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            {t('legal.effectiveAsOf').replace('{date}', policy.effectiveDate)}
+            {t('legal.lastUpdated').replace('{date}', policy.lastUpdated)}
           </p>
         </motion.div>
 
@@ -56,33 +70,13 @@ const Privacy = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={articleClassName}
+          className={legalArticleClassName}
         >
           {policy.intro.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            <p key={paragraph.slice(0, 80)}>{renderRichText(paragraph)}</p>
           ))}
 
-          {policy.sections.map((section) => (
-            <section key={section.id}>
-              <h2 id={section.id}>{section.title}</h2>
-              {section.paragraphs?.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-              ))}
-              {section.bullets && (
-                <ul>
-                  {section.bullets.map((item) => (
-                    <li key={item.slice(0, 40)}>{item}</li>
-                  ))}
-                </ul>
-              )}
-            </section>
-          ))}
-
-          <p>
-            {t('legal.privacyFooter')}{' '}
-            <a href={`mailto:${policy.contactEmail}`}>{policy.contactEmail}</a> /{' '}
-            <a href={`mailto:${policy.supportEmail}`}>{policy.supportEmail}</a>.
-          </p>
+          <LegalSections sections={policy.sections} />
         </motion.article>
       </div>
     </div>

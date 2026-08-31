@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Allow: /privacy/
+Allow: /terms/
+Allow: /delete-account/
+
+Sitemap: https://bizapp365.com/sitemap.xml

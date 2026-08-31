@@ -1,0 +1,2 @@
+export const legalArticleClassName =
+  'rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 md:p-12 shadow-xl text-slate-700 dark:text-slate-300 leading-relaxed space-y-6 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:dark:text-white [&_h2]:pt-4 [&_h2]:border-t [&_h2]:border-slate-200 [&_h2]:dark:border-slate-700 [&_section:first-of-type_h2]:border-t-0 [&_section:first-of-type_h2]:pt-0 [&_ul]:list-disc [&_ul]:ps-6 [&_ul]:space-y-2 [&_a]:text-[#1976d2] [&_a]:hover:underline [&_a]:break-words';

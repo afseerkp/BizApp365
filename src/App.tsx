@@ -13,6 +13,7 @@ const Integrations = lazy(() => import('./pages/Integrations'));
 const Demo = lazy(() => import('./pages/Demo'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Privacy = lazy(() => import('./pages/Privacy'));
+const DeleteAccount = lazy(() => import('./pages/DeleteAccount'));
 const PageLoader = () => (
   <div className="min-h-[50vh] flex items-center justify-center">
     <div className="w-8 h-8 border-2 border-[#1976d2] border-t-transparent rounded-full animate-spin" />
@@ -37,6 +38,7 @@ function App() {
               <Route path="/demo" element={<Demo />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/delete-account" element={<DeleteAccount />} />
             </Routes>
           </Suspense>
         </main>

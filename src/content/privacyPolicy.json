@@ -1,126 +1,343 @@
 {
   "title": "Privacy Policy",
-  "effectiveDate": "28 July 2026",
-  "serviceProvider": "Afseer",
   "application": "BizApp365",
+  "serviceProvider": "Afseer",
+  "website": "https://bizapp365.com/",
+  "privacyUrl": "https://bizapp365.com/privacy/",
+  "termsUrl": "https://bizapp365.com/terms/",
+  "deleteAccountUrl": "https://bizapp365.com/delete-account/",
   "contactEmail": "mail@afseer.com",
   "supportEmail": "sales@bizapp365.com",
+  "effectiveDate": "28 July 2026",
+  "lastUpdated": "31 August 2026",
+  "metaDescription": "Privacy Policy for BizApp365 explaining how Afseer collects, uses, protects, retains, and deletes user information.",
   "intro": [
-    "This Privacy Policy describes how Afseer (\"Service Provider\", \"we\", \"us\", or \"our\") collects, uses, stores, and shares information when you use the BizApp365 application for mobile devices and web browsers, together with any related services (collectively, the \"Application\").",
-    "By using the Application, you agree to the collection and use of information in accordance with this Privacy Policy. If you do not agree, please do not use the Application."
+    "This is the Privacy Policy for BizApp365, a business and accounting application operated by Afseer (the \"Service Provider\", \"we\", \"us\", or \"our\").",
+    "This page explains how we collect, use, share, protect, retain, and delete information when you use the BizApp365 website at https://bizapp365.com/, the BizApp365 web application (including login at https://login.bizapp365.com), the BizApp365 Android application (including the VAN Sales field client), and related services (together, the \"Application\" or \"Services\").",
+    "This Privacy Policy is a standalone public page. It is separate from the Terms & Conditions at https://bizapp365.com/terms/. You do not need to log in, install the app, or accept terms to read this policy.",
+    "BizApp365 is an ERP and business-management product. Users and their organizations enter business records such as customers, suppliers, invoices, and inventory in order to run their operations. We process that information to provide the Application, not to advertise to those customers."
   ],
   "sections": [
     {
-      "id": "information-we-collect",
-      "title": "Information We Collect",
+      "id": "introduction",
+      "title": "1. Introduction",
       "paragraphs": [
-        "We collect information you provide directly, information generated through your use of the Application, and limited technical information needed to operate and secure the service."
+        "Afseer provides BizApp365 as a multi-tenant ERP for small and medium businesses. The Application is available on the web and as an Android field-sales client, with optional browser printing and document-sharing features.",
+        "By using the Application, you acknowledge this Privacy Policy. If you do not agree, please do not use the Application. If you use BizApp365 as part of a company account, your organization may also have its own rules for how business data is used inside that account."
+      ]
+    },
+    {
+      "id": "scope",
+      "title": "2. Scope of This Privacy Policy",
+      "paragraphs": [
+        "This policy covers:"
       ],
       "bullets": [
-        "Account and profile information such as name, email address, phone number, company name, and login credentials",
-        "Business data you enter into the Application, including accounting, inventory, CRM, HR, and transaction records",
-        "Communications you send to us, including support requests and feedback",
-        "Device and usage information such as IP address, browser type, operating system, app version, and diagnostic logs",
-        "Cookies and similar technologies on the web version of the Application, where applicable"
+        "Visitors to https://bizapp365.com/",
+        "People who contact Afseer by email, phone, or WhatsApp",
+        "Registered users of the BizApp365 web application and Android application",
+        "Business information that users enter or import into BizApp365 for their own operations"
+      ],
+      "paragraphsAfter": [
+        "This policy does not cover third-party websites or services that we only link to. Those services have their own privacy policies.",
+        "Android device permissions depend on the features you use in the installed app. Where a product feature is documented but the exact on-device handling cannot be independently confirmed, this policy describes it conservatively."
+      ]
+    },
+    {
+      "id": "information-we-collect",
+      "title": "3. Information We Collect",
+      "paragraphs": [
+        "We collect information you provide, information your organization stores in BizApp365 as business records, and limited technical information needed to operate and secure the Services.",
+        "We do not collect information for advertising networks, and this website does not use advertising or product-analytics SDKs such as Firebase Analytics, Google Analytics, Crashlytics, Meta SDK, or Microsoft Clarity.",
+        "The table below summarizes the categories that apply to BizApp365 based on the product and this website."
+      ],
+      "table": {
+        "caption": "Data categories used by BizApp365",
+        "headers": ["Data category", "Examples", "Purpose", "How collected", "Shared with"],
+        "rows": [
+          [
+            "Name",
+            "Person or contact name",
+            "Accounts, support, and business records you enter",
+            "Provided by you or your organization",
+            "Your organization's authorized users; Afseer as needed to provide the service"
+          ],
+          [
+            "Email address",
+            "Login email, party email, support email",
+            "Authentication, account administration, document sharing, and support",
+            "Provided by you or your organization",
+            "Your organization; email providers if you send documents by email; Afseer for support"
+          ],
+          [
+            "Phone number",
+            "Support phone, party WhatsApp/phone on accounts",
+            "Support, field sales, and optional WhatsApp document sharing",
+            "Provided by you or your organization",
+            "Your organization; WhatsApp if you use WhatsApp sending or the website chat button"
+          ],
+          [
+            "Business/company information",
+            "Company name, tax mode, godowns, routes, branding",
+            "Provide multi-company ERP features",
+            "Entered during setup or in the Application",
+            "Stored for your tenant; not used for advertising"
+          ],
+          [
+            "Account credentials",
+            "Username/login identifier and authentication secrets you set",
+            "Sign-in and access control",
+            "Provided at registration or by an administrator",
+            "Processed by the Application to authenticate you. We do not publish passwords."
+          ],
+          [
+            "Customer/contact information",
+            "Customers, suppliers, leads, tickets, employee records you enter",
+            "CRM, sales, HR, and accounting features you use",
+            "Entered or imported by your users",
+            "Your organization's authorized users; optional sharing tools you choose to use"
+          ],
+          [
+            "Invoices and business transactions",
+            "Sales, purchases, receipts, payments, inventory, production, service jobs",
+            "Provide accounting and operations functionality",
+            "Entered or generated in the Application",
+            "Your organization; Peppol/ASP if you submit UAE e-invoices; backup destinations you enable"
+          ],
+          [
+            "Payment-card data",
+            "Full card numbers / bank login credentials",
+            "Not stored by this website. Paid plans may use a payment processor.",
+            "Not collected on this website. Trial signup is described as not requiring a credit card.",
+            "If a processor is used at purchase, that processor handles card data under its own policy"
+          ],
+          [
+            "Device and log information",
+            "IP address, browser type, operating system, request metadata",
+            "Host, secure, and operate the website and Application",
+            "Collected automatically by hosting, CDN, and the Application",
+            "Hosting/CDN providers such as GitHub Pages and Cloudflare for this website"
+          ],
+          [
+            "Location",
+            "GPS used to create a customer or check in on a field visit",
+            "VAN sales and CRM field-visit features",
+            "Only if you use those features and grant location permission",
+            "Stored as part of your business records; not used for advertising"
+          ],
+          [
+            "Camera / barcode / QR data",
+            "QR server setup, item barcodes, label/QR configs",
+            "Connect the Android app to your server and identify items/labels",
+            "Only if you use scanning or QR setup features",
+            "Typically used as identifiers in your records; not used for advertising"
+          ],
+          [
+            "Files and documents",
+            "PDFs, Excel/XML imports, local backups, Google Drive backups",
+            "Import/export, printing, sharing, and backup",
+            "Uploaded, generated, or backed up by you",
+            "Google Drive if you enable Drive backup; email/WhatsApp if you send documents"
+          ],
+          [
+            "Website language preference",
+            "English or Arabic",
+            "Remember the language of this website",
+            "Stored in the browser localStorage key bizapp365-lang",
+            "Not shared"
+          ]
+        ]
+      },
+      "paragraphsAfter": [
+        "We do not claim collection of advertising IDs, microphone audio, device address-book contacts, or push-notification tokens, because those are not implemented on this website and are not documented as product features here."
+      ]
+    },
+    {
+      "id": "information-you-provide",
+      "title": "4. Information You Provide",
+      "paragraphs": [
+        "You or your organization may provide:"
+      ],
+      "bullets": [
+        "Account details such as name, email address, phone number, and company name so you can register, log in, and administer users",
+        "Authentication information such as a password or other sign-in credentials",
+        "Business and accounting data you choose to enter or import, including customers, suppliers, contacts, products/items, barcodes, sales, purchases, receipts, payments, inventory, invoices, CRM leads and tickets, service jobs, production/BOM records, and HR/payroll records",
+        "Files you import or generate, such as Excel/XML data, invoice PDFs, barcode labels, and backups",
+        "Messages you send to Afseer by email, phone, or WhatsApp, including demo and sales inquiries"
+      ],
+      "paragraphsAfter": [
+        "Required vs optional. An email address and credentials are required to use a registered account. Business records are required only to the extent you use those modules. Location, camera/QR scanning, WhatsApp sending, email sending, Google Drive backup, and UAE e-invoicing are optional features you can choose to use.",
+        "Business/accounting data. Information about your customers, suppliers, employees, and transactions is entered or controlled by your business. Afseer processes it to provide ERP functionality for your tenant. We do not use that information to advertise to your customers or to build advertising profiles.",
+        "Financial records vs payment cards. BizApp365 stores business transaction records that you enter (for example invoices, receipts, and payment vouchers). That is accounting data, not payment-card processing. This website does not collect credit-card numbers. Product pricing states that the 30-day trial does not require a credit card. If you later purchase a paid plan, any card or bank payment details would be handled by the payment method presented at purchase, not stored as full card numbers on this marketing website.",
+        "Authentication. Users sign in with account credentials. Product documentation describes login tokens, role-based access control, and schema-per-company isolation so one company's business data is separated from another's. Session or token handling is used so you can stay signed in to the web application. Do not send passwords in email.",
+        "The contact form on this website is a local page only and does not submit data to a server. If you want to reach us, use mail@afseer.com, sales@bizapp365.com, telephone +971 58 288 5633, or the WhatsApp button on this website."
+      ]
+    },
+    {
+      "id": "automatic",
+      "title": "5. Information Collected Automatically",
+      "paragraphs": [
+        "When you visit https://bizapp365.com/, our hosting and content-delivery providers automatically receive standard request information such as IP address, date and time, requested URL, referrer, and browser/user-agent. This is needed to serve the website, keep it available, and protect it from abuse.",
+        "This website stores your language choice (English or Arabic) in localStorage. It does not use sessionStorage for that purpose, and it does not set its own advertising cookies.",
+        "The BizApp365 web application and Android application process technical information required to sign you in, load your tenant data, and operate the features you use."
       ]
     },
     {
       "id": "how-we-use",
-      "title": "How We Use Your Information",
-      "paragraphs": ["We use personal and business information to:"],
+      "title": "6. How We Use Information",
+      "paragraphs": [
+        "We use information to:"
+      ],
       "bullets": [
-        "Provide, maintain, and improve the Application and related services",
-        "Authenticate users and enforce security, including multi-tenant data isolation",
-        "Process transactions and deliver features you request",
-        "Respond to support inquiries and communicate service updates",
-        "Monitor performance, troubleshoot errors, and prevent fraud or abuse",
-        "Comply with legal obligations and enforce our Terms and Conditions"
-      ]
-    },
-    {
-      "id": "legal-bases",
-      "title": "Legal Bases for Processing (EEA, UK, and Similar Regions)",
-      "paragraphs": ["Where applicable law requires a legal basis, we process personal data on the following grounds:"],
-      "bullets": [
-        "Performance of a contract when providing the Application you requested",
-        "Legitimate interests in securing and improving our services, subject to your rights",
-        "Consent where required, such as for optional communications or non-essential cookies",
-        "Compliance with legal obligations"
+        "Provide, maintain, and improve BizApp365, including accounting, inventory, sales, CRM, HR, production, service center, and VAN field-sales features",
+        "Authenticate users, apply role-based access, and isolate each company's data",
+        "Generate documents, labels, reports, and backups that you request",
+        "Send invoices, receipts, returns, or statements when you use email or WhatsApp sharing",
+        "Submit e-invoices when you use UAE e-invoicing (Peppol/ASP)",
+        "Respond to sales, demo, support, privacy, and account-deletion requests",
+        "Secure the Services, troubleshoot problems, and comply with law"
+      ],
+      "paragraphsAfter": [
+        "We do not use personal or business information for third-party advertising."
       ]
     },
     {
       "id": "sharing",
-      "title": "How We Share Information",
+      "title": "7. How We Share Information",
       "paragraphs": [
-        "We do not sell your personal information. We may share information only as described below:"
+        "We do not sell personal information.",
+        "We share information only as follows:"
       ],
       "bullets": [
-        "With service providers who help us host, maintain, analyze, or support the Application, under contractual confidentiality and security obligations",
-        "With your organization’s authorized administrators when you use the Application as part of a business account",
-        "When required by law, regulation, legal process, or governmental request",
-        "To protect the rights, property, or safety of the Service Provider, users, or others",
-        "In connection with a merger, acquisition, or sale of assets, with appropriate safeguards"
+        "With your organization's authorized administrators and users, according to the roles configured in your tenant",
+        "With infrastructure and hosting providers that operate this website or the Application (for this website: GitHub Pages and Cloudflare)",
+        "With service providers you enable, such as Google Drive (backups), WhatsApp (document sending or website chat), email providers (document sending), and a Peppol/ASP access point (UAE e-invoicing)",
+        "With a payment processor if you purchase a paid subscription through a processor offered at checkout",
+        "When required by law, legal process, or a competent authority",
+        "To protect the rights, security, or property of Afseer, users, or others",
+        "In connection with a merger, acquisition, or transfer of assets, with appropriate safeguards"
       ]
     },
     {
       "id": "third-party",
-      "title": "Third-Party Services",
+      "title": "8. Third-Party Services",
       "paragraphs": [
-        "The Application may rely on third-party services that collect information according to their own policies. For example, Google Play Services may be used on Android devices. Review the Google terms at https://policies.google.com/privacy.",
-        "We are not responsible for the privacy practices of third-party websites or services linked from the Application."
-      ]
-    },
-    {
-      "id": "retention",
-      "title": "Data Retention",
-      "paragraphs": [
-        "We retain personal and business data for as long as your account is active or as needed to provide the Application, comply with legal obligations, resolve disputes, and enforce our agreements.",
-        "When data is no longer required, we delete or anonymize it in accordance with our retention practices and applicable law."
+        "The following third parties are actually used by this website or are documented product integrations. We list only those. Each has its own privacy policy."
+      ],
+      "bullets": [
+        "GitHub Pages — hosts this website. Privacy statement: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+        "Cloudflare — content delivery and security in front of this website. Privacy policy: https://www.cloudflare.com/privacypolicy/",
+        "Google Fonts — loads website fonts. Privacy policy: https://policies.google.com/privacy",
+        "WhatsApp — the website chat button opens WhatsApp. Standard and Enterprise product editions can send documents via WhatsApp Cloud API or WhatsApp Web. Privacy policy: https://www.whatsapp.com/legal/privacy-policy-eea",
+        "Google Drive — optional automatic backup in the Application. Privacy policy: https://policies.google.com/privacy",
+        "Google Play Services — may be used on Android devices that install BizApp365 from Google Play. Privacy policy: https://policies.google.com/privacy",
+        "Email providers — used when you or we send email, including optional document sharing from transactions",
+        "UAE e-invoicing (Peppol/ASP) — used only if you submit e-invoices through that feature"
+      ],
+      "paragraphsAfter": [
+        "Product materials on this website also list Stripe / Payfort among payment-related integrations and mention cloud infrastructure such as AWS or Azure. Those processors are not implemented on this website. If they are used when you pay for a subscription or when the Application is hosted, the relevant provider's privacy policy applies to that processing. We do not claim that BizApp365 stores full payment-card numbers.",
+        "We are not responsible for the privacy practices of third-party sites or apps you open from BizApp365."
       ]
     },
     {
       "id": "security",
-      "title": "Security",
+      "title": "9. Data Security",
       "paragraphs": [
-        "We implement administrative, technical, and organizational measures designed to protect your information, including tenant isolation for business data.",
-        "No method of transmission or storage is completely secure. You are responsible for safeguarding your device, credentials, and access to the Application."
+        "We implement reasonable technical and organizational measures designed to protect personal information against unauthorized access, alteration, disclosure, or destruction.",
+        "This website is served over HTTPS. Product documentation for BizApp365 describes HTTPS/TLS deployment, login-based authentication, role-based access control, and schema-per-company tenant isolation so one company's business data is separated from another's.",
+        "No method of transmission or storage is completely secure. You are responsible for keeping your devices, passwords, and account access confidential, and for configuring user roles inside your organization."
       ]
     },
     {
-      "id": "international",
-      "title": "International Transfers",
+      "id": "retention",
+      "title": "10. Data Retention",
       "paragraphs": [
-        "Your information may be processed in countries other than your own. Where required, we use appropriate safeguards for cross-border transfers of personal data."
+        "This website does not implement an automatic deletion schedule for Application data. We retain information for as long as reasonably necessary to provide the Services, maintain the account, comply with legal and accounting obligations, resolve disputes, enforce agreements, and protect our legitimate interests.",
+        "In practice:"
+      ],
+      "bullets": [
+        "Website language preference remains in your browser until you clear site data",
+        "Support and sales emails are kept as needed to handle your request",
+        "Account and tenant business records remain while the account is active",
+        "If you enable Google Drive backup, retention in Drive follows your Google account and the keep-count/schedule you configure",
+        "After account deletion, we delete or de-identify personal data we control, except information we must keep for legal, security, tax, or accounting reasons"
+      ]
+    },
+    {
+      "id": "deletion",
+      "title": "11. Account and Personal Data Deletion",
+      "paragraphs": [
+        "BizApp365 uses user accounts (web login and Android access to a company tenant). You can request deletion of your account and associated personal data without reinstalling the app.",
+        "Use the public deletion page: https://bizapp365.com/delete-account/",
+        "Or email mail@afseer.com with the subject \"BizApp365 Account Deletion Request\" and include:"
+      ],
+      "bullets": [
+        "The email address used for the account",
+        "Company / tenant name if you use a business account",
+        "A phone number on the account, if any",
+        "A clear statement that you want the account deleted"
+      ],
+      "paragraphsAfter": [
+        "We will ask enough information to verify that you are authorized to make the request. We will then delete the account and associated personal data we control, and we will tell you if any information must be retained (for example invoices or records we are legally required to keep) and why.",
+        "Organization-owned business records may remain available to remaining administrators of that tenant until the organization requests deletion of the tenant.",
+        "Deletion is processed by Afseer after a verified request. If the Application also provides an in-app delete-account control, you may use that as well. This web page is the public deletion resource that does not require reinstalling the app."
       ]
     },
     {
       "id": "your-rights",
-      "title": "Your Privacy Rights",
+      "title": "12. Your Privacy Rights",
       "paragraphs": [
-        "Depending on your location, you may have rights to access, correct, delete, restrict, or object to certain processing of your personal data, and to data portability or withdrawal of consent where processing is consent-based.",
-        "To exercise these rights, contact us at mail@afseer.com. We may need to verify your identity before responding. You may also lodge a complaint with your local data protection authority."
+        "You may contact us to request access, correction, or deletion of personal information, to ask a privacy question, or to raise a concern about our data handling. Email mail@afseer.com.",
+        "Depending on applicable law where you live, you may have additional rights, such as the right to restrict or object to certain processing, to withdraw consent where processing is consent-based, or to lodge a complaint with a data protection authority.",
+        "We may need to verify your identity (and your authority to act for a company account) before fulfilling a request. We will not require you to reinstall the Android app in order to make a privacy or deletion request."
+      ]
+    },
+    {
+      "id": "cookies",
+      "title": "13. Cookies and Similar Technologies",
+      "paragraphs": [
+        "This website (bizapp365.com) does not set its own advertising or analytics cookies. It stores a language preference in the browser using localStorage (key: bizapp365-lang). That storage is necessary only to remember English or Arabic.",
+        "Hosting and CDN providers may use cookies or similar technologies that are strictly operational (for example security or load-balancing). Cloudflare is used in front of this website.",
+        "The BizApp365 web application at login.bizapp365.com is a separate application and may use session or authentication cookies so you can stay signed in.",
+        "We do not use this website's storage for cross-site advertising."
       ]
     },
     {
       "id": "children",
-      "title": "Children's Privacy",
+      "title": "14. Children's Privacy",
       "paragraphs": [
-        "The Application is not directed to children under 16. We do not knowingly collect personal data from children under 16 without appropriate parental consent. Contact us if you believe we have collected such data."
+        "BizApp365 is intended for business and general users and is not directed toward children.",
+        "The Terms & Conditions require users to be at least 16 years of age, or to have a parent or legal guardian accept the Terms. We do not knowingly collect personal information from children. If you believe a child has provided personal information, contact mail@afseer.com and we will take appropriate steps."
+      ]
+    },
+    {
+      "id": "international",
+      "title": "15. International Data Transfers",
+      "paragraphs": [
+        "Afseer serves customers in the UAE, Oman, and other regions. Information may be processed in countries other than your own, including by hosting and service providers listed in this policy.",
+        "Where required by applicable law, we use appropriate safeguards for such transfers. By using the Services, you understand that your information may be transferred to and processed in those locations as needed to operate BizApp365."
       ]
     },
     {
       "id": "changes",
-      "title": "Changes to This Privacy Policy",
+      "title": "16. Changes to This Privacy Policy",
       "paragraphs": [
-        "We may update this Privacy Policy from time to time. We will post the updated policy on this page and update the effective date. Material changes may also be communicated through the Application or by email where appropriate.",
-        "Previous versions are available upon request at mail@afseer.com."
+        "We may update this Privacy Policy from time to time. The current version is published at https://bizapp365.com/privacy/. The Last Updated date at the top of this page will change when we make updates.",
+        "Material changes may also be communicated through the Application or by email where appropriate. Previous versions are available on request at mail@afseer.com."
       ]
     },
     {
       "id": "contact",
-      "title": "Contact Us",
+      "title": "17. Contact Us",
       "paragraphs": [
-        "If you have questions about this Privacy Policy or our data practices, contact the Service Provider at mail@afseer.com or sales@bizapp365.com."
+        "BizApp365",
+        "Service Provider: Afseer",
+        "Email: mail@afseer.com",
+        "Sales: sales@bizapp365.com",
+        "Website: https://bizapp365.com/",
+        "Privacy Policy: https://bizapp365.com/privacy/",
+        "Terms & Conditions: https://bizapp365.com/terms/",
+        "Account deletion: https://bizapp365.com/delete-account/"
       ]
     }
   ]
