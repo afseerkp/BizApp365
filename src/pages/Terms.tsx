@@ -17,7 +17,7 @@ type TermsSection = {
 };
 
 const articleClassName =
-  'rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 md:p-12 shadow-xl text-slate-700 dark:text-slate-300 leading-relaxed space-y-6 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:dark:text-white [&_h2]:pt-4 [&_h2]:border-t [&_h2]:border-slate-200 [&_h2]:dark:border-slate-700 [&_h2:first-of-type]:border-t-0 [&_h2:first-of-type]:pt-0 [&_ul]:list-disc [&_ul]:ps-6 [&_ul]:space-y-2 [&_a]:text-[#1976d2] [&_a]:hover:underline [&_strong]:text-slate-900 [&_strong]:dark:text-white';
+  'rounded-3xl border border-line bg-surface p-8 md:p-12 shadow-soft text-fg-muted leading-relaxed space-y-6 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-fg [&_h2]:pt-4 [&_h2]:border-t [&_h2]:border-line [&_h2:first-of-type]:border-t-0 [&_h2:first-of-type]:pt-0 [&_ul]:list-disc [&_ul]:ps-6 [&_ul]:space-y-2 [&_a]:text-brand-600 dark:[&_a]:text-brand-400 [&_a]:hover:underline [&_strong]:text-fg';
 
 function renderParagraph(text: string, privacyLabel: string, key: string) {
   if (text.includes(privacyLabel) && (text.includes('Privacy Policy') || text.includes('سياسة الخصوصية'))) {
@@ -56,7 +56,7 @@ const Terms = () => {
   const privacyLabel = terms.privacyPolicyLabel;
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+    <div className="min-h-screen pt-36 sm:pt-44 pb-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -64,11 +64,11 @@ const Terms = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold text-fg tracking-[-0.03em] mb-4">
             {t('legal.termsTitleBefore')}{' '}
-            <span className="text-[#9c27b0]">{t('legal.termsTitleHighlight')}</span>
+            <span className="font-serif italic font-normal text-gradient pe-1">{t('legal.termsTitleHighlight')}</span>
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-fg-subtle">
             {t('legal.effectiveAsOf').replace('{date}', terms.effectiveDate)}
           </p>
         </motion.div>
@@ -78,9 +78,9 @@ const Terms = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           aria-label={t('legal.onThisPage')}
-          className="mb-10 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 shadow-sm"
+          className="mb-10 rounded-2xl border border-line bg-surface p-6 shadow-sm"
         >
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-4">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-fg-subtle mb-4">
             {t('legal.onThisPage')}
           </h2>
           <ul className="grid sm:grid-cols-2 gap-2 text-sm">
@@ -88,7 +88,7 @@ const Terms = () => {
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
-                  className="text-[#1976d2] hover:text-[#1565c0] dark:hover:text-[#42a5f5] transition-colors"
+                  className="text-brand-600 dark:text-brand-400 hover:text-[#1565c0] dark:hover:text-[#42a5f5] transition-colors"
                 >
                   {section.title}
                 </a>

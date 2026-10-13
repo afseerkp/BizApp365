@@ -2,14 +2,29 @@
   "nav": {
     "home": "Home",
     "features": "Features",
-    "tech": "Tech Stack",
+    "tech": "Security",
     "pricing": "Pricing",
     "contact": "Contact",
     "login": "Login",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "langEn": "EN",
-    "langAr": "عربي"
+    "langAr": "عربي",
+    "product": "Product",
+    "integrations": "Integrations",
+    "bookDemo": "Book a demo",
+    "toggleTheme": "Toggle dark mode",
+    "search": "Search",
+    "skip": "Skip to content",
+    "allModules": "Explore all modules",
+    "allModulesSub": "12 modules, one real-time ledger",
+    "platformsTitle": "Platforms",
+    "groups": {
+      "finance": "Finance",
+      "operations": "Operations",
+      "people": "People & customers",
+      "field": "Field & system"
+    }
   },
   "hero": {
     "brand": "BizApp365",
@@ -29,19 +44,34 @@
         "title": "Web ERP",
         "subtitle": "Full platform",
         "description": "Complete multi-tenant ERP in the browser — accounting, inventory, CRM, service center, HR, production, reports, and configuration.",
-        "highlights": ["Multi-company login", "Customizable dashboard", "Arabic / English RTL", "Docker + HTTPS deploy"]
+        "highlights": [
+          "Multi-company login",
+          "Customizable dashboard",
+          "Arabic / English RTL",
+          "Docker + HTTPS deploy"
+        ]
       },
       {
         "title": "Android VAN Sales",
         "subtitle": "Field client",
         "description": "Purpose-built for route sales and wholesale delivery — sell, collect, load/unload van stock, and check outstanding balances on the road.",
-        "highlights": ["QR server setup", "New sale & returns", "Van stock load/unload", "GPS customer creation"]
+        "highlights": [
+          "QR server setup",
+          "New sale & returns",
+          "Van stock load/unload",
+          "GPS customer creation"
+        ]
       },
       {
         "title": "Direct Print Extension",
         "subtitle": "Silent printing",
         "description": "Browser extension for Windows that prints invoices and barcode labels silently — no print dialog, separate printer profiles per document type.",
-        "highlights": ["Silent invoice print", "Dedicated label printer", "Windows native host", "Zebra / TSC / thermal"]
+        "highlights": [
+          "Silent invoice print",
+          "Dedicated label printer",
+          "Windows native host",
+          "Zebra / TSC / thermal"
+        ]
       }
     ]
   },
@@ -83,7 +113,7 @@
     "note": "No credit card required. Cancel anytime."
   },
   "footer": {
-    "tagline": "Multi-tenant ERP for SMEs — accounting, inventory, CRM, service center, HR, VAN field sales, and silent printing. Web · Android · Extension.",
+    "tagline": "The real-time ERP for growing SMEs in the UAE and Oman — web, Android and print, in English and Arabic.",
     "product": "Product",
     "resources": "Resources",
     "contact": "Contact",
@@ -95,7 +125,11 @@
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "deleteAccount": "Delete Account",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "company": "Company",
+    "regions": "Serving the UAE & Oman",
+    "ready": "Ready when you are.",
+    "whatsapp": "WhatsApp"
   },
   "whatsapp": {
     "aria": "Chat with us on WhatsApp"
@@ -113,12 +147,30 @@
       "field": "Field client"
     },
     "regional": [
-      { "label": "UAE / Oman VAT", "detail": "Filing reports & UAE VAT 201 boxes" },
-      { "label": "UAE E-Invoice", "detail": "Peppol/ASP submit, QR & retry" },
-      { "label": "GST India", "detail": "CGST/SGST/IGST tax mode" },
-      { "label": "Arabic UI", "detail": "Bilingual English/Arabic with RTL" },
-      { "label": "80mm Thermal", "detail": "Receipt & label print layouts" },
-      { "label": "Godown / VAN", "detail": "Multi-warehouse wholesale & route sales" }
+      {
+        "label": "UAE / Oman VAT",
+        "detail": "Filing reports & UAE VAT 201 boxes"
+      },
+      {
+        "label": "UAE E-Invoice",
+        "detail": "Peppol/ASP submit, QR & retry"
+      },
+      {
+        "label": "GST India",
+        "detail": "CGST/SGST/IGST tax mode"
+      },
+      {
+        "label": "Arabic UI",
+        "detail": "Bilingual English/Arabic with RTL"
+      },
+      {
+        "label": "80mm Thermal",
+        "detail": "Receipt & label print layouts"
+      },
+      {
+        "label": "Godown / VAN",
+        "detail": "Multi-warehouse wholesale & route sales"
+      }
     ],
     "modules": [
       {
@@ -253,7 +305,13 @@
         ],
         "editionKey": "all"
       }
-    ]
+    ],
+    "seoTitle": "Features — 12 ERP modules in one real-time system | BizApp365",
+    "seoDescription": "Accounting, VAT, inventory, sales, CRM, service center, production, HR & payroll, barcode labels and Android VAN sales — explore every BizApp365 module.",
+    "tocTitle": "Modules",
+    "includedIn": "Included in",
+    "ctaTitle": "Want to see a module with your own data?",
+    "ctaButton": "Book a demo"
   },
   "tech": {
     "badge": "Powered by the best",
@@ -265,32 +323,65 @@
       {
         "title": "Frontend Experience",
         "description": "A blazing-fast, strictly-typed UI layer with seamless animations and responsive design.",
-        "techs": ["React 19", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"]
+        "techs": [
+          "React 19",
+          "TypeScript",
+          "Vite",
+          "Tailwind CSS",
+          "Framer Motion"
+        ]
       },
       {
         "title": "Backend & API",
         "description": "Robust, scalable backend architecture processing thousands of transactions efficiently.",
-        "techs": ["Node.js", "Express.js", "TypeScript", "Prisma ORM", "RESTful APIs", "GraphQL (Upcoming)"]
+        "techs": [
+          "Node.js",
+          "Express.js",
+          "TypeScript",
+          "Prisma ORM",
+          "RESTful APIs",
+          "GraphQL (Upcoming)"
+        ]
       },
       {
         "title": "Database & Storage",
         "description": "Enterprise-grade isolated data storage ensuring complete privacy for each tenant.",
-        "techs": ["PostgreSQL 15+", "Redis", "AWS S3", "Multi-tenant Schemas"]
+        "techs": [
+          "PostgreSQL 15+",
+          "Redis",
+          "AWS S3",
+          "Multi-tenant Schemas"
+        ]
       },
       {
         "title": "Infrastructure & DevOps",
         "description": "Containerized, high-availability deployments supporting zero-downtime updates.",
-        "techs": ["Docker & Compose", "Kubernetes", "AWS / Azure", "GitHub Actions CI/CD"]
+        "techs": [
+          "Docker & Compose",
+          "Kubernetes",
+          "AWS / Azure",
+          "GitHub Actions CI/CD"
+        ]
       },
       {
         "title": "Integrations",
         "description": "Connecting your business to the wider ecosystem with seamless 3rd party integrations.",
-        "techs": ["WhatsApp Business API", "UAE Peppol Access Point", "Stripe / Payfort", "Excel Import/Export"]
+        "techs": [
+          "WhatsApp Business API",
+          "UAE Peppol Access Point",
+          "Stripe / Payfort",
+          "Excel Import/Export"
+        ]
       },
       {
         "title": "Security & Auth",
         "description": "Bank-level security protecting sensitive financial and payroll data.",
-        "techs": ["JWT Authentication", "Role-Based Access Control", "AES-256 Encryption", "HTTPS / SSL"]
+        "techs": [
+          "JWT Authentication",
+          "Role-Based Access Control",
+          "AES-256 Encryption",
+          "HTTPS / SSL"
+        ]
       }
     ]
   },
@@ -308,14 +399,38 @@
         "price": "49",
         "description": "Core ERP for small businesses — accounting, sales, inventory, and labels.",
         "features": [
-          { "name": "Accounting, sales & purchase invoices", "included": true },
-          { "name": "Barcode & label designer", "included": true },
-          { "name": "80mm thermal & A4 print layouts", "included": true },
-          { "name": "Google Drive auto-backup", "included": true },
-          { "name": "VAT or GST tax mode", "included": true },
-          { "name": "Up to 3 users", "included": true },
-          { "name": "CRM, WhatsApp & MIS analytics", "included": false },
-          { "name": "Service Center, HR & Production", "included": false }
+          {
+            "name": "Accounting, sales & purchase invoices",
+            "included": true
+          },
+          {
+            "name": "Barcode & label designer",
+            "included": true
+          },
+          {
+            "name": "80mm thermal & A4 print layouts",
+            "included": true
+          },
+          {
+            "name": "Google Drive auto-backup",
+            "included": true
+          },
+          {
+            "name": "VAT or GST tax mode",
+            "included": true
+          },
+          {
+            "name": "Up to 3 users",
+            "included": true
+          },
+          {
+            "name": "CRM, WhatsApp & MIS analytics",
+            "included": false
+          },
+          {
+            "name": "Service Center, HR & Production",
+            "included": false
+          }
         ]
       },
       {
@@ -323,14 +438,38 @@
         "price": "99",
         "description": "Growing businesses — CRM, communications, MIS, and multi-godown inventory.",
         "features": [
-          { "name": "Everything in Basic", "included": true },
-          { "name": "CRM (leads, pipeline, field visits, tickets)", "included": true },
-          { "name": "WhatsApp & email document sharing", "included": true },
-          { "name": "MIS reports & sales analytics dashboard", "included": true },
-          { "name": "Multi-godown inventory & stock transfer", "included": true },
-          { "name": "Stock aging & dead stock reports", "included": true },
-          { "name": "Up to 10 users", "included": true },
-          { "name": "Service Center, HR & Production", "included": false }
+          {
+            "name": "Everything in Basic",
+            "included": true
+          },
+          {
+            "name": "CRM (leads, pipeline, field visits, tickets)",
+            "included": true
+          },
+          {
+            "name": "WhatsApp & email document sharing",
+            "included": true
+          },
+          {
+            "name": "MIS reports & sales analytics dashboard",
+            "included": true
+          },
+          {
+            "name": "Multi-godown inventory & stock transfer",
+            "included": true
+          },
+          {
+            "name": "Stock aging & dead stock reports",
+            "included": true
+          },
+          {
+            "name": "Up to 10 users",
+            "included": true
+          },
+          {
+            "name": "Service Center, HR & Production",
+            "included": false
+          }
         ]
       },
       {
@@ -338,14 +477,38 @@
         "price": "199",
         "description": "Full platform — service center, HR/payroll, production, and unlimited scale.",
         "features": [
-          { "name": "Everything in Standard", "included": true },
-          { "name": "Service Center (job cards, Kanban, technicians)", "included": true },
-          { "name": "HR & Payroll (UAE leave, loans, deductions)", "included": true },
-          { "name": "Production & BOM (assemble / disassemble)", "included": true },
-          { "name": "Unlimited users & transactions", "included": true },
-          { "name": "Advanced RBAC & multi-company architecture", "included": true },
-          { "name": "Android VAN sales app (field client)", "included": true },
-          { "name": "Silent print browser extension", "included": true }
+          {
+            "name": "Everything in Standard",
+            "included": true
+          },
+          {
+            "name": "Service Center (job cards, Kanban, technicians)",
+            "included": true
+          },
+          {
+            "name": "HR & Payroll (UAE leave, loans, deductions)",
+            "included": true
+          },
+          {
+            "name": "Production & BOM (assemble / disassemble)",
+            "included": true
+          },
+          {
+            "name": "Unlimited users & transactions",
+            "included": true
+          },
+          {
+            "name": "Advanced RBAC & multi-company architecture",
+            "included": true
+          },
+          {
+            "name": "Android VAN sales app (field client)",
+            "included": true
+          },
+          {
+            "name": "Silent print browser extension",
+            "included": true
+          }
         ]
       }
     ]
@@ -363,7 +526,12 @@
     "placeholderLast": "Doe",
     "placeholderEmail": "john@company.com",
     "placeholderHelp": "Tell us about your requirements...",
-    "sizes": ["1-10 employees", "11-50 employees", "51-200 employees", "201+ employees"],
+    "sizes": [
+      "1-10 employees",
+      "11-50 employees",
+      "51-200 employees",
+      "201+ employees"
+    ],
     "submit": "Request Demo",
     "imageAlt": "Contact our support team"
   },
@@ -423,5 +591,762 @@
     "deleteTitleBefore": "Delete",
     "deleteTitleHighlight": "Account",
     "privacyFooter": "If you have questions about this Privacy Policy, contact us at"
+  },
+  "palette": {
+    "placeholder": "Search pages and modules…",
+    "pages": "Pages",
+    "modules": "Modules",
+    "empty": "No results. Try “VAT”, “payroll” or “van”.",
+    "hint": "to navigate",
+    "open": "Open search",
+    "close": "Close search"
+  },
+  "home": {
+    "seoTitle": "BizApp365 — The real-time ERP for growing SMEs in the UAE & Oman",
+    "seoDescription": "Accounting, UAE/Oman VAT & Peppol e-invoicing, inventory, CRM, HR & payroll, Android VAN sales and silent printing — one real-time system, in English and Arabic.",
+    "hero": {
+      "badge": "New",
+      "badgeText": "UAE e-invoicing (Peppol) is built in",
+      "titleLine1": "Run your whole business",
+      "titleLine2": "in one",
+      "titleAccent": "living system.",
+      "subtitle": "BizApp365 connects accounting, VAT, inventory, CRM, payroll and your van routes in real time — so every sale updates everything, instantly. In English and Arabic.",
+      "primary": "Book a demo",
+      "secondary": "Login",
+      "trust": [
+        "30-day free trial",
+        "English & Arabic, full RTL",
+        "UAE & Oman VAT ready"
+      ],
+      "dash": {
+        "overview": "Overview",
+        "today": "Today",
+        "live": "Live",
+        "sales": "Sales today",
+        "receivables": "Receivables",
+        "stock": "Stock value",
+        "vat": "VAT payable",
+        "chart": "Revenue · last 12 weeks",
+        "recent": "Latest invoices",
+        "synced": "Synced just now",
+        "paid": "Paid",
+        "due": "Due",
+        "printed": "Invoice printed",
+        "printedSub": "Zebra ZD421 · silent",
+        "van": "Van 04 · Sharjah",
+        "vanSub": "6 of 9 stops done",
+        "customers": [
+          "Al Noor Trading",
+          "Gulf Star Wholesale",
+          "Muscat Fresh LLC",
+          "Desert Rose Retail"
+        ]
+      }
+    },
+    "strip": {
+      "label": "Fits the rules and hardware you already run on",
+      "items": [
+        "UAE VAT 201",
+        "Oman VAT",
+        "Peppol e-invoicing",
+        "WhatsApp Cloud API",
+        "Google Drive backup",
+        "Zebra",
+        "TSC",
+        "Honeywell",
+        "80mm thermal",
+        "Android",
+        "Excel & XML",
+        "Docker + HTTPS"
+      ]
+    },
+    "problem": {
+      "eyebrow": "The problem",
+      "title": "Five tools. Three spreadsheets.",
+      "accent": "One very long month-end.",
+      "before": {
+        "label": "Without BizApp365",
+        "items": [
+          "Sales in one app, stock in a spreadsheet, books in another",
+          "VAT returns rebuilt by hand every quarter",
+          "Van salesmen calling the office to check stock",
+          "Invoices stuck behind print dialogs at the counter"
+        ]
+      },
+      "after": {
+        "label": "With BizApp365",
+        "items": [
+          "One ledger — every sale posts to stock, accounts and VAT at once",
+          "UAE / Oman VAT figures ready the moment you close the period",
+          "Van stock and customer balances live on every phone",
+          "One click, silent print — invoice and label on the right printer"
+        ]
+      }
+    },
+    "story": {
+      "eyebrow": "One sale, everywhere",
+      "title": "Watch one invoice",
+      "accent": "move your whole business.",
+      "subtitle": "Scroll to follow a single sale through BizApp365. Nothing to re-key. Nothing to reconcile later.",
+      "updated": "Updated",
+      "steps": [
+        {
+          "title": "A sale is made",
+          "body": "Your counter, your sales rep or your van creates a tax invoice in seconds — in English or Arabic."
+        },
+        {
+          "title": "Stock moves itself",
+          "body": "Quantities drop in the right godown, valued by FIFO, LIFO, weighted average or last purchase."
+        },
+        {
+          "title": "The books post themselves",
+          "body": "Receivables, sales and VAT output post to the ledger instantly. Your trial balance is always current."
+        },
+        {
+          "title": "VAT is already done",
+          "body": "The sale lands in the right VAT 201 box, and the e-invoice goes to Peppol with QR and automatic retry."
+        },
+        {
+          "title": "Everyone sees it — and it prints",
+          "body": "Dashboards update live, the receipt prints silently, and the customer gets it on WhatsApp."
+        }
+      ],
+      "v": {
+        "invoice": "Tax invoice",
+        "invNo": "INV-2026-0418",
+        "customer": "Gulf Star Wholesale",
+        "lines": [
+          {
+            "name": "Basmati Rice 5kg",
+            "qty": "40",
+            "amount": "1,520.00"
+          },
+          {
+            "name": "Sunflower Oil 1.8L",
+            "qty": "24",
+            "amount": "662.40"
+          },
+          {
+            "name": "Sugar 2kg",
+            "qty": "30",
+            "amount": "327.60"
+          }
+        ],
+        "subtotal": "Subtotal",
+        "subtotalValue": "2,510.00",
+        "vat": "VAT 5%",
+        "vatValue": "125.50",
+        "total": "Total (AED)",
+        "totalValue": "2,635.50",
+        "stockTitle": "Stock · Main godown, Dubai",
+        "stockRows": [
+          {
+            "name": "Basmati Rice 5kg",
+            "from": 220,
+            "to": 180
+          },
+          {
+            "name": "Sunflower Oil 1.8L",
+            "from": 96,
+            "to": 72
+          },
+          {
+            "name": "Sugar 2kg",
+            "from": 150,
+            "to": 120
+          }
+        ],
+        "ledgerTitle": "Journal · auto-posted",
+        "debit": "Debit",
+        "credit": "Credit",
+        "ledgerRows": [
+          {
+            "name": "Accounts receivable",
+            "dr": "2,635.50",
+            "cr": ""
+          },
+          {
+            "name": "Sales",
+            "dr": "",
+            "cr": "2,510.00"
+          },
+          {
+            "name": "VAT output 5%",
+            "dr": "",
+            "cr": "125.50"
+          }
+        ],
+        "vatTitle": "VAT 201 · this period",
+        "vatBox": "Box 1a · Standard-rated supplies, Dubai",
+        "peppol": "Peppol e-invoice",
+        "peppolStatus": "Submitted · QR attached",
+        "dashTitle": "Live dashboard",
+        "dashSales": "Sales today",
+        "printed": "Printed silently",
+        "printer": "Zebra ZD421 · 80mm",
+        "whatsapp": "Sent on WhatsApp"
+      }
+    },
+    "modules": {
+      "eyebrow": "Modules",
+      "title": "Everything your business runs on.",
+      "accent": "Nothing it doesn’t.",
+      "subtitle": "Start with the essentials and switch on CRM, service center, production and payroll as you grow. Same login, same data.",
+      "cta": "Explore all modules",
+      "more": "Learn more"
+    },
+    "platforms": {
+      "eyebrow": "Platforms",
+      "title": "At the desk, on the road,",
+      "accent": "at the counter.",
+      "subtitle": "One system, three ways in: the full web ERP, the Android VAN app for your routes, and a Windows extension that prints without a dialog."
+    },
+    "field": {
+      "eyebrow": "Android VAN Sales",
+      "title": "Your office,",
+      "accent": "riding along.",
+      "subtitle": "Route salesmen sell, collect and manage van stock from their phone — and every transaction lands in the web ERP the moment it happens.",
+      "points": [
+        "Scan a QR to connect a new phone in seconds",
+        "Sales, returns and receipts with PDF print",
+        "Load and unload van stock by route",
+        "Live outstanding balance for every customer"
+      ],
+      "stops": [
+        "Dubai",
+        "Sharjah",
+        "Abu Dhabi",
+        "Al Ain",
+        "Sohar",
+        "Muscat"
+      ],
+      "phone": {
+        "route": "Today’s route",
+        "stop": "Stop 4 of 6",
+        "customer": "Al Noor Trading",
+        "balance": "Outstanding",
+        "balanceValue": "AED 4,820",
+        "newSale": "New sale",
+        "collect": "Collect",
+        "vanStock": "Van stock",
+        "items": "142 items",
+        "collected": "Collected today",
+        "collectedValue": "AED 18,450"
+      }
+    },
+    "compliance": {
+      "eyebrow": "Compliance & language",
+      "title": "VAT returns that",
+      "accent": "write themselves.",
+      "subtitle": "Built for how business is actually regulated in the Gulf — and spoken in both languages your team and customers use.",
+      "points": [
+        {
+          "t": "UAE & Oman VAT",
+          "d": "Box-by-box VAT 201 figures and filing reports, straight from your transactions."
+        },
+        {
+          "t": "UAE e-invoicing",
+          "d": "Peppol / ASP submission with QR codes, status tracking and automatic retry."
+        },
+        {
+          "t": "Arabic, properly",
+          "d": "Every screen and every document in English and Arabic with true right-to-left layout."
+        },
+        {
+          "t": "GST mode too",
+          "d": "Switch a company to GST with CGST, SGST, IGST and HSN codes when you need it."
+        }
+      ],
+      "doc": {
+        "title": "VAT Return",
+        "form": "VAT 201",
+        "period": "Period: Jul – Sep 2026",
+        "rows": [
+          {
+            "label": "1a  Standard-rated supplies — Dubai",
+            "amount": "412,380.00"
+          },
+          {
+            "label": "1b  Standard-rated supplies — Sharjah",
+            "amount": "96,215.00"
+          },
+          {
+            "label": "4   Zero-rated supplies",
+            "amount": "18,900.00"
+          },
+          {
+            "label": "9   Standard-rated expenses",
+            "amount": "268,410.00"
+          }
+        ],
+        "net": "Net VAT payable",
+        "netValue": "AED 12,009.25",
+        "seal": "Peppol",
+        "sealSub": "Submitted"
+      }
+    },
+    "industries": {
+      "eyebrow": "Industries",
+      "title": "Shaped around",
+      "accent": "how you trade.",
+      "items": [
+        {
+          "name": "Wholesale & distribution",
+          "headline": "Godowns, routes and credit limits — under control.",
+          "points": [
+            "Multi-godown stock with transfers and access control",
+            "Van routes with load, unload and collections",
+            "Customer-wise outstanding and ageing"
+          ],
+          "modules": [
+            "Inventory",
+            "VAN Sales",
+            "Accounting"
+          ]
+        },
+        {
+          "name": "Retail & trading",
+          "headline": "Fast counters, clean books.",
+          "points": [
+            "Barcode billing with 80mm thermal receipts",
+            "Promotions engine and bill sundries",
+            "Day book and cash reconciliation"
+          ],
+          "modules": [
+            "Sales",
+            "Barcode",
+            "Analytics"
+          ]
+        },
+        {
+          "name": "Service centers",
+          "headline": "Every job card, from intake to invoice.",
+          "points": [
+            "Intake → diagnosis → quotation → tasks → sale",
+            "Kanban board by status, per technician",
+            "Parts usage and approval trail"
+          ],
+          "modules": [
+            "Service Center",
+            "Inventory",
+            "CRM"
+          ]
+        },
+        {
+          "name": "Light manufacturing",
+          "headline": "From raw material to finished goods.",
+          "points": [
+            "Bills of materials with multi-level components",
+            "Assemble and disassemble transactions",
+            "Material consumption tracking"
+          ],
+          "modules": [
+            "Production",
+            "Inventory",
+            "Accounting"
+          ]
+        },
+        {
+          "name": "Growing teams",
+          "headline": "Payroll that knows UAE leave rules.",
+          "points": [
+            "Monthly payroll with allowances and deductions",
+            "Leave requests with UAE-oriented config",
+            "Salary advances and loans auto-deducted"
+          ],
+          "modules": [
+            "HR & Payroll",
+            "Accounting",
+            "RBAC"
+          ]
+        }
+      ]
+    },
+    "metrics": {
+      "items": [
+        {
+          "value": 12,
+          "label": "integrated modules on one ledger"
+        },
+        {
+          "value": 3,
+          "label": "platforms: web, Android and print extension"
+        },
+        {
+          "value": 4,
+          "label": "stock valuation methods built in"
+        },
+        {
+          "value": 2,
+          "label": "languages, with full right-to-left layout"
+        }
+      ]
+    },
+    "security": {
+      "eyebrow": "Security & architecture",
+      "title": "Your data stays",
+      "accent": "yours alone.",
+      "subtitle": "Every company gets its own isolated database schema, and every user sees only what their role allows.",
+      "items": [
+        {
+          "t": "Schema-per-company isolation",
+          "d": "Each tenant’s data lives in its own PostgreSQL schema — never mixed with anyone else’s."
+        },
+        {
+          "t": "Role-based access",
+          "d": "Restrict users by module, form, godown or CRM / service role."
+        },
+        {
+          "t": "Encrypted in transit",
+          "d": "HTTPS everywhere, JWT authentication and Docker-based deployment."
+        },
+        {
+          "t": "Automatic backups",
+          "d": "Google Drive auto-backup on your schedule and timezone, plus local backup & restore."
+        },
+        {
+          "t": "Multi-company login",
+          "d": "Switch between companies from one login — each with its own books and settings."
+        },
+        {
+          "t": "On-premise option",
+          "d": "Prefer your own server? Deploy the same stack with Docker on-premise."
+        }
+      ],
+      "cta": "Read about our architecture"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Questions, answered.",
+      "items": [
+        {
+          "q": "Is BizApp365 ready for UAE e-invoicing?",
+          "a": "Yes. BizApp365 submits e-invoices through a Peppol / ASP access point with QR codes, tracks submission status and retries automatically if a submission fails."
+        },
+        {
+          "q": "Does it support both UAE and Oman VAT?",
+          "a": "Yes. Companies can run in VAT mode with UAE or Oman filing reports, including the UAE VAT 201 box breakdown. A GST mode is also available."
+        },
+        {
+          "q": "Can my team use it in Arabic?",
+          "a": "Every screen and printed document is available in English and Arabic, with true right-to-left layout. Each user can switch language at any time."
+        },
+        {
+          "q": "How does the Android VAN app connect?",
+          "a": "Scan a QR code (or open a bizapp365:// link) to configure the server. Sales, returns, receipts and van stock sync with the web ERP."
+        },
+        {
+          "q": "Can I print without the browser print dialog?",
+          "a": "Yes. The Direct Print extension for Windows prints invoices and barcode labels silently, with separate printer profiles for each document type."
+        },
+        {
+          "q": "Can we host it on our own server?",
+          "a": "Yes. BizApp365 runs on Docker with HTTPS, so it can be deployed on-premise as well as in the cloud. Talk to us about your setup."
+        },
+        {
+          "q": "Is there a free trial?",
+          "a": "Yes — every edition comes with a 30-day free trial. Book a demo and we’ll set up your company with you."
+        }
+      ]
+    },
+    "cta": {
+      "title": "See your business",
+      "accent": "in one system.",
+      "subtitle": "A 30-minute walkthrough, set up around your own products, godowns and VAT. No slides — just BizApp365.",
+      "primary": "Book a demo",
+      "secondary": "Chat on WhatsApp",
+      "note": "30-day free trial · English & Arabic · Setup help included"
+    }
+  },
+  "pricingx": {
+    "seoTitle": "Pricing — Basic, Standard & Enterprise editions | BizApp365",
+    "seoDescription": "Transparent ERP pricing for SMEs. Start with a 30-day free trial on any BizApp365 edition.",
+    "eyebrow": "Pricing",
+    "currency": "Currency",
+    "approx": "Billed in USD. AED and OMR amounts are converted at the fixed peg rate.",
+    "choose": "Start with {plan}",
+    "compareTitle": "Compare editions",
+    "compareFeature": "Feature",
+    "compareGroups": [
+      {
+        "name": "Core",
+        "rows": [
+          {
+            "f": "Accounting, sales & purchase",
+            "v": [
+              true,
+              true,
+              true
+            ]
+          },
+          {
+            "f": "VAT / GST tax modes, UAE e-invoicing",
+            "v": [
+              true,
+              true,
+              true
+            ]
+          },
+          {
+            "f": "Barcode & label designer",
+            "v": [
+              true,
+              true,
+              true
+            ]
+          },
+          {
+            "f": "Google Drive auto-backup",
+            "v": [
+              true,
+              true,
+              true
+            ]
+          },
+          {
+            "f": "Users",
+            "v": [
+              "Up to 3",
+              "Up to 10",
+              "Unlimited"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Growth",
+        "rows": [
+          {
+            "f": "CRM — leads, pipeline, field visits, tickets",
+            "v": [
+              false,
+              true,
+              true
+            ]
+          },
+          {
+            "f": "WhatsApp & email document sharing",
+            "v": [
+              false,
+              true,
+              true
+            ]
+          },
+          {
+            "f": "MIS reports & sales analytics",
+            "v": [
+              false,
+              true,
+              true
+            ]
+          },
+          {
+            "f": "Multi-godown & stock transfer",
+            "v": [
+              false,
+              true,
+              true
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "rows": [
+          {
+            "f": "Service center",
+            "v": [
+              false,
+              false,
+              true
+            ]
+          },
+          {
+            "f": "HR & payroll",
+            "v": [
+              false,
+              false,
+              true
+            ]
+          },
+          {
+            "f": "Production & BOM",
+            "v": [
+              false,
+              false,
+              true
+            ]
+          },
+          {
+            "f": "Android VAN sales app",
+            "v": [
+              false,
+              false,
+              true
+            ]
+          },
+          {
+            "f": "Silent-print browser extension",
+            "v": [
+              false,
+              false,
+              true
+            ]
+          }
+        ]
+      }
+    ],
+    "enterpriseTitle": "Need on-premise, custom modules or many companies?",
+    "enterpriseBody": "We’ll shape a plan around your setup — including Docker deployment on your own servers.",
+    "enterpriseCta": "Talk to sales",
+    "faqTitle": "Pricing questions",
+    "faq": [
+      {
+        "q": "What happens after the 30-day trial?",
+        "a": "Choose the edition that fits and keep all your data. If you need more time to evaluate, just ask us."
+      },
+      {
+        "q": "Can I change editions later?",
+        "a": "Yes. Move up to Standard or Enterprise any time — modules switch on instantly, with no data migration."
+      },
+      {
+        "q": "Is setup included?",
+        "a": "We help you set up your company, chart of accounts, taxes and opening stock as part of onboarding."
+      }
+    ]
+  },
+  "contactx": {
+    "seoTitle": "Contact BizApp365 — Talk to our team",
+    "seoDescription": "Talk to the BizApp365 team about ERP for your business in the UAE or Oman. Email, phone or WhatsApp.",
+    "eyebrow": "Contact",
+    "title": "Let’s talk about",
+    "accent": "your business.",
+    "subtitle": "Tell us what you need and we’ll come back within one business day. Prefer a quick chat? We’re on WhatsApp.",
+    "channels": [
+      {
+        "label": "Email",
+        "value": "sales@bizapp365.com"
+      },
+      {
+        "label": "Phone",
+        "value": "+971 58 288 5633"
+      },
+      {
+        "label": "WhatsApp",
+        "value": "Chat with us now"
+      }
+    ],
+    "regions": "Serving businesses across the UAE and Oman.",
+    "form": {
+      "name": "Full name",
+      "company": "Company",
+      "email": "Work email",
+      "phone": "Phone",
+      "size": "Company size",
+      "message": "What would you like to achieve?",
+      "messagePh": "e.g. We run 3 godowns and 5 vans and need VAT-ready invoicing…",
+      "modules": "Modules you’re interested in",
+      "submit": "Send message",
+      "sendWhatsApp": "Send via WhatsApp instead",
+      "required": "This field is required.",
+      "invalidEmail": "Enter a valid email address.",
+      "successTitle": "Almost there!",
+      "successBody": "Your email app has opened with your message ready — just press send. We reply within one business day.",
+      "again": "Send another message",
+      "mailSubject": "BizApp365 enquiry from"
+    }
+  },
+  "demox": {
+    "seoTitle": "Book a demo — BizApp365 ERP",
+    "seoDescription": "Book a 30-minute BizApp365 demo, set up around your own products, godowns and VAT.",
+    "eyebrow": "Book a demo",
+    "title": "See BizApp365",
+    "accent": "with your own eyes.",
+    "subtitle": "A 30-minute live walkthrough, tailored to your business. No slides.",
+    "agendaTitle": "What we’ll cover",
+    "agenda": [
+      "A live sale flowing through stock, ledger and VAT",
+      "The modules that matter for your industry",
+      "Arabic interface, invoices and silent printing",
+      "Android VAN app on a real phone",
+      "Pricing, onboarding and your 30-day trial"
+    ],
+    "step1": "About you",
+    "step2": "Your needs",
+    "next": "Continue",
+    "back": "Back",
+    "submit": "Request my demo",
+    "plan": "Edition",
+    "planAny": "Not sure yet",
+    "when": "Preferred time",
+    "whenOptions": [
+      "Morning (9–12, GST)",
+      "Afternoon (12–4, GST)",
+      "Evening (4–7, GST)"
+    ],
+    "stepOf": "Step {n} of 2"
+  },
+  "integrationsx": {
+    "seoTitle": "Integrations — WhatsApp, Peppol, Google Drive & printers | BizApp365",
+    "seoDescription": "Connect BizApp365 with WhatsApp, email, UAE Peppol e-invoicing, Google Drive backup, the Android VAN app and silent-print hardware.",
+    "eyebrow": "Integrations",
+    "all": "All",
+    "categories": [
+      "Messaging",
+      "Messaging",
+      "Compliance",
+      "Cloud",
+      "Field",
+      "Hardware"
+    ],
+    "hub": "BizApp365 core"
+  },
+  "techx": {
+    "seoTitle": "Security & architecture | BizApp365",
+    "seoDescription": "Schema-per-company isolation, role-based access, HTTPS, automatic backups and Docker deployment — how BizApp365 keeps your data safe.",
+    "eyebrow": "Security & architecture",
+    "title": "Engineered for",
+    "accent": "trust and speed.",
+    "layersTitle": "How it fits together",
+    "layers": [
+      {
+        "name": "Clients",
+        "items": [
+          "Web ERP",
+          "Android VAN app",
+          "Print extension"
+        ]
+      },
+      {
+        "name": "API",
+        "items": [
+          "Node.js + Express",
+          "JWT auth",
+          "RBAC"
+        ]
+      },
+      {
+        "name": "Data",
+        "items": [
+          "PostgreSQL",
+          "Schema per company",
+          "Redis"
+        ]
+      },
+      {
+        "name": "Ops",
+        "items": [
+          "Docker",
+          "HTTPS",
+          "Drive backups"
+        ]
+      }
+    ],
+    "stackTitle": "The stack"
+  },
+  "notFound": {
+    "title": "This page took a different route.",
+    "subtitle": "The page you’re looking for doesn’t exist or has moved.",
+    "home": "Back to home"
   }
 }

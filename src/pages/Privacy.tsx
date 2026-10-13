@@ -13,7 +13,7 @@ const Privacy = () => {
   const policy = (lang === 'ar' ? policyAr : policyEn) as PrivacyPolicyContent;
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+    <div className="min-h-screen pt-36 sm:pt-44 pb-24">
       <Seo
         title="BizApp365 Privacy Policy"
         description={policy.metaDescription}
@@ -26,18 +26,18 @@ const Privacy = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold text-fg tracking-[-0.03em] mb-4">
             {t('legal.privacyTitleBefore')}{' '}
-            <span className="text-[#9c27b0]">{t('legal.privacyTitleHighlight')}</span>
+            <span className="font-serif italic font-normal text-gradient pe-1">{t('legal.privacyTitleHighlight')}</span>
           </h1>
-          <p className="text-lg font-semibold text-slate-900 dark:text-white">{policy.application}</p>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-lg font-semibold text-fg">{policy.application}</p>
+          <p className="text-sm text-fg-subtle mt-1">
             {t('legal.serviceProvider').replace('{name}', policy.serviceProvider)}
           </p>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-3">
+          <p className="text-sm text-fg-subtle mt-3">
             {t('legal.effectiveDate').replace('{date}', policy.effectiveDate)}
           </p>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-fg-subtle">
             {t('legal.lastUpdated').replace('{date}', policy.lastUpdated)}
           </p>
         </motion.div>
@@ -47,9 +47,9 @@ const Privacy = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           aria-label={t('legal.onThisPage')}
-          className="mb-10 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 shadow-sm"
+          className="mb-10 rounded-2xl border border-line bg-surface p-6 shadow-sm"
         >
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-4">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-fg-subtle mb-4">
             {t('legal.onThisPage')}
           </h2>
           <ul className="grid sm:grid-cols-2 gap-2 text-sm">
@@ -57,7 +57,7 @@ const Privacy = () => {
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
-                  className="text-[#1976d2] hover:text-[#1565c0] dark:hover:text-[#42a5f5] transition-colors"
+                  className="text-brand-600 dark:text-brand-400 hover:text-[#1565c0] dark:hover:text-[#42a5f5] transition-colors"
                 >
                   {section.title}
                 </a>

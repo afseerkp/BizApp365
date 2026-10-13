@@ -2,18 +2,82 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="BizApp365 — Multi-tenant ERP for SMEs. Accounting, inventory, CRM, HR, VAN sales, and silent printing." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>BizApp365 — Complete ERP for Growing SMEs in the UAE &amp; Oman</title>
+    <meta name="description" content="BizApp365 is the real-time ERP for GCC SMEs: accounting, UAE/Oman VAT &amp; Peppol e-invoicing, inventory, CRM, HR &amp; payroll, Android VAN sales and silent printing — in English and Arabic." />
+    <link rel="canonical" href="https://bizapp365.com/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#070b16" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BizApp365" />
+    <meta property="og:title" content="BizApp365 — Complete ERP for Growing SMEs" />
+    <meta property="og:description" content="One real-time system for accounting, VAT, inventory, CRM, HR, field sales and printing. English &amp; Arabic." />
+    <meta property="og:url" content="https://bizapp365.com/" />
+    <meta property="og:image" content="https://bizapp365.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BizApp365 — Complete ERP for Growing SMEs" />
+    <meta name="twitter:description" content="One real-time system for accounting, VAT, inventory, CRM, HR, field sales and printing." />
+    <meta name="twitter:image" content="https://bizapp365.com/og-image.jpg" />
+
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('bizapp365-theme');
+          var dark = t === 'dark' || ((!t || t === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+          var l = localStorage.getItem('bizapp365-lang');
+          if (l === 'ar') { document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl'; }
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400..800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet" />
-    <title>BizApp365 — Complete ERP for Growing SMEs</title>
-    <script type="module" crossorigin src="/assets/index-8_tzTzAJ.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/motion-Cdy85hTt.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Hruepred.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans+Arabic:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Arabic:wght@400..700&family=Plus+Jakarta+Sans:wght@400..700&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://bizapp365.com/#org",
+            "name": "BizApp365",
+            "url": "https://bizapp365.com/",
+            "logo": "https://bizapp365.com/favicon.svg",
+            "email": "sales@bizapp365.com",
+            "telephone": "+971582885633",
+            "areaServed": ["AE", "OM"]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "BizApp365",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web, Android, Windows",
+            "publisher": { "@id": "https://bizapp365.com/#org" },
+            "inLanguage": ["en", "ar"],
+            "offers": [
+              { "@type": "Offer", "name": "Basic", "price": "49", "priceCurrency": "USD" },
+              { "@type": "Offer", "name": "Standard", "price": "99", "priceCurrency": "USD" },
+              { "@type": "Offer", "name": "Enterprise", "price": "199", "priceCurrency": "USD" }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-xc0zBfip.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/motion-4GoM_uOI.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BlSKMTo-.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+    <noscript>
+      <p style="font-family:sans-serif;padding:24px">BizApp365 — the complete ERP for growing SMEs. Please enable JavaScript, or email <a href="mailto:sales@bizapp365.com">sales@bizapp365.com</a>.</p>
+    </noscript>
   </body>
 </html>

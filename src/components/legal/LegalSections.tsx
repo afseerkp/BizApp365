@@ -43,20 +43,20 @@ export function LegalSections({ sections }: { sections: LegalSection[] }) {
           )}
           <Bullets items={section.bullets} />
           {section.table && (
-            <div className="overflow-x-auto -mx-2 sm:mx-0 rounded-xl border border-slate-200 dark:border-slate-700">
+            <div className="overflow-x-auto -mx-2 sm:mx-0 rounded-xl border border-line">
               <table className="w-full min-w-[40rem] text-sm text-start border-collapse">
                 {section.table.caption && (
-                  <caption className="caption-top text-start px-4 py-3 text-slate-500 dark:text-slate-400">
+                  <caption className="caption-top text-start px-4 py-3 text-fg-subtle">
                     {section.table.caption}
                   </caption>
                 )}
                 <thead>
-                  <tr className="bg-slate-50 dark:bg-slate-900/60">
+                  <tr className="bg-surface-2">
                     {section.table.headers.map((header) => (
                       <th
                         key={header}
                         scope="col"
-                        className="px-3 py-2 font-semibold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700 whitespace-nowrap"
+                        className="px-3 py-2 font-semibold text-fg border-b border-line whitespace-nowrap"
                       >
                         {header}
                       </th>
@@ -65,13 +65,13 @@ export function LegalSections({ sections }: { sections: LegalSection[] }) {
                 </thead>
                 <tbody>
                   {section.table.rows.map((row) => (
-                    <tr key={row[0]} className="align-top even:bg-slate-50/80 dark:even:bg-slate-900/40">
+                    <tr key={row[0]} className="align-top even:bg-surface-2/60">
                       {row.map((cell, cellIndex) => (
                         <td
                           key={`${row[0]}-${cellIndex}`}
-                          className="px-3 py-2 border-b border-slate-200 dark:border-slate-700"
+                          className="px-3 py-2 border-b border-line"
                         >
-                          {cellIndex === 0 ? <strong className="text-slate-900 dark:text-white">{cell}</strong> : renderRichText(cell)}
+                          {cellIndex === 0 ? <strong className="text-fg">{cell}</strong> : renderRichText(cell)}
                         </td>
                       ))}
                     </tr>

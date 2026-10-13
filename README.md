@@ -4,7 +4,9 @@ Marketing site for BizApp365 — a multi-tenant ERP platform for accounting, inv
 
 ## Stack
 
-React 19, TypeScript, Vite, Tailwind CSS, Framer Motion
+React 19, TypeScript, Vite, Tailwind CSS v4, Framer Motion, Lenis (smooth scroll)
+
+Design tokens live in `src/index.css` (`@theme` + light/dark semantic variables), motion tokens in `src/lib/motion.ts`, and shared UI primitives in `src/components/ds/`. All copy is in `src/i18n/en.json` and `src/i18n/ar.json` — every key must exist in both.
 
 ## Commands
 

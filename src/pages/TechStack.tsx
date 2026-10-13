@@ -1,86 +1,95 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Layers, Database, Globe, Lock, Workflow, Cpu } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { Container } from '../components/ds/Container';
+import { PageHero } from '../components/ds/PageHero';
+import { Reveal } from '../components/ds/Reveal';
+import Seo from '../components/seo/Seo';
+import Security from '../components/home/Security';
+import FinalCta from '../components/home/FinalCta';
+import { ease, viewportOnce } from '../lib/motion';
+import { cn } from '../lib/cn';
 
-const categoryIcons = [
-  <Layers className="w-6 h-6 text-[#1976d2]" key="layers" />,
-  <Cpu className="w-6 h-6 text-[#9c27b0]" key="cpu" />,
-  <Database className="w-6 h-6 text-[#2e7d32]" key="db" />,
-  <Globe className="w-6 h-6 text-[#ff9800]" key="globe" />,
-  <Workflow className="w-6 h-6 text-[#0db7ed]" key="workflow" />,
-  <Lock className="w-6 h-6 text-[#d32f2f]" key="lock" />,
-];
+const ICONS = [Layers, Cpu, Database, Globe, Workflow, Lock];
+const LAYER_TINTS = ['from-brand-500 to-brand-700', 'from-violet-500 to-violet-700', 'from-emerald-500 to-emerald-700', 'from-sand-400 to-sand-600'];
+
+function Architecture() {
+  const { tm } = useLanguage();
+  const reduce = useReducedMotion();
+  const layers = tm.techx.layers;
+  return (
+    <div className="relative rounded-[32px] border border-line bg-surface p-5 sm:p-8">
+      <div className="space-y-3">
+        {layers.map((l, i) => (
+          <motion.div
+            key={l.name}
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            transition={{ delay: i * 0.12, duration: 0.6, ease: ease.out }}
+            className="relative grid gap-3 sm:grid-cols-[150px_1fr] items-center rounded-2xl border border-line bg-surface-2/60 p-4"
+          >
+            <span className="flex items-center gap-3">
+              <span className={cn('w-2.5 h-10 rounded-full bg-gradient-to-b', LAYER_TINTS[i])} />
+              <span className="font-display text-lg font-bold text-fg">{l.name}</span>
+            </span>
+            <span className="flex flex-wrap gap-2">
+              {l.items.map((it) => (
+                <span key={it} className="rounded-xl border border-line bg-surface px-3 py-2 text-sm font-medium text-fg">
+                  {it}
+                </span>
+              ))}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const TechStack = () => {
-  const { t, tm } = useLanguage();
-  const stackCategories = tm.tech.categories;
-
+  const { tm } = useLanguage();
+  const x = tm.techx;
   return (
-    <section className="py-24 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-hidden">
-      <div className="w-full mb-12 relative overflow-hidden bg-slate-900">
-        <img
-          src="/features/tech-stack-hero.png"
-          alt={t('tech.imageAlt')}
-          loading="lazy"
-          className="w-full h-[400px] lg:h-[500px] object-cover opacity-80"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 text-slate-300 font-medium text-sm mb-4 border border-slate-700">
-            {t('tech.badge')}
-          </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight text-center">
-            {t('tech.titleBefore')}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#61DAFB] to-[#3178C6]">
-              {t('tech.titleHighlight')}
-            </span>
-          </h1>
+    <div>
+      <Seo title={x.seoTitle} description={x.seoDescription} canonical="https://bizapp365.com/tech/" />
+      <PageHero eyebrow={x.eyebrow} title={x.title} accent={x.accent} subtitle={tm.tech.subtitle} />
+
+      <Container className="pb-12">
+        <Reveal>
+          <h2 className="mb-6 text-sm font-semibold uppercase tracking-[0.14em] text-fg-subtle !font-sans">{x.layersTitle}</h2>
+        </Reveal>
+        <Architecture />
+      </Container>
+
+      <Security />
+
+      <Container className="pb-24">
+        <Reveal>
+          <h2 className="mb-10 font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-fg">{x.stackTitle}</h2>
+        </Reveal>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {tm.tech.categories.map((c, i) => {
+            const Icon = ICONS[i];
+            return (
+              <Reveal key={c.title} delay={(i % 3) * 0.07} className="rounded-3xl border border-line bg-surface p-7">
+                <Icon size={22} className="text-brand-600 dark:text-brand-400" />
+                <h3 className="mt-5 !font-sans text-lg font-bold text-fg">{c.title}</h3>
+                <p className="mt-2 text-sm text-fg-muted">{c.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2" dir="ltr">
+                  {c.techs.map((tech) => (
+                    <span key={tech} className="rounded-lg bg-surface-2 px-2.5 py-1 font-mono text-xs text-fg-muted">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-balance">
-            {t('tech.subtitle')}
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {stackCategories.map((category, idx) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <div className="w-14 h-14 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex items-center justify-center mb-6">
-                {categoryIcons[idx]}
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{category.title}</h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">{category.description}</p>
-
-              <div className="flex flex-wrap gap-2">
-                {category.techs.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </Container>
+      <FinalCta />
+    </div>
   );
 };
 

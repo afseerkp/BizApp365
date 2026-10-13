@@ -1,82 +1,133 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { MessageCircle, Mail, Cloud, Printer, Smartphone, FileCheck } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { Container } from '../components/ds/Container';
+import { PageHero } from '../components/ds/PageHero';
+import { LogoMark } from '../components/ds/Logo';
+import { Chip } from '../components/ds/Field';
+import Seo from '../components/seo/Seo';
+import FinalCta from '../components/home/FinalCta';
+import { ease, viewportOnce } from '../lib/motion';
 
-const icons = [MessageCircle, Mail, FileCheck, Cloud, Smartphone, Printer];
-const styles = [
-  { color: 'text-green-600', bg: 'bg-green-50 dark:bg-green-900/20' },
-  { color: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-900/20' },
-  { color: 'text-purple-600', bg: 'bg-purple-50 dark:bg-purple-900/20' },
-  { color: 'text-yellow-600', bg: 'bg-yellow-50 dark:bg-yellow-900/20' },
-  { color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-900/20' },
-  { color: 'text-orange-600', bg: 'bg-orange-50 dark:bg-orange-900/20' },
-];
+const ICONS = [MessageCircle, Mail, FileCheck, Cloud, Smartphone, Printer];
+const TINTS = ['text-emerald-500', 'text-sky-500', 'text-violet-500', 'text-amber-500', 'text-green-500', 'text-orange-500'];
+
+function Hub() {
+  const { tm } = useLanguage();
+  const reduce = useReducedMotion();
+  const items = tm.integrations.items;
+  const R = 150;
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-[420px]" dir="ltr">
+      <svg viewBox="-200 -200 400 400" className="absolute inset-0 w-full h-full" aria-hidden>
+        <circle r={R} fill="none" stroke="var(--line-strong)" strokeDasharray="2 6" />
+        <circle r={R * 0.55} fill="none" stroke="var(--line)" />
+        {items.map((_, i) => {
+          const a = (i / items.length) * Math.PI * 2 - Math.PI / 2;
+          return (
+            <motion.line
+              key={i}
+              x1={0}
+              y1={0}
+              x2={Math.cos(a) * R}
+              y2={Math.sin(a) * R}
+              stroke="var(--color-brand-500)"
+              strokeOpacity="0.5"
+              strokeWidth="1.5"
+              initial={reduce ? false : { pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={viewportOnce}
+              transition={{ delay: 0.2 + i * 0.1, duration: 0.7, ease: ease.out }}
+            />
+          );
+        })}
+      </svg>
+      <div className="absolute inset-0 grid place-items-center">
+        <div className="relative grid place-items-center w-24 h-24 rounded-3xl bg-surface border border-line shadow-soft">
+          <span className="absolute inset-0 rounded-3xl bg-brand-500/20 animate-ping motion-reduce:hidden" aria-hidden />
+          <LogoMark className="w-14 h-14" />
+        </div>
+      </div>
+      {items.map((it, i) => {
+        const a = (i / items.length) * Math.PI * 2 - Math.PI / 2;
+        const Icon = ICONS[i];
+        return (
+          <motion.div
+            key={it.title}
+            className="absolute grid place-items-center w-14 h-14 -ms-7 -mt-7 rounded-2xl border border-line bg-surface shadow-soft"
+            style={{ left: `${50 + (Math.cos(a) * R * 100) / 400}%`, top: `${50 + (Math.sin(a) * R * 100) / 400}%` }}
+            initial={reduce ? false : { scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={viewportOnce}
+            transition={{ delay: 0.5 + i * 0.1, type: 'spring', stiffness: 260, damping: 18 }}
+            title={it.title}
+          >
+            <Icon size={22} className={TINTS[i]} />
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
 
 const Integrations = () => {
   const { t, tm } = useLanguage();
-  const integrations = tm.integrations.items;
+  const x = tm.integrationsx;
+  const items = tm.integrations.items;
+  const cats = Array.from(new Set(x.categories));
+  const [filter, setFilter] = useState<string | null>(null);
+  const visible = items.map((it, i) => ({ ...it, i, cat: x.categories[i] })).filter((it) => !filter || it.cat === filter);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex flex-col">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-8"
-        >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
-            {t('integrations.titleBefore')} <span className="text-[#9c27b0]">{t('integrations.titleHighlight')}</span>
-          </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-balance">
-            {t('integrations.subtitle')}
-          </p>
-        </motion.div>
-      </div>
+    <div>
+      <Seo title={x.seoTitle} description={x.seoDescription} canonical="https://bizapp365.com/integrations/" />
+      <PageHero eyebrow={x.eyebrow} title={t('integrations.titleBefore')} accent={t('integrations.titleHighlight')} subtitle={t('integrations.subtitle')} />
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 w-full mb-16"
-      >
-        <img
-          src="/features/integrations-hub.png"
-          alt={t('integrations.imageAlt')}
-          loading="lazy"
-          className="w-full rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 object-cover"
-        />
-      </motion.div>
+      <Container className="pb-24">
+        <Hub />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {integrations.map((item, idx) => {
-            const Icon = icons[idx];
-            const style = styles[idx];
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-xl ${style.bg} flex items-center justify-center`}>
-                    <Icon className={`w-6 h-6 ${style.color}`} />
-                  </div>
-                  <span className="text-xs font-semibold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                    {item.edition}
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400">{item.description}</p>
-              </motion.div>
-            );
-          })}
+        <div className="mt-20 flex flex-wrap justify-center gap-2" role="group" aria-label={x.eyebrow}>
+          <Chip selected={filter === null} onClick={() => setFilter(null)}>
+            {x.all}
+          </Chip>
+          {cats.map((c) => (
+            <Chip key={c} selected={filter === c} onClick={() => setFilter(c)}>
+              {c}
+            </Chip>
+          ))}
         </div>
-      </div>
+
+        <motion.div layout className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {visible.map((it) => {
+              const Icon = ICONS[it.i];
+              return (
+                <motion.article
+                  key={it.title}
+                  layout
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35, ease: ease.out }}
+                  className="rounded-3xl border border-line bg-surface p-7 transition-colors hover:border-brand-500/40"
+                >
+                  <div className="flex items-start justify-between">
+                    <span className="grid place-items-center w-12 h-12 rounded-2xl bg-surface-2">
+                      <Icon size={22} className={TINTS[it.i]} />
+                    </span>
+                    <span className="rounded-full border border-line px-2.5 py-1 text-[11px] font-semibold text-fg-subtle">{it.edition}</span>
+                  </div>
+                  <h2 className="mt-6 !font-sans text-lg font-bold text-fg">{it.title}</h2>
+                  <p className="mt-2 text-sm text-fg-muted leading-relaxed">{it.description}</p>
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">{it.cat}</p>
+                </motion.article>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
+      </Container>
+      <FinalCta />
     </div>
   );
 };

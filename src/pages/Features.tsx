@@ -1,83 +1,118 @@
-import { motion } from 'framer-motion';
-import FeatureCard from '../components/ui/FeatureCard';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Check } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
-
-const moduleImages = [
-  '/features/masters-module.png',
-  '/features/transaction-module.png',
-  '/features/reports-module.png',
-  '/features/crm-module.png',
-  '/features/reports-module.png',
-  '/features/integrations-hub.png',
-  '/features/barcode-module.png',
-  '/features/service-center-module.png',
-  '/features/production-module.png',
-  '/features/hr-payroll-module.png',
-  '/features/van-sales-module.png',
-  '/features/configuration-module.png',
-];
+import { Container } from '../components/ds/Container';
+import { PageHero } from '../components/ds/PageHero';
+import { Reveal } from '../components/ds/Reveal';
+import { Marquee } from '../components/ds/Marquee';
+import Seo from '../components/seo/Seo';
+import FinalCta from '../components/home/FinalCta';
+import { MODULES } from '../data/modules';
+import { cn } from '../lib/cn';
 
 const Features = () => {
   const { t, tm } = useLanguage();
-  const editions = tm.features.editions;
   const modules = tm.features.modules;
-  const regionalHighlights = tm.features.regional;
+  const editions = tm.features.editions;
+  const [active, setActive] = useState(MODULES[0].slug);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: '-35% 0px -55% 0px' },
+    );
+    MODULES.forEach((m) => {
+      const el = document.getElementById(m.slug);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 pt-8"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-[#9c27b0] dark:text-purple-400 font-medium text-sm mb-6 border border-purple-200 dark:border-purple-800">
-            {t('features.badge')}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
-            {t('features.titleBefore')}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1976d2] to-[#9c27b0]">
-              {t('features.titleHighlight')}
+    <div>
+      <Seo title={tm.features.seoTitle} description={tm.features.seoDescription} canonical="https://bizapp365.com/features/" />
+      <PageHero eyebrow={t('features.badge')} title={t('features.titleBefore')} accent={t('features.titleHighlight')} subtitle={t('features.subtitle')} />
+
+      <div className="border-y border-line bg-surface/50 py-6">
+        <Marquee duration={50}>
+          {tm.features.regional.map((r) => (
+            <span key={r.label} className="mx-3 inline-flex items-center gap-3 rounded-full border border-line bg-surface px-4 py-2 whitespace-nowrap">
+              <span className="text-sm font-semibold text-fg">{r.label}</span>
+              <span className="text-xs text-fg-subtle">{r.detail}</span>
             </span>
-          </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-balance">
-            {t('features.subtitle')}
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-16"
-        >
-          {regionalHighlights.map(({ label, detail }) => (
-            <div
-              key={label}
-              className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 text-center"
-            >
-              <p className="font-bold text-sm text-slate-900 dark:text-white mb-1">{label}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">{detail}</p>
-            </div>
           ))}
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {modules.map((module, index) => (
-            <FeatureCard
-              key={module.title}
-              title={module.title}
-              description={module.description}
-              features={module.features}
-              image={moduleImages[index]}
-              edition={editions[module.editionKey as keyof typeof editions]}
-              delay={0.05 * (index + 1)}
-            />
-          ))}
-        </div>
+        </Marquee>
       </div>
+
+      <Container className="py-20 sm:py-28">
+        <div className="grid gap-12 lg:grid-cols-[240px_1fr]">
+          <nav aria-label={t('features.tocTitle')} className="hidden lg:block">
+            <div className="sticky top-32">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-fg-subtle mb-4">{t('features.tocTitle')}</p>
+              <ul className="space-y-0.5 border-s border-line">
+                {MODULES.map((m, i) => (
+                  <li key={m.slug}>
+                    <Link
+                      to={{ hash: m.slug }}
+                      replace
+                      aria-current={active === m.slug ? 'true' : undefined}
+                      className={cn(
+                        '-ms-px block border-s-2 ps-4 py-1.5 text-sm transition-colors',
+                        active === m.slug ? 'border-brand-600 text-fg font-semibold' : 'border-transparent text-fg-subtle hover:text-fg',
+                      )}
+                    >
+                      {modules[i].title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+
+          <div className="space-y-24 sm:space-y-32">
+            {MODULES.map((m, i) => {
+              const mod = modules[i];
+              return (
+                <section key={m.slug} id={m.slug} className="scroll-mt-32">
+                  <Reveal className="grid gap-8 xl:grid-cols-2 items-center">
+                    <div className={cn(i % 2 === 1 && 'xl:order-2')}>
+                      <div className="flex items-center gap-3">
+                        <span className={cn('grid place-items-center w-11 h-11 rounded-xl bg-gradient-to-br text-white shadow-md', m.tint)}>
+                          <m.icon size={20} />
+                        </span>
+                        <span className="rounded-full border border-line px-3 py-1 text-xs font-semibold text-fg-subtle">
+                          {t('features.includedIn')} {editions[mod.editionKey as keyof typeof editions]}
+                        </span>
+                      </div>
+                      <h2 className="mt-6 font-display text-4xl sm:text-5xl font-bold tracking-[-0.03em] text-fg">{mod.title}</h2>
+                      <p className="mt-4 text-lg text-fg-muted leading-relaxed">{mod.description}</p>
+                      <ul className="mt-7 space-y-3.5">
+                        {mod.features.map((f) => (
+                          <li key={f} className="flex gap-3 text-fg">
+                            <span className="mt-0.5 grid place-items-center w-5 h-5 shrink-0 rounded-full bg-brand-600/10 text-brand-600 dark:text-brand-400">
+                              <Check size={12} strokeWidth={3} />
+                            </span>
+                            <span className="text-[15px]">{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className={cn('relative overflow-hidden rounded-3xl border border-line bg-[#eef1f8] aspect-[3/2]', i % 2 === 1 && 'xl:order-1')}>
+                      <img src={m.image} alt={mod.title} loading="lazy" decoding="async" width={1536} height={1024} className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] hover:scale-[1.03]" />
+                    </div>
+                  </Reveal>
+                </section>
+              );
+            })}
+          </div>
+        </div>
+      </Container>
+
+      <FinalCta title={t('features.ctaTitle')} accent="" />
     </div>
   );
 };

@@ -1,68 +1,99 @@
 import { Link } from 'react-router-dom';
+import { ArrowUpRight, Mail, MessageCircle, Phone } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { Container } from '../ds/Container';
+import { Logo } from '../ds/Logo';
+import { LangToggle, ThemeToggle } from './Navbar';
+import { CONTACT, MODULES } from '../../data/modules';
 
 const Footer = () => {
-    const { t } = useLanguage();
+  const { t, tm } = useLanguage();
+  const linkCls = 'text-fg-muted hover:text-fg transition-colors';
 
-    return (
-        <footer className="bg-slate-950 border-t border-slate-800 text-slate-300">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-                    <div className="col-span-1 md:col-span-1">
-                        <Link to="/" className="flex items-center gap-2.5 mb-4">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1976d2] to-[#9c27b0] flex items-center justify-center text-white font-bold text-lg">
-                                B
-                            </div>
-                            <span className="font-bold text-xl text-white tracking-tight">BizApp365</span>
-                        </Link>
-                        <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-                            {t('footer.tagline')}
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 className="text-white font-semibold mb-4 tracking-tight">{t('footer.product')}</h3>
-                        <ul className="space-y-2.5 text-sm">
-                            <li><Link to="/features" className="hover:text-white transition-colors">{t('footer.features')}</Link></li>
-                            <li><Link to="/pricing" className="hover:text-white transition-colors">{t('footer.pricing')}</Link></li>
-                            <li><Link to="/integrations" className="hover:text-white transition-colors">{t('footer.integrations')}</Link></li>
-                            <li><Link to="/demo" className="hover:text-white transition-colors">{t('footer.demo')}</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 className="text-white font-semibold mb-4 tracking-tight">{t('footer.resources')}</h3>
-                        <ul className="space-y-2.5 text-sm">
-                            <li><Link to="/tech" className="hover:text-white transition-colors">{t('footer.tech')}</Link></li>
-                            <li><Link to="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</Link></li>
-                            <li><Link to="/terms" className="hover:text-white transition-colors">{t('footer.terms')}</Link></li>
-                            <li><Link to="/delete-account" className="hover:text-white transition-colors">{t('footer.deleteAccount')}</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 className="text-white font-semibold mb-4 tracking-tight">{t('footer.contact')}</h3>
-                        <ul className="space-y-2.5 text-sm">
-                            <li>
-                                <a href="mailto:sales@bizapp365.com" className="hover:text-white transition-colors">
-                                    sales@bizapp365.com
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:+971582885633" className="hover:text-white transition-colors">
-                                    +971 58 288 5633
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col justify-center items-center text-sm text-slate-500">
-                    <p>&copy; {new Date().getFullYear()} BizApp365. {t('footer.rights')}</p>
-                </div>
+  return (
+    <footer className="relative overflow-hidden border-t border-line bg-surface">
+      <Container className="pt-20 pb-10">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div className="max-w-sm">
+            <Link to="/" aria-label="BizApp365 home">
+              <Logo />
+            </Link>
+            <p className="mt-5 text-sm leading-relaxed text-fg-muted">{t('footer.tagline')}</p>
+            <p className="mt-8 font-display text-2xl font-semibold tracking-tight text-fg">{t('footer.ready')}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a href={`mailto:${CONTACT.email}`} className="inline-flex items-center gap-2 rounded-full border border-line-strong px-3.5 py-2 text-sm text-fg hover:border-brand-500/60 transition-colors">
+                <Mail size={14} /> {CONTACT.email}
+              </a>
+              <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-2 rounded-full border border-line-strong px-3.5 py-2 text-sm text-fg hover:border-brand-500/60 transition-colors" dir="ltr">
+                <Phone size={14} /> {CONTACT.phoneDisplay}
+              </a>
+              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-whatsapp/10 text-[#128c4a] dark:text-whatsapp px-3.5 py-2 text-sm font-medium">
+                <MessageCircle size={14} /> {t('footer.whatsapp')}
+              </a>
             </div>
-        </footer>
-    );
+          </div>
+
+          <nav aria-label={t('footer.product')}>
+            <h2 className="!font-sans text-xs font-semibold uppercase tracking-[0.14em] text-fg-subtle mb-5">{t('footer.product')}</h2>
+            <ul className="space-y-3 text-sm">
+              {MODULES.slice(0, 6).map((m, i) => (
+                <li key={m.slug}>
+                  <Link to={`/features#${m.slug}`} className={linkCls}>
+                    {tm.features.modules[i].title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label={t('footer.company')}>
+            <h2 className="!font-sans text-xs font-semibold uppercase tracking-[0.14em] text-fg-subtle mb-5">{t('footer.company')}</h2>
+            <ul className="space-y-3 text-sm">
+              <li><Link to="/features" className={linkCls}>{t('footer.features')}</Link></li>
+              <li><Link to="/pricing" className={linkCls}>{t('footer.pricing')}</Link></li>
+              <li><Link to="/integrations" className={linkCls}>{t('footer.integrations')}</Link></li>
+              <li><Link to="/tech" className={linkCls}>{t('nav.tech')}</Link></li>
+              <li><Link to="/demo" className={linkCls}>{t('footer.demo')}</Link></li>
+              <li><Link to="/contact" className={linkCls}>{t('nav.contact')}</Link></li>
+            </ul>
+          </nav>
+
+          <nav aria-label={t('footer.resources')}>
+            <h2 className="!font-sans text-xs font-semibold uppercase tracking-[0.14em] text-fg-subtle mb-5">{t('footer.resources')}</h2>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a href={CONTACT.login} className={`${linkCls} inline-flex items-center gap-1`}>
+                  {t('nav.login')} <ArrowUpRight size={13} className="rtl:-scale-x-100" />
+                </a>
+              </li>
+              <li><Link to="/privacy" className={linkCls}>{t('footer.privacy')}</Link></li>
+              <li><Link to="/terms" className={linkCls}>{t('footer.terms')}</Link></li>
+              <li><Link to="/delete-account" className={linkCls}>{t('footer.deleteAccount')}</Link></li>
+            </ul>
+          </nav>
+        </div>
+      </Container>
+
+      {/* Oversized wordmark */}
+      <div className="relative select-none pointer-events-none" aria-hidden dir="ltr">
+        <p className="font-display font-bold leading-[0.8] tracking-[-0.06em] text-center text-[clamp(4.5rem,21vw,22rem)] bg-gradient-to-b from-fg/[0.09] to-transparent bg-clip-text text-transparent">
+          BizApp365
+        </p>
+      </div>
+
+      <Container className="pb-8">
+        <div className="flex flex-col-reverse gap-5 sm:flex-row sm:items-center sm:justify-between border-t border-line pt-6 text-xs text-fg-subtle">
+          <p>
+            &copy; {new Date().getFullYear()} BizApp365. {t('footer.rights')} · {t('footer.regions')}
+          </p>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LangToggle />
+          </div>
+        </div>
+      </Container>
+    </footer>
+  );
 };
 
 export default Footer;
