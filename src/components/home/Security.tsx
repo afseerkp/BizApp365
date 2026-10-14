@@ -17,7 +17,7 @@ function TenantViz() {
       <div className="absolute inset-0 bg-grid opacity-60 mask-radial" />
       <div className="relative flex flex-col items-center gap-5">
         <div className="flex items-center gap-2 rounded-2xl bg-fg text-bg px-5 py-3 font-semibold text-sm shadow-lg">
-          <ShieldCheck size={16} /> HTTPS · JWT · RBAC
+          <ShieldCheck size={16} /> HTTPS · Role-based access
         </div>
         <svg viewBox="0 0 300 40" className="w-full max-w-xs h-10">
           {[50, 150, 250].map((x, i) => (
@@ -53,13 +53,13 @@ function TenantViz() {
             </motion.div>
           ))}
         </div>
-        <p className="font-mono text-[11px] text-fg-subtle">PostgreSQL · schema-per-company</p>
+        <p className="font-mono text-[11px] text-fg-subtle">Separate data per company</p>
       </div>
     </div>
   );
 }
 
-export default function Security() {
+export default function Security({ showCta = true }: { showCta?: boolean }) {
   const { tm } = useLanguage();
   const s = tm.home.security;
   return (
@@ -77,11 +77,13 @@ export default function Security() {
               }
               subtitle={s.subtitle}
             />
-            <Reveal className="mt-8">
-              <Button to="/tech" variant="secondary">
-                {s.cta}
-              </Button>
-            </Reveal>
+            {showCta && (
+              <Reveal className="mt-8">
+                <Button to="/tech" variant="secondary">
+                  {s.cta}
+                </Button>
+              </Reveal>
+            )}
           </div>
           <Reveal>
             <TenantViz />

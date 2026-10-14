@@ -43,12 +43,12 @@
       {
         "title": "Web ERP",
         "subtitle": "Full platform",
-        "description": "Complete multi-tenant ERP in the browser — accounting, inventory, CRM, service center, HR, production, reports, and configuration.",
+        "description": "Complete multi-company ERP in the browser — accounting, inventory, CRM, service center, HR, production, reports, and configuration.",
         "highlights": [
           "Multi-company login",
           "Customizable dashboard",
           "Arabic / English RTL",
-          "Docker + HTTPS deploy"
+          "Secure HTTPS access"
         ]
       },
       {
@@ -81,8 +81,8 @@
     "subtitle": "Built for SMEs in the UAE, Oman, and beyond — with wholesale godowns, VAN routes, thermal printing, and edition-gated modules that grow with you.",
     "items": [
       {
-        "title": "Multi-Tenant Architecture",
-        "description": "Multi-company login with schema-per-company isolation, customizable dashboards, favorites, global search, and keyboard shortcuts."
+        "title": "Multi-Company Workspace",
+        "description": "Multi-company login with fully separated company data, customizable dashboards, favorites, global search, and keyboard shortcuts."
       },
       {
         "title": "Real-Time Operations",
@@ -94,11 +94,11 @@
       },
       {
         "title": "Role-Based Access Control",
-        "description": "Granular RBAC per module — restrict users to specific forms, godowns, or CRM/service roles like advisor, manager, or technician."
+        "description": "Granular role-based permissions per module — restrict users to specific forms, godowns, or CRM/service roles like advisor, manager, or technician."
       },
       {
         "title": "Backup & Security",
-        "description": "Local backup & restore plus Google Drive auto-backup with multi-schedule, timezone, and keep-count settings. Docker + HTTPS deployment."
+        "description": "Local backup & restore plus Google Drive auto-backup with multi-schedule, timezone, and keep-count settings. Secure HTTPS access."
       },
       {
         "title": "Print & Field Ready",
@@ -121,7 +121,7 @@
     "pricing": "Pricing",
     "integrations": "Integrations",
     "demo": "Book a Demo",
-    "tech": "Tech Stack",
+    "tech": "Security",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "deleteAccount": "Delete Account",
@@ -296,9 +296,9 @@
       },
       {
         "title": "Configuration & System",
-        "description": "Multi-tenant setup, document designers, backups, and admin controls.",
+        "description": "Multi-company setup, document designers, backups, and admin controls.",
         "features": [
-          "Multi-company login, RBAC & edition-gated modules",
+          "Multi-company login, role-based access & edition-gated modules",
           "Invoice Designer v2, 80mm thermal & dot-matrix layouts",
           "Google Drive auto-backup (multi-schedule, timezone)",
           "Excel/XML import-export & local backup/restore"
@@ -314,76 +314,7 @@
     "ctaButton": "Book a demo"
   },
   "tech": {
-    "badge": "Powered by the best",
-    "titleBefore": "Modern",
-    "titleHighlight": "Architecture",
-    "subtitle": "BizApp365 is built upon a foundation of cutting-edge, open-source technologies designed for maximum scale, security, and developer velocity.",
-    "imageAlt": "Modern technology architecture",
-    "categories": [
-      {
-        "title": "Frontend Experience",
-        "description": "A blazing-fast, strictly-typed UI layer with seamless animations and responsive design.",
-        "techs": [
-          "React 19",
-          "TypeScript",
-          "Vite",
-          "Tailwind CSS",
-          "Framer Motion"
-        ]
-      },
-      {
-        "title": "Backend & API",
-        "description": "Robust, scalable backend architecture processing thousands of transactions efficiently.",
-        "techs": [
-          "Node.js",
-          "Express.js",
-          "TypeScript",
-          "Prisma ORM",
-          "RESTful APIs",
-          "GraphQL (Upcoming)"
-        ]
-      },
-      {
-        "title": "Database & Storage",
-        "description": "Enterprise-grade isolated data storage ensuring complete privacy for each tenant.",
-        "techs": [
-          "PostgreSQL 15+",
-          "Redis",
-          "AWS S3",
-          "Multi-tenant Schemas"
-        ]
-      },
-      {
-        "title": "Infrastructure & DevOps",
-        "description": "Containerized, high-availability deployments supporting zero-downtime updates.",
-        "techs": [
-          "Docker & Compose",
-          "Kubernetes",
-          "AWS / Azure",
-          "GitHub Actions CI/CD"
-        ]
-      },
-      {
-        "title": "Integrations",
-        "description": "Connecting your business to the wider ecosystem with seamless 3rd party integrations.",
-        "techs": [
-          "WhatsApp Business API",
-          "UAE Peppol Access Point",
-          "Stripe / Payfort",
-          "Excel Import/Export"
-        ]
-      },
-      {
-        "title": "Security & Auth",
-        "description": "Bank-level security protecting sensitive financial and payroll data.",
-        "techs": [
-          "JWT Authentication",
-          "Role-Based Access Control",
-          "AES-256 Encryption",
-          "HTTPS / SSL"
-        ]
-      }
-    ]
+    "subtitle": "How BizApp365 keeps your business data private, protected and backed up."
   },
   "pricing": {
     "titleBefore": "Transparent",
@@ -392,7 +323,7 @@
     "perMonth": "/mo",
     "popular": "Most Popular",
     "cta": "Start 30-Day Free Trial",
-    "footnote": "All editions include local backup, Excel/XML import-export, document designers, and bilingual English/Arabic UI. Contact us for on-premise Docker deployment.",
+    "footnote": "All editions include local backup, Excel/XML import-export, document designers, and bilingual English/Arabic UI. Contact us for on-premise deployment.",
     "plans": [
       {
         "title": "Basic",
@@ -498,7 +429,7 @@
             "included": true
           },
           {
-            "name": "Advanced RBAC & multi-company architecture",
+            "name": "Advanced role-based access & multi-company",
             "included": true
           },
           {
@@ -656,8 +587,7 @@
         "Honeywell",
         "80mm thermal",
         "Android",
-        "Excel & XML",
-        "Docker + HTTPS"
+        "Excel & XML"
       ]
     },
     "problem": {
@@ -957,7 +887,7 @@
           "modules": [
             "HR & Payroll",
             "Accounting",
-            "RBAC"
+            "Role-based access"
           ]
         }
       ]
@@ -983,14 +913,14 @@
       ]
     },
     "security": {
-      "eyebrow": "Security & architecture",
+      "eyebrow": "Security",
       "title": "Your data stays",
       "accent": "yours alone.",
-      "subtitle": "Every company gets its own isolated database schema, and every user sees only what their role allows.",
+      "subtitle": "Every company’s data is kept completely separate, and every user sees only what their role allows.",
       "items": [
         {
-          "t": "Schema-per-company isolation",
-          "d": "Each tenant’s data lives in its own PostgreSQL schema — never mixed with anyone else’s."
+          "t": "Company-level data isolation",
+          "d": "Each company’s data is kept fully separate — never mixed with anyone else’s."
         },
         {
           "t": "Role-based access",
@@ -998,7 +928,7 @@
         },
         {
           "t": "Encrypted in transit",
-          "d": "HTTPS everywhere, JWT authentication and Docker-based deployment."
+          "d": "HTTPS everywhere with secure sign-in."
         },
         {
           "t": "Automatic backups",
@@ -1010,10 +940,10 @@
         },
         {
           "t": "On-premise option",
-          "d": "Prefer your own server? Deploy the same stack with Docker on-premise."
+          "d": "Prefer your own server? We can deploy BizApp365 on-premise for you."
         }
       ],
-      "cta": "Read about our architecture"
+      "cta": "Read about security"
     },
     "faq": {
       "eyebrow": "FAQ",
@@ -1041,7 +971,7 @@
         },
         {
           "q": "Can we host it on our own server?",
-          "a": "Yes. BizApp365 runs on Docker with HTTPS, so it can be deployed on-premise as well as in the cloud. Talk to us about your setup."
+          "a": "Yes. BizApp365 can be deployed on-premise as well as in the cloud. Talk to us about your setup."
         },
         {
           "q": "Is there a free trial?",
@@ -1197,7 +1127,7 @@
       }
     ],
     "enterpriseTitle": "Need on-premise, custom modules or many companies?",
-    "enterpriseBody": "We’ll shape a plan around your setup — including Docker deployment on your own servers.",
+    "enterpriseBody": "We’ll shape a plan around your setup — including deployment on your own servers.",
     "enterpriseCta": "Talk to sales",
     "faqTitle": "Pricing questions",
     "faq": [
@@ -1302,47 +1232,11 @@
     "hub": "BizApp365 core"
   },
   "techx": {
-    "seoTitle": "Security & architecture | BizApp365",
-    "seoDescription": "Schema-per-company isolation, role-based access, HTTPS, automatic backups and Docker deployment — how BizApp365 keeps your data safe.",
-    "eyebrow": "Security & architecture",
+    "seoTitle": "Security | BizApp365",
+    "seoDescription": "Separated company data, role-based access, HTTPS and automatic backups — how BizApp365 keeps your data safe.",
+    "eyebrow": "Security",
     "title": "Engineered for",
-    "accent": "trust and speed.",
-    "layersTitle": "How it fits together",
-    "layers": [
-      {
-        "name": "Clients",
-        "items": [
-          "Web ERP",
-          "Android VAN app",
-          "Print extension"
-        ]
-      },
-      {
-        "name": "API",
-        "items": [
-          "Node.js + Express",
-          "JWT auth",
-          "RBAC"
-        ]
-      },
-      {
-        "name": "Data",
-        "items": [
-          "PostgreSQL",
-          "Schema per company",
-          "Redis"
-        ]
-      },
-      {
-        "name": "Ops",
-        "items": [
-          "Docker",
-          "HTTPS",
-          "Drive backups"
-        ]
-      }
-    ],
-    "stackTitle": "The stack"
+    "accent": "trust and speed."
   },
   "notFound": {
     "title": "This page took a different route.",
