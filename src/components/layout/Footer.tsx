@@ -68,6 +68,7 @@ const Footer = () => {
               </li>
               <li><Link to="/privacy" className={linkCls}>{t('footer.privacy')}</Link></li>
               <li><Link to="/terms" className={linkCls}>{t('footer.terms')}</Link></li>
+              <li><Link to="/support" className={linkCls}>{t('footer.support')}</Link></li>
               <li><Link to="/delete-account" className={linkCls}>{t('footer.deleteAccount')}</Link></li>
             </ul>
           </nav>

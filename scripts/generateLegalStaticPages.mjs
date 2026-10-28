@@ -155,6 +155,7 @@ function renderLegalHtml({
         <a href="/privacy/">Privacy Policy</a>
         <a href="/terms/">Terms &amp; Conditions</a>
         <a href="/delete-account/">Delete Account</a>
+        <a href="/support/">Support</a>
       </nav>
     </div>
   </header>
@@ -180,6 +181,7 @@ function renderLegalHtml({
         <a href="/privacy/">Privacy Policy</a>
         <a href="/terms/">Terms &amp; Conditions</a>
         <a href="/delete-account/">Delete Account</a>
+        <a href="/support/">Support</a>
       </nav>
     </div>
   </footer>
@@ -200,6 +202,7 @@ Allow: /
 Allow: /privacy/
 Allow: /terms/
 Allow: /delete-account/
+Allow: /support/
 
 Sitemap: https://bizapp365.com/sitemap.xml
 `
@@ -210,6 +213,7 @@ Sitemap: https://bizapp365.com/sitemap.xml
   <url><loc>https://bizapp365.com/privacy/</loc></url>
   <url><loc>https://bizapp365.com/terms/</loc></url>
   <url><loc>https://bizapp365.com/delete-account/</loc></url>
+  <url><loc>https://bizapp365.com/support/</loc></url>
   <url><loc>https://bizapp365.com/features/</loc></url>
   <url><loc>https://bizapp365.com/pricing/</loc></url>
   <url><loc>https://bizapp365.com/integrations/</loc></url>
@@ -226,6 +230,7 @@ Sitemap: https://bizapp365.com/sitemap.xml
 export function generateLegalStaticPages() {
   const policy = JSON.parse(fs.readFileSync(path.join(root, 'src/content/privacyPolicy.en.json'), 'utf8'))
   const deletion = JSON.parse(fs.readFileSync(path.join(root, 'src/content/deleteAccount.en.json'), 'utf8'))
+  const support = JSON.parse(fs.readFileSync(path.join(root, 'src/content/support.en.json'), 'utf8'))
 
   const privacyHtml = renderLegalHtml({
     title: policy.title,
@@ -258,6 +263,19 @@ export function generateLegalStaticPages() {
   writeStaticDir('privacy', privacyHtml)
   fs.writeFileSync(path.join(docsDir, 'privacy.html'), privacyHtml, 'utf8')
   writeStaticDir('delete-account', deletionHtml)
+
+  const supportHtml = renderLegalHtml({
+    title: support.title,
+    application: support.application,
+    description: support.metaDescription,
+    canonical: 'https://bizapp365.com/support/',
+    lastUpdated: support.lastUpdated,
+    serviceProvider: support.serviceProvider,
+    intro: support.intro,
+    sections: support.sections,
+    contactEmail: support.supportEmail,
+  })
+  writeStaticDir('support', supportHtml)
 
   const spaRoutes = ['terms', 'features', 'tech', 'pricing', 'contact', 'integrations', 'demo']
   const spaShell = fs.readFileSync(path.join(docsDir, 'index.html'), 'utf8')

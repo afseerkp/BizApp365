@@ -125,6 +125,7 @@
     "terms": "الشروط والأحكام",
     "privacy": "سياسة الخصوصية",
     "deleteAccount": "حذف الحساب",
+    "support": "الدعم",
     "rights": "جميع الحقوق محفوظة.",
     "company": "الشركة",
     "regions": "نخدم الإمارات وعُمان",
@@ -521,6 +522,8 @@
     "termsTitleHighlight": "والأحكام",
     "deleteTitleBefore": "حذف",
     "deleteTitleHighlight": "الحساب",
+    "supportTitleBefore": "المساعدة",
+    "supportTitleHighlight": "والدعم",
     "privacyFooter": "إذا كانت لديك أسئلة حول سياسة الخصوصية هذه، تواصل معنا على"
   },
   "palette": {

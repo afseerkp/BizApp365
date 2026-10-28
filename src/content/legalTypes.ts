@@ -59,3 +59,17 @@ export type DeleteAccountContent = {
     note: string;
   };
 };
+
+export type SupportContent = {
+  title: string;
+  application: string;
+  serviceProvider: string;
+  website: string;
+  supportEmail: string;
+  supportPhone: string;
+  whatsapp: string;
+  lastUpdated: string;
+  metaDescription: string;
+  intro: string[];
+  sections: LegalSection[];
+};

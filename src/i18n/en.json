@@ -125,6 +125,7 @@
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "deleteAccount": "Delete Account",
+    "support": "Support",
     "rights": "All rights reserved.",
     "company": "Company",
     "regions": "Serving the UAE & Oman",
@@ -521,6 +522,8 @@
     "termsTitleHighlight": "Conditions",
     "deleteTitleBefore": "Delete",
     "deleteTitleHighlight": "Account",
+    "supportTitleBefore": "Help &",
+    "supportTitleHighlight": "Support",
     "privacyFooter": "If you have questions about this Privacy Policy, contact us at"
   },
   "palette": {

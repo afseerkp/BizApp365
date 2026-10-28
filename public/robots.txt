@@ -4,5 +4,6 @@ Allow: /
 Allow: /privacy/
 Allow: /terms/
 Allow: /delete-account/
+Allow: /support/
 
 Sitemap: https://bizapp365.com/sitemap.xml

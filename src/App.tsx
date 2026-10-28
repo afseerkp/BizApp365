@@ -19,6 +19,7 @@ const Demo = lazy(() => import('./pages/Demo'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const DeleteAccount = lazy(() => import('./pages/DeleteAccount'));
+const Support = lazy(() => import('./pages/Support'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const PageLoader = () => (
@@ -53,6 +54,7 @@ function AnimatedRoutes() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/delete-account" element={<DeleteAccount />} />
+            <Route path="/support" element={<Support />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
