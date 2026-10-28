@@ -1,1 +1,0 @@
-import{u as s,j as n,m as r}from"./motion-4GoM_uOI.js";import{e as u,q as p,v as c}from"./index-B6qmNMwe.js";function l({delay:e=0,y:o=24,children:i,...t}){const a=s();return n.jsx(r.div,{initial:a?!1:{opacity:0,y:o},whileInView:{opacity:1,y:0},viewport:c,transition:{duration:p.slow,ease:u.out,delay:e},...t,children:i})}export{l as R};

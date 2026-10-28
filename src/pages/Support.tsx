@@ -34,9 +34,6 @@ const Support = () => {
             <span className="font-serif italic font-normal text-gradient pe-1">{t('legal.supportTitleHighlight')}</span>
           </h1>
           <p className="text-lg font-semibold text-fg">{content.application}</p>
-          <p className="text-sm text-fg-subtle mt-1">
-            {t('legal.serviceProvider').replace('{name}', content.serviceProvider)}
-          </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             {channels.map((c) => (
               <a

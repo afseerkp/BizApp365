@@ -130,6 +130,7 @@ function renderLegalHtml({
     .join('')}</ul></nav>`
 
   const effective = effectiveDate ? `<p class="meta">Effective Date: ${escapeHtml(effectiveDate)}</p>` : ''
+  const provider = serviceProvider ? `<p class="meta">Service Provider: ${escapeHtml(serviceProvider)}</p>` : ''
   const updated = lastUpdated ? `<p class="meta">Last Updated: ${escapeHtml(lastUpdated)}</p>` : ''
 
   return `<!doctype html>
@@ -163,7 +164,7 @@ function renderLegalHtml({
     <div class="hero">
       <h1>${title === 'Privacy Policy' ? 'Privacy <span>Policy</span>' : escapeHtml(title)}</h1>
       <p class="app-name">${escapeHtml(application)}</p>
-      <p class="meta">Service Provider: ${escapeHtml(serviceProvider)}</p>
+      ${provider}
       ${effective}
       ${updated}
     </div>
@@ -270,7 +271,6 @@ export function generateLegalStaticPages() {
     description: support.metaDescription,
     canonical: 'https://bizapp365.com/support/',
     lastUpdated: support.lastUpdated,
-    serviceProvider: support.serviceProvider,
     intro: support.intro,
     sections: support.sections,
     contactEmail: support.supportEmail,
