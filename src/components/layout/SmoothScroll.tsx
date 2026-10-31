@@ -34,6 +34,8 @@ export default function SmoothScroll() {
         const el = document.getElementById(decodeURIComponent(hash.slice(1)));
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY - 96;
+          // Lenis re-measures on a debounce, so its scroll limit can still reflect the shorter previous page/loader
+          lenis?.resize();
           if (lenis) lenis.scrollTo(top, { duration: 1.1 });
           else window.scrollTo({ top, behavior: 'smooth' });
         } else if (tries++ < 40) {
