@@ -63,9 +63,8 @@ export default function Hero() {
           >
             <Link
               to="/features#accounting"
-              className="group inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/70 backdrop-blur py-1 ps-1 pe-3 text-xs sm:text-sm text-fg-muted hover:text-fg transition-colors"
+              className="group inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/70 backdrop-blur py-1.5 px-3 text-xs sm:text-sm text-fg-muted hover:text-fg transition-colors"
             >
-              <span className="rounded-full bg-gradient-to-r from-brand-600 to-violet-600 px-2.5 py-0.5 text-[11px] font-semibold text-white">{h.badge}</span>
               {h.badgeText}
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
             </Link>
