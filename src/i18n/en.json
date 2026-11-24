@@ -209,7 +209,7 @@
       },
       {
         "title": "CRM",
-        "description": "Recently added — manage leads, pipeline, field visits, and support tickets.",
+        "description": "Manage leads, pipeline, field visits, and support tickets.",
         "features": [
           "Leads with scoring, qualification & conversion",
           "Opportunity pipeline (Kanban, stages, win prediction)",
@@ -242,7 +242,7 @@
       },
       {
         "title": "Barcode & Label Designer",
-        "description": "Recently expanded — design, bulk print, and reprint labels for retail and warehouse.",
+        "description": "Design, bulk print, and reprint labels for retail and warehouse.",
         "features": [
           "Drag-and-drop label designer",
           "Bulk printing with printer profiles (Zebra, TSC, Honeywell…)",
@@ -253,7 +253,7 @@
       },
       {
         "title": "Service Center",
-        "description": "Recently added — full job card workflow from intake to service invoice.",
+        "description": "Full job card workflow from intake to service invoice.",
         "features": [
           "Job cards: intake → diagnosis → quotation → tasks → sale",
           "Kanban board by status with role-based access",
@@ -286,7 +286,7 @@
       },
       {
         "title": "Android VAN Sales App",
-        "description": "Recently built field client for route sales, collections, and van stock management.",
+        "description": "Field client for route sales, collections, and van stock management.",
         "features": [
           "Server setup via QR / deep link (bizapp365://config)",
           "New sale, returns, receipts & PDF print",
