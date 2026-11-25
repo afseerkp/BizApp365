@@ -112,6 +112,28 @@ For production: create a **System User** permanent token (Business Settings → 
 
 ## 5. Deploy
 
+### Docker (live server)
+
+1. In the live ERP's `production/backend/.env`, set a **new** `MCP_SERVER_TOKEN` and the `whatsapp-bot` user's `MCP_SERVER_USER_ID`, then rebuild the backend. `curl -i -X POST https://<erp-domain>/api/mcp-server` should now answer **401** (404 means it is still off).
+2. On the server:
+
+   ```bash
+   git clone https://github.com/afseerkp/BizApp365.git /opt/bizapp-site
+   cd /opt/bizapp-site/whatsapp-ai-bridge
+   cp .env.example .env && nano .env   # MCP_SERVER_URL=https://<erp-domain>/api/mcp-server, clear MCP_SERVER_COMMAND/ARGS
+   docker compose up -d --build
+   curl http://127.0.0.1:3100/health
+   ```
+
+3. Put HTTPS in front (the port is bound to `127.0.0.1` only), e.g. nginx on `wa.<domain>` with `proxy_pass http://127.0.0.1:3100;` and `certbot --nginx -d wa.<domain>`.
+4. Set the Meta webhook to `https://wa.<domain>/webhook` (step 4).
+
+Logs: `docker compose logs -f`. Update: `git pull && docker compose up -d --build`. After editing `.env`: `docker compose up -d` (a plain restart does not reload it).
+
+The image does not include the demo MCP server, so use `MCP_SERVER_URL`. To reach the ERP over its Docker network instead of the public URL, see the comments in `docker-compose.yml`.
+
+### Other hosts
+
 Any Node host works (Render, Railway, Fly.io, Azure App Service, a VPS). Set the same environment variables there, start with `npm start`, and point the Meta webhook to `https://<your-host>/webhook`. Health check: `GET /health`.
 
 Memory, rate limits and duplicate filtering are in memory, so run **one instance**. (For several instances, move `src/state.js` to Redis.)
@@ -141,5 +163,6 @@ Memory, rate limits and duplicate filtering are in memory, so run **one instance
 | `src/text.js` | WhatsApp formatting and message splitting |
 | `scripts/chat.js` | Terminal chat for testing without WhatsApp |
 | `examples/demo-mcp-server.js` | Example MCP server with fake data |
+| `Dockerfile`, `docker-compose.yml` | Container build and run for the live server |
 
 Run tests with `npm test`.
