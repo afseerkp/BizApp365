@@ -13,9 +13,17 @@
 #   4. Stops if a secret (OpenRouter / WhatsApp) is still empty, so you can fill it in.
 #   5. Builds and starts the bridge on the ERP network, then checks health and the MCP tools.
 #
-# Options: --bot-user <name> (default whatsapp-bot)   --erp-dir <path> (default: auto)
+# Options:
+#   --subdomain <name>  public address is <name>.bizapp365.com (asked on first run, default "wa";
+#                       remembered in .env as PUBLIC_SUBDOMAIN; pass it again to change it)
+#   --bot-user <name>   ERP user the bot reads as (default whatsapp-bot)
+#   --erp-dir <path>    ERP compose folder (default: found from the running container)
 set -euo pipefail
 
+BASE_DOMAIN="bizapp365.com"
+DEFAULT_SUBDOMAIN="wa"
+RESERVED_SUBDOMAINS="login www api mail"
+SUBDOMAIN=""
 BOT_USER="whatsapp-bot"
 ERP_DIR=""
 BACKEND_CONTAINER="bizzapp365-backend"
@@ -26,9 +34,11 @@ ALLOWED_TOOLS="get_business_info,search_products,get_my_balance,get_my_open_invo
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --subdomain) [[ $# -ge 2 ]] || { echo "--subdomain needs a name, e.g. --subdomain chat" >&2; exit 1; }
+                 SUBDOMAIN="$2"; shift 2 ;;
     --bot-user) BOT_USER="$2"; shift 2 ;;
     --erp-dir) ERP_DIR="$2"; shift 2 ;;
-    -h|--help) sed -n '2,17p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,21p' "$0"; exit 0 ;;
     *) echo "Unknown argument: $1" >&2; exit 1 ;;
   esac
 done
@@ -58,6 +68,45 @@ set_env() {
 }
 
 compose() { docker compose "$@"; }
+
+# Normalise and check a subdomain label. "WA", "wa.bizapp365.com" and "https://wa.bizapp365.com/" all give "wa".
+normalize_subdomain() {
+  local s="${1,,}"
+  s="${s#http://}"; s="${s#https://}"; s="${s%%/*}"; s="${s%.}"
+  s="${s%.$BASE_DOMAIN}"
+  printf '%s' "$s"
+}
+valid_subdomain() {
+  [[ "$1" =~ ^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$ ]] || return 1
+  [[ " $RESERVED_SUBDOMAINS " != *" $1 "* ]]
+}
+# Sets SUBDOMAIN and PUBLIC_HOST, and saves PUBLIC_SUBDOMAIN in .env.
+choose_subdomain() {
+  local given saved answer
+  given="$(normalize_subdomain "${1:-}")"
+  saved="$(normalize_subdomain "$(get_env PUBLIC_SUBDOMAIN "$ENV_FILE")")"
+  if [[ -n "$given" ]]; then
+    SUBDOMAIN="$given"
+  elif [[ -n "$saved" ]]; then
+    SUBDOMAIN="$saved"
+  elif [[ -t 0 ]]; then
+    while :; do
+      read -r -p "    Subdomain for the WhatsApp webhook (<name>.$BASE_DOMAIN) [$DEFAULT_SUBDOMAIN]: " answer
+      SUBDOMAIN="$(normalize_subdomain "${answer:-$DEFAULT_SUBDOMAIN}")"
+      valid_subdomain "$SUBDOMAIN" && break
+      warn "'$SUBDOMAIN' can't be used: letters, digits and '-' only, and not one of: $RESERVED_SUBDOMAINS"
+    done
+  else
+    SUBDOMAIN="$DEFAULT_SUBDOMAIN"
+  fi
+  valid_subdomain "$SUBDOMAIN" || die "'$SUBDOMAIN' can't be used as a subdomain: letters, digits and '-' only (max 63), and not one of: $RESERVED_SUBDOMAINS"
+  if [[ -n "$saved" && "$saved" != "$SUBDOMAIN" ]]; then
+    warn "changing the address from $saved.$BASE_DOMAIN to $SUBDOMAIN.$BASE_DOMAIN:"
+    warn "update the Cloudflare tunnel hostname and the Meta webhook URL to match (shown at the end)"
+  fi
+  set_env PUBLIC_SUBDOMAIN "$SUBDOMAIN" "$ENV_FILE"
+  PUBLIC_HOST="$SUBDOMAIN.$BASE_DOMAIN"
+}
 
 # ---------------------------------------------------------------------------
 step "Checking tools"
@@ -149,6 +198,10 @@ set_env MCP_SERVER_ARGS "" "$ENV_FILE"
 [[ -n "$(get_env MCP_ALLOWED_TOOLS "$ENV_FILE")" ]] || set_env MCP_ALLOWED_TOOLS "$ALLOWED_TOOLS" "$ENV_FILE"
 ok "MCP settings written (URL over the ERP network, token shared with the ERP)"
 
+# Public address: <subdomain>.bizapp365.com. --subdomain wins, then the saved value, then ask.
+choose_subdomain "$SUBDOMAIN"
+ok "public address: https://$PUBLIC_HOST (saved as PUBLIC_SUBDOMAIN=$SUBDOMAIN in .env)"
+
 # Join the ERP network. docker compose loads this override file automatically.
 cat > "$BRIDGE_DIR/docker-compose.override.yml" <<EOF
 # Written by deploy.sh: puts the bridge on the ERP's Docker network.
@@ -198,16 +251,24 @@ if [[ "$CHALLENGE" == 4242 ]]; then ok "webhook verification answers correctly";
 
 docker logs --tail 5 whatsapp-bridge
 
+PUBLIC_STATUS="$(curl -s -o /dev/null -m 10 -w '%{http_code}' "https://$PUBLIC_HOST/health" 2>/dev/null || true)"
+if [[ "$PUBLIC_STATUS" == 200 ]]; then
+  ok "https://$PUBLIC_HOST/health answers 200: the tunnel already reaches the bridge"
+else
+  warn "https://$PUBLIC_HOST/health is not reachable yet (got '${PUBLIC_STATUS:-no answer}'): add the tunnel hostname below"
+fi
+
 cat <<EOF
 
 Done. The bridge listens on http://127.0.0.1:$PORT (this server only).
+Public address: https://$PUBLIC_HOST   (change it: bash $BRIDGE_DIR/deploy.sh --subdomain <name>)
 
 Next, if not done yet:
   1. Cloudflare Zero Trust > Networks > Tunnels > (your tunnel) > Public hostnames > Add:
-       wa.bizapp365.com  ->  HTTP  localhost:$PORT
+       $PUBLIC_HOST  ->  HTTP  localhost:$PORT
      (if cloudflared runs in a Docker container on the ERP network, use whatsapp-bridge:$PORT instead).
      Do not put Cloudflare Access in front of it; Meta must reach it.
-  2. Meta > WhatsApp > Configuration > Webhook: https://wa.bizapp365.com/webhook, verify token from .env,
+  2. Meta > WhatsApp > Configuration > Webhook: https://$PUBLIC_HOST/webhook, verify token from .env,
      subscribe to "messages".
   3. Test from a number in WHATSAPP_ALLOWED_NUMBERS, then clear that line and run this script again.
 

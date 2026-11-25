@@ -121,9 +121,17 @@ git clone https://github.com/afseerkp/BizApp365.git /opt/bizapp-site 2>/dev/null
 bash /opt/bizapp-site/whatsapp-ai-bridge/deploy.sh
 ```
 
+On the first run it asks for the **subdomain** of the public address: `<name>.bizapp365.com`, default `wa` → `wa.bizapp365.com`. It is saved in `.env` as `PUBLIC_SUBDOMAIN`. To change it later:
+
+```bash
+bash /opt/bizapp-site/whatsapp-ai-bridge/deploy.sh --subdomain chat   # → chat.bizapp365.com
+```
+
+Then update the Cloudflare tunnel hostname and the Meta webhook URL to the new address (the script prints both). `login`, `www`, `api` and `mail` are refused.
+
 `deploy.sh` finds the ERP container and its network, sets `MCP_SERVER_TOKEN` / `MCP_SERVER_USER_ID` in the ERP (backing up its `.env` first), writes the MCP settings into the bridge `.env`, stops if an OpenRouter/WhatsApp secret is still empty, then builds, starts and checks the bridge. Run it again after filling in secrets or pulling updates. HTTPS and the Meta webhook (steps 3–4 below) are still up to you.
 
-**Cloudflare Tunnel (how the live ERP at `login.bizapp365.com` is published):** no nginx or certbot needed. In Cloudflare Zero Trust → Networks → Tunnels → your tunnel → **Public hostnames → Add**: `wa.bizapp365.com` → type **HTTP**, URL `localhost:3100` (or `whatsapp-bridge:3100` if `cloudflared` runs as a container on the ERP's Docker network). Don't protect it with Cloudflare Access, and if a WAF / Bot Fight rule blocks Meta's POSTs, add a skip rule for `wa.bizapp365.com/webhook`. Meta webhook URL: `https://wa.bizapp365.com/webhook`.
+**Cloudflare Tunnel (how the live ERP at `login.bizapp365.com` is published):** no nginx or certbot needed. In Cloudflare Zero Trust → Networks → Tunnels → your tunnel → **Public hostnames → Add**: `<subdomain>.bizapp365.com` (e.g. `wa.bizapp365.com`) → type **HTTP**, URL `localhost:3100` (or `whatsapp-bridge:3100` if `cloudflared` runs as a container on the ERP's Docker network). Don't protect it with Cloudflare Access, and if a WAF / Bot Fight rule blocks Meta's POSTs, add a skip rule for `/webhook` on that hostname. Meta webhook URL: `https://<subdomain>.bizapp365.com/webhook`.
 
 **By hand:**
 
