@@ -114,6 +114,17 @@ For production: create a **System User** permanent token (Business Settings → 
 
 ### Docker (live server)
 
+**One command:** on the ERP server, as root:
+
+```bash
+git clone https://github.com/afseerkp/BizApp365.git /opt/bizapp-site 2>/dev/null || git -C /opt/bizapp-site pull --ff-only
+bash /opt/bizapp-site/whatsapp-ai-bridge/deploy.sh
+```
+
+`deploy.sh` finds the ERP container and its network, sets `MCP_SERVER_TOKEN` / `MCP_SERVER_USER_ID` in the ERP (backing up its `.env` first), writes the MCP settings into the bridge `.env`, stops if an OpenRouter/WhatsApp secret is still empty, then builds, starts and checks the bridge. Run it again after filling in secrets or pulling updates. HTTPS and the Meta webhook (steps 3–4 below) are still up to you.
+
+**By hand:**
+
 1. In the live ERP's `production/backend/.env`, set a **new** `MCP_SERVER_TOKEN` and the `whatsapp-bot` user's `MCP_SERVER_USER_ID`, then rebuild the backend. `curl -i -X POST https://<erp-domain>/api/mcp-server` should now answer **401** (404 means it is still off).
 2. On the server:
 

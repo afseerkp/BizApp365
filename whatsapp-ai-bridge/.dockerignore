@@ -9,3 +9,5 @@ examples
 *.md
 Dockerfile
 docker-compose.yml
+deploy.sh
+docker-compose.override.yml
