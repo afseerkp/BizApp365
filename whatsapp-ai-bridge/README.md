@@ -123,6 +123,8 @@ bash /opt/bizapp-site/whatsapp-ai-bridge/deploy.sh
 
 `deploy.sh` finds the ERP container and its network, sets `MCP_SERVER_TOKEN` / `MCP_SERVER_USER_ID` in the ERP (backing up its `.env` first), writes the MCP settings into the bridge `.env`, stops if an OpenRouter/WhatsApp secret is still empty, then builds, starts and checks the bridge. Run it again after filling in secrets or pulling updates. HTTPS and the Meta webhook (steps 3–4 below) are still up to you.
 
+**Cloudflare Tunnel (how the live ERP at `login.bizapp365.com` is published):** no nginx or certbot needed. In Cloudflare Zero Trust → Networks → Tunnels → your tunnel → **Public hostnames → Add**: `wa.bizapp365.com` → type **HTTP**, URL `localhost:3100` (or `whatsapp-bridge:3100` if `cloudflared` runs as a container on the ERP's Docker network). Don't protect it with Cloudflare Access, and if a WAF / Bot Fight rule blocks Meta's POSTs, add a skip rule for `wa.bizapp365.com/webhook`. Meta webhook URL: `https://wa.bizapp365.com/webhook`.
+
 **By hand:**
 
 1. In the live ERP's `production/backend/.env`, set a **new** `MCP_SERVER_TOKEN` and the `whatsapp-bot` user's `MCP_SERVER_USER_ID`, then rebuild the backend. `curl -i -X POST https://<erp-domain>/api/mcp-server` should now answer **401** (404 means it is still off).

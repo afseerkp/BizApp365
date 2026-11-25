@@ -203,9 +203,11 @@ cat <<EOF
 Done. The bridge listens on http://127.0.0.1:$PORT (this server only).
 
 Next, if not done yet:
-  1. Point a subdomain (e.g. wa.<domain>) at this server and proxy it with HTTPS to 127.0.0.1:$PORT
-     (nginx: proxy_pass http://127.0.0.1:$PORT;  then certbot --nginx -d wa.<domain>).
-  2. Meta > WhatsApp > Configuration > Webhook: https://wa.<domain>/webhook, verify token from .env,
+  1. Cloudflare Zero Trust > Networks > Tunnels > (your tunnel) > Public hostnames > Add:
+       wa.bizapp365.com  ->  HTTP  localhost:$PORT
+     (if cloudflared runs in a Docker container on the ERP network, use whatsapp-bridge:$PORT instead).
+     Do not put Cloudflare Access in front of it; Meta must reach it.
+  2. Meta > WhatsApp > Configuration > Webhook: https://wa.bizapp365.com/webhook, verify token from .env,
      subscribe to "messages".
   3. Test from a number in WHATSAPP_ALLOWED_NUMBERS, then clear that line and run this script again.
 
