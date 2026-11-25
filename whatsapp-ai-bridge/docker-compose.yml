@@ -1,0 +1,28 @@
+# docker compose up -d --build
+# Settings are read from .env (copy .env.example). Use MCP_SERVER_URL (Option A):
+# the demo MCP server is not included in the image.
+services:
+  whatsapp-bridge:
+    build: .
+    image: bizapp365-whatsapp-bridge
+    container_name: whatsapp-bridge
+    env_file: .env
+    # Only reachable from this server; put nginx/Caddy with HTTPS in front for Meta.
+    ports:
+      - "127.0.0.1:${PORT:-3100}:${PORT:-3100}"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # To reach the ERP backend over the Docker network instead of its public URL,
+    # uncomment both blocks, set the network name (docker network ls), and use
+    # MCP_SERVER_URL=http://<backend-container-name>:5001/api/mcp-server
+    # networks:
+    #   - erp
+
+# networks:
+#   erp:
+#     external: true
+#     name: <erp-network-name>
