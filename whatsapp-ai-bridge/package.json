@@ -1,0 +1,21 @@
+{
+  "name": "bizapp365-whatsapp-ai-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WhatsApp Cloud API <-> OpenRouter AI <-> MCP tools bridge for BizApp365",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js",
+    "dev": "node --watch --env-file-if-exists=.env src/server.js",
+    "chat": "node --env-file-if-exists=.env scripts/chat.js",
+    "demo-mcp": "node examples/demo-mcp-server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "zod": "4.6.7"
+  }
+}
