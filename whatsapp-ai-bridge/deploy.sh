@@ -130,7 +130,7 @@ fi
 MCP_STATUS="$(docker exec "$BACKEND_CONTAINER" node -e "fetch('http://127.0.0.1:5001/api/mcp-server',{method:'POST'}).then(r=>console.log(r.status)).catch(()=>console.log(0))")"
 case "$MCP_STATUS" in
   401) ok "/api/mcp-server is on (401 without a token)" ;;
-  404) die "/api/mcp-server answers 404: the ERP running here does not have the MCP server code yet, or the settings did not load. Deploy the ERP build that includes it (feature/invoice-ocr, commit c3e356c or later), then run this again." ;;
+  404) die "/api/mcp-server answers 404: the ERP running here does not have the MCP server code yet, or the settings did not load. Deploy the ERP build that includes it (github.com/afseerkp/BizApp365-ERP, branch feature/invoice-ocr, commit 4979127 or later), then run this again." ;;
   503) die "/api/mcp-server answers 503: user '$BOT_USER' is inactive or a super admin." ;;
   *)   die "/api/mcp-server answered '$MCP_STATUS'. Check: docker logs $BACKEND_CONTAINER" ;;
 esac
