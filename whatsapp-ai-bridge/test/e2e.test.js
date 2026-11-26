@@ -147,8 +147,10 @@ test('message -> AI -> MCP tool -> WhatsApp reply, duplicates ignored', async ()
 
   const [first, second] = aiRequests;
   assert.deepEqual(first.models, ['test/model:free', 'backup/model:free']);
-  assert.equal(first.tools.length, 3);
-  assert.match(first.messages[0].content, /Customer WhatsApp number: \+971500000001/);
+  // An unregistered number gets the general tools only: get_my_balance is for customers.
+  assert.deepEqual(first.tools.map((t) => t.function.name), ['search_products', 'get_order_status']);
+  assert.match(first.messages[0].content, /Sender WhatsApp number: \+971500000001/);
+  assert.match(first.messages[0].content, /not registered/);
   assert.equal(second.messages.at(-1).role, 'tool');
   assert.match(second.messages.at(-1).content, /LAP-001/);
 });

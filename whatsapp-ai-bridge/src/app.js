@@ -47,8 +47,15 @@ export function createApp({ config, agent, whatsapp, mcpEnabled = false }) {
 
       console.log(`[app] <- ${msg.from}: ${text.slice(0, 120)}`);
       let reply;
+      const attachments = [];
       try {
-        reply = await agent.reply({ history: store.get(msg.from), userText: text, userId: msg.from, userName: msg.name });
+        reply = await agent.reply({
+          history: store.get(msg.from),
+          userText: text,
+          userId: msg.from,
+          userName: msg.name,
+          attachments,
+        });
         store.append(msg.from, { role: 'user', content: text }, { role: 'assistant', content: reply });
       } catch (err) {
         console.error('[app] AI failed:', err.message);
@@ -56,6 +63,17 @@ export function createApp({ config, agent, whatsapp, mcpEnabled = false }) {
       }
       await whatsapp.sendText(msg.from, toWhatsAppFormat(reply));
       console.log(`[app] -> ${msg.from}: ${reply.slice(0, 120)}`);
+
+      // Files a tool produced (e.g. a PDF statement) go out as WhatsApp documents after the text.
+      for (const file of attachments) {
+        try {
+          await whatsapp.sendDocument(msg.from, file);
+          console.log(`[app] -> ${msg.from}: document ${file.name} (${file.data.length} bytes)`);
+        } catch (err) {
+          console.error(`[app] could not send ${file.name}:`, err.message);
+          await whatsapp.sendText(msg.from, 'Sorry, I could not send the file just now. Please try again in a minute.');
+        }
+      }
     });
   }
 
