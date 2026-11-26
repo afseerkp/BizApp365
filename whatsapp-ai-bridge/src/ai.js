@@ -4,7 +4,7 @@ export function createAgent({ config, mcp, fetchImpl = fetch }) {
   const ai = config.ai;
 
   async function complete(messages, tools, { forceAnswer = false } = {}) {
-    const body = { model: ai.model, messages };
+    const body = { model: ai.model, messages, ...(ai.maxTokens ? { max_tokens: ai.maxTokens } : {}) };
     if (ai.fallbackModels.length) body.models = [ai.model, ...ai.fallbackModels];
     if (tools.length) {
       body.tools = tools;

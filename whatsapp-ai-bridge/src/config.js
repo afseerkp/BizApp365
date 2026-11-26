@@ -51,6 +51,7 @@ export const config = {
     fallbackModels: list(env.OPENROUTER_FALLBACK_MODELS),
     systemPrompt: env.AI_SYSTEM_PROMPT || DEFAULT_SYSTEM_PROMPT,
     maxToolRounds: int(env.AI_MAX_TOOL_ROUNDS, 5),
+    maxTokens: int(env.AI_MAX_TOKENS, 1500), // reply length cap; keeps OpenRouter from reserving the model maximum
     timeoutMs: int(env.AI_TIMEOUT_MS, 60_000),
     siteUrl: env.OPENROUTER_SITE_URL || 'https://bizapp365.com',
     appName: env.OPENROUTER_APP_NAME || 'BizApp365 WhatsApp Assistant',
