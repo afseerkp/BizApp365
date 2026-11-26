@@ -50,7 +50,27 @@ function messageText(m) {
 }
 
 export function createWhatsApp(cfg, fetchImpl = fetch) {
-  const endpoint = `https://graph.facebook.com/${cfg.apiVersion}/${cfg.phoneNumberId}/messages`;
+  const base = `https://graph.facebook.com/${cfg.apiVersion}/${cfg.phoneNumberId}`;
+  const endpoint = `${base}/messages`;
+
+  /** Uploads a file to Meta and returns its media id (valid for 30 days). */
+  async function uploadMedia({ name, mimeType, data }) {
+    const form = new FormData();
+    form.append('messaging_product', 'whatsapp');
+    form.append('type', mimeType);
+    form.append('file', new Blob([data], { type: mimeType }), name);
+    const res = await fetchImpl(`${base}/media`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${cfg.token}` },
+      body: form,
+      signal: AbortSignal.timeout(60_000),
+    });
+    const body = await res.json().catch(() => null);
+    if (!res.ok || !body?.id) {
+      throw new Error(`WhatsApp media upload ${res.status}: ${JSON.stringify(body?.error ?? body).slice(0, 500)}`);
+    }
+    return body.id;
+  }
 
   async function post(body) {
     const res = await fetchImpl(endpoint, {
@@ -72,6 +92,12 @@ export function createWhatsApp(cfg, fetchImpl = fetch) {
       for (const chunk of splitMessage(text)) {
         await post({ recipient_type: 'individual', to, type: 'text', text: { preview_url: false, body: chunk } });
       }
+    },
+
+    /** Sends a file (e.g. a PDF statement) as a document message. file = { name, mimeType, data: Buffer }. */
+    async sendDocument(to, file) {
+      const id = await uploadMedia(file);
+      await post({ recipient_type: 'individual', to, type: 'document', document: { id, filename: file.name } });
     },
 
     /** Marks the message as read (blue ticks) and shows "typing…" until we reply. Best effort. */

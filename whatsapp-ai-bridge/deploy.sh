@@ -17,6 +17,9 @@
 #   --subdomain <name>  public address is <name>.bizapp365.com (asked on first run, default "wa";
 #                       remembered in .env as PUBLIC_SUBDOMAIN; pass it again to change it)
 #   --bot-user <name>   ERP user the bot reads as (default whatsapp-bot)
+#   --manager-phones <list>  WhatsApp numbers of managers / owners who may read every report,
+#                       comma separated, e.g. "971501234567,971551234567" (saved in the ERP .env
+#                       as MCP_MANAGER_PHONES; pass "" to remove them all)
 #   --erp-dir <path>    ERP compose folder (default: found from the running container)
 set -euo pipefail
 
@@ -30,15 +33,20 @@ BACKEND_CONTAINER="bizzapp365-backend"
 POSTGRES_CONTAINER="bizzapp365-postgres"
 DB_USER="bizzapp_user"
 DB_NAME="bizapp_db"
-ALLOWED_TOOLS="get_business_info,search_products,get_my_balance,get_my_open_invoices"
+# Older versions of this script pinned this allowlist; the ERP now decides per sender which tools apply.
+OLD_ALLOWED_TOOLS="get_business_info,search_products,get_my_balance,get_my_open_invoices"
+MANAGER_PHONES=""
+MANAGER_PHONES_GIVEN=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --subdomain) [[ $# -ge 2 ]] || { echo "--subdomain needs a name, e.g. --subdomain chat" >&2; exit 1; }
                  SUBDOMAIN="$2"; shift 2 ;;
     --bot-user) BOT_USER="$2"; shift 2 ;;
+    --manager-phones) [[ $# -ge 2 ]] || { echo "--manager-phones needs a list, e.g. --manager-phones 971501234567" >&2; exit 1; }
+                      MANAGER_PHONES="$2"; MANAGER_PHONES_GIVEN=1; shift 2 ;;
     --erp-dir) ERP_DIR="$2"; shift 2 ;;
-    -h|--help) sed -n '2,21p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,24p' "$0"; exit 0 ;;
     *) echo "Unknown argument: $1" >&2; exit 1 ;;
   esac
 done
@@ -145,21 +153,42 @@ if [[ -z "$USER_ID" ]]; then
 fi
 ok "bot user: $BOT_USER (id $USER_ID)"
 
-if [[ ${#TOKEN} -lt 32 || "$(get_env MCP_SERVER_USER_ID "$ERP_ENV")" != "$USER_ID" ]]; then
-  cp -p "$ERP_ENV" "$ERP_ENV.bak.$(date +%Y%m%d%H%M%S)"
-  ok "backed up $ERP_ENV"
-fi
+# Changes KEY in the ERP .env (backing the file up once first) and marks the backend for a restart.
+erp_set() {
+  if [[ $ERP_CHANGED -eq 0 ]]; then
+    cp -p "$ERP_ENV" "$ERP_ENV.bak.$(date +%Y%m%d%H%M%S)"
+    ok "backed up $ERP_ENV"
+  fi
+  set_env "$1" "$2" "$ERP_ENV"
+  ERP_CHANGED=1
+}
+
 if [[ ${#TOKEN} -lt 32 ]]; then
   TOKEN="$(openssl rand -hex 32)"
-  set_env MCP_SERVER_TOKEN "$TOKEN" "$ERP_ENV"
-  ERP_CHANGED=1
+  erp_set MCP_SERVER_TOKEN "$TOKEN"
   ok "generated a new MCP_SERVER_TOKEN"
 else
   ok "keeping the existing MCP_SERVER_TOKEN"
 fi
 if [[ "$(get_env MCP_SERVER_USER_ID "$ERP_ENV")" != "$USER_ID" ]]; then
-  set_env MCP_SERVER_USER_ID "$USER_ID" "$ERP_ENV"
-  ERP_CHANGED=1
+  erp_set MCP_SERVER_USER_ID "$USER_ID"
+fi
+
+# Managers / owners: may read every report on WhatsApp. Salesmen and customers are recognised from
+# the WhatsApp/Mobile number on their ERP records and need no setting here.
+if [[ $MANAGER_PHONES_GIVEN -eq 1 ]]; then
+  MANAGER_PHONES="$(printf '%s' "$MANAGER_PHONES" | tr ';' ',' | tr -d ' ()-')"
+  [[ -z "$MANAGER_PHONES" || "$MANAGER_PHONES" =~ ^\+?[0-9]{9,15}(,\+?[0-9]{9,15})*$ ]] \
+    || die "--manager-phones: give full numbers with country code, comma separated, e.g. 971501234567,971551234567"
+  if [[ "$(get_env MCP_MANAGER_PHONES "$ERP_ENV")" != "$MANAGER_PHONES" ]]; then
+    erp_set MCP_MANAGER_PHONES "$MANAGER_PHONES"
+  fi
+fi
+MANAGERS_NOW="$(get_env MCP_MANAGER_PHONES "$ERP_ENV")"
+if [[ -n "$MANAGERS_NOW" ]]; then
+  ok "manager numbers: $(printf '%s' "$MANAGERS_NOW" | tr ',' ' ' | wc -w)"
+else
+  warn "no manager numbers yet: add them with --manager-phones 971501234567,971551234567"
 fi
 
 if [[ $ERP_CHANGED -eq 1 ]]; then
@@ -179,7 +208,7 @@ fi
 MCP_STATUS="$(docker exec "$BACKEND_CONTAINER" node -e "fetch('http://127.0.0.1:5001/api/mcp-server',{method:'POST'}).then(r=>console.log(r.status)).catch(()=>console.log(0))")"
 case "$MCP_STATUS" in
   401) ok "/api/mcp-server is on (401 without a token)" ;;
-  404) die "/api/mcp-server answers 404: the ERP running here does not have the MCP server code yet, or the settings did not load. Deploy the ERP build that includes it (github.com/afseerkp/BizApp365-ERP, branch feature/invoice-ocr, commit 4979127 or later), then run this again." ;;
+  404) die "/api/mcp-server answers 404: the ERP running here does not have the MCP server code yet, or the settings did not load. Deploy the ERP build that includes it (github.com/afseerkp/BizApp365-ERP, branch main), then run this again." ;;
   503) die "/api/mcp-server answers 503: user '$BOT_USER' is inactive or a super admin." ;;
   *)   die "/api/mcp-server answered '$MCP_STATUS'. Check: docker logs $BACKEND_CONTAINER" ;;
 esac
@@ -195,7 +224,11 @@ set_env MCP_SERVER_URL "http://$BACKEND_CONTAINER:5001/api/mcp-server" "$ENV_FIL
 set_env MCP_AUTH_TOKEN "$TOKEN" "$ENV_FILE"
 set_env MCP_SERVER_COMMAND "" "$ENV_FILE"
 set_env MCP_SERVER_ARGS "" "$ENV_FILE"
-[[ -n "$(get_env MCP_ALLOWED_TOOLS "$ENV_FILE")" ]] || set_env MCP_ALLOWED_TOOLS "$ALLOWED_TOOLS" "$ENV_FILE"
+if [[ "$(get_env MCP_ALLOWED_TOOLS "$ENV_FILE")" == "$OLD_ALLOWED_TOOLS" ]]; then
+  # The ERP now gives each sender only their role's tools; the old fixed list would hide the new ones.
+  set_env MCP_ALLOWED_TOOLS "" "$ENV_FILE"
+  ok "cleared the old MCP_ALLOWED_TOOLS list (the ERP now picks the tools per sender)"
+fi
 ok "MCP settings written (URL over the ERP network, token shared with the ERP)"
 
 # Public address: <subdomain>.bizapp365.com. --subdomain wins, then the saved value, then ask.

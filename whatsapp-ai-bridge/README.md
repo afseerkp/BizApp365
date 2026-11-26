@@ -1,6 +1,6 @@
 # BizApp365 WhatsApp AI Bridge
 
-Customers message your WhatsApp number → an AI model on **OpenRouter** answers, using your **MCP** tools for real data → the reply goes back on WhatsApp.
+Customers, salesmen and managers message your WhatsApp number → an AI model on **OpenRouter** answers, using your **MCP** tools for real data → the reply (and any PDF) goes back on WhatsApp. Each sender only sees what their role allows.
 
 ```
 WhatsApp user ─► Meta Cloud API ─► POST /webhook (this service)
@@ -10,7 +10,7 @@ WhatsApp user ─► Meta Cloud API ─► POST /webhook (this service)
 WhatsApp user ◄─ Meta Cloud API ◄───────┘  reply
 ```
 
-Features: webhook signature check, duplicate filtering (Meta retries), per-user memory (last 12 turns, 30 min), per-user rate limit, "typing…" indicator, long replies split, Markdown → WhatsApp formatting, model fallbacks, tool allowlist, works without MCP if it is down. Send `reset` on WhatsApp to start a new conversation.
+Features: role-based access (customer / salesman / manager, decided by the ERP from the WhatsApp number), PDF statements sent as WhatsApp documents, webhook signature check, duplicate filtering (Meta retries), per-user memory (last 12 turns, 30 min), per-user rate limit, "typing…" indicator, long replies split, Markdown → WhatsApp formatting, model fallbacks, tool allowlist, works without MCP if it is down. Send `reset` on WhatsApp to start a new conversation.
 
 Requires **Node.js 22+**.
 
@@ -36,37 +36,50 @@ Try: "Do you have laptops?" or "Where is order SO-1002?"
 
 ## 3. Connect the BizApp365 ERP
 
-The ERP backend serves read-only tools at `POST /api/mcp-server`:
+The ERP backend serves read-only tools at `POST /api/mcp-server`. It decides **who is messaging** from the WhatsApp number (last 9 digits, so `+971 50 123 4567` and `0501234567` match), first match wins:
 
-| Tool | What it answers |
-|---|---|
-| `get_business_info` | Company name, phone, email, website, address |
-| `search_products` | Selling price and "In stock" / "Out of stock" (never cost) |
-| `get_my_balance` | The sender's own account balance |
-| `get_my_open_invoices` | The sender's own unpaid invoices |
+| Who | Recognised by | Can ask for |
+|---|---|---|
+| **Manager / owner** | listed in `MCP_MANAGER_PHONES` (ERP `backend/.env`) | every report: sales by customer and salesman, profit and loss, receivables, payables, stock, purchases, CRM; any customer's statement |
+| **Salesman** | **WhatsApp** or **Mobile** field of an active salesman | only the customers assigned to them (account's default salesman): their sales, balances and statements |
+| **Customer** | **WhatsApp** or **Phone** field of an active account | only their own balance, open invoices and statement |
+| Anyone else | – | products, prices and company contact details |
 
-The two `get_my_*` tools find the customer by matching the WhatsApp number to the **WhatsApp** or **Phone** field of an active account (last 9 digits, so `+971 50 123 4567` and `0501234567` match). The bridge always fills that number in itself; the AI cannot choose it.
+| Tool | Who | What it answers |
+|---|---|---|
+| `get_business_info`, `search_products` | everyone | Company details; selling price and "In stock" / "Out of stock" (never cost) |
+| `get_my_balance`, `get_my_open_invoices` | customer | Own balance and unpaid invoices |
+| `get_statement` | customer, salesman, manager | Ledger statement with running balance (default last 90 days) |
+| `send_statement_pdf` | customer, salesman, manager | The statement as a PDF, sent as a WhatsApp document |
+| `get_sales_report` | salesman, manager | Sales, returns and net for a period, by customer (and by salesman for managers) |
+| `get_customer_balances` | salesman, manager | Outstanding receivables per customer |
+| `report_*` (16 tools) | manager | The ERP's management reports: sales summary, profit and loss, payables, low stock, purchases, CRM… |
+
+The bridge asks the ERP who the sender is (`identify_sender`), offers the AI only that role's tools, and always fills in the sender's number itself, so the AI cannot look up anyone else. The ERP checks the role again on every call.
 
 **In the ERP:**
 
-1. Create a role with **view only** on Inventory, Sales and Accounting, and a user (for example `whatsapp-bot`) with that role. It must **not** be a super admin. Its default branch is the one the bot reads.
-2. Find the user's id:
+1. Create a role with **view only** on Inventory, Sales and Accounting (plus Purchase and CRM for the managers' reports), and a user (for example `whatsapp-bot`) with that role. It must **not** be a super admin. Its default branch is the one the bot reads.
+2. Save each salesman's WhatsApp number on their **salesman** record, and assign customers to salesmen (the account's **default salesman**).
+3. Save each customer's WhatsApp number on their **account** (WhatsApp or Phone field).
+4. Find the user's id:
 
    ```powershell
    docker exec bizzapp365-postgres psql -U bizzapp_user -d bizapp_db -c "SELECT id, username FROM users WHERE username = 'whatsapp-bot';"
    ```
 
-3. Generate a token:
+5. Generate a token:
 
    ```powershell
    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```
 
-4. Add to `F:\Project\BizApp365\backend\.env`, then rebuild/restart the backend container:
+6. Add to `F:\Project\BizApp365\backend\.env`, then rebuild/restart the backend container:
 
    ```
    MCP_SERVER_TOKEN=<the token>
    MCP_SERVER_USER_ID=<the user id>
+   MCP_MANAGER_PHONES=971501234567,971551234567
    ```
 
 **In this bridge's `.env`:**
@@ -76,10 +89,12 @@ MCP_SERVER_URL=http://localhost:5001/api/mcp-server
 MCP_AUTH_TOKEN=<the same token>
 MCP_SERVER_COMMAND=
 MCP_SERVER_ARGS=
-MCP_ALLOWED_TOOLS=get_business_info,search_products,get_my_balance,get_my_open_invoices
+MCP_ALLOWED_TOOLS=
 ```
 
-Test as a real customer, using a phone number saved on one of your accounts:
+Leave `MCP_ALLOWED_TOOLS` empty: the ERP already gives each sender only their role's tools.
+
+Test as a customer, a salesman or a manager by using a number saved in the ERP (PDFs are saved to `chat-files/`):
 
 ```powershell
 $env:CHAT_TEST_PHONE="971501234567"; npm run chat
@@ -87,7 +102,7 @@ $env:CHAT_TEST_PHONE="971501234567"; npm run chat
 
 ### Other MCP servers
 
-Any MCP server works: `MCP_SERVER_URL` for HTTP, or `MCP_SERVER_COMMAND` + `MCP_SERVER_ARGS` (JSON array) to start a local process. A tool that has a `customer_phone` argument gets the sender's number filled in automatically.
+Any MCP server works: `MCP_SERVER_URL` for HTTP, or `MCP_SERVER_COMMAND` + `MCP_SERVER_ARGS` (JSON array) to start a local process. A tool that has a `customer_phone` argument gets the sender's number filled in automatically. Roles are optional: if the server has an `identify_sender` tool, tools listing roles in `_meta["bizapp365/roles"]` are offered only to those roles. A tool result with an embedded `resource` blob (e.g. a PDF) is sent to the sender as a WhatsApp document. The demo server shows both (manager `971501111111`, salesman `971502222222`, customer `971501234567`).
 
 ## 4. WhatsApp Cloud API (Meta)
 
@@ -121,6 +136,12 @@ git clone https://github.com/afseerkp/BizApp365.git /opt/bizapp-site 2>/dev/null
 bash /opt/bizapp-site/whatsapp-ai-bridge/deploy.sh
 ```
 
+Add the managers' and owners' WhatsApp numbers (they get every report; salesmen and customers are recognised from their ERP records):
+
+```bash
+bash /opt/bizapp-site/whatsapp-ai-bridge/deploy.sh --manager-phones 971501234567,971551234567
+```
+
 On the first run it asks for the **subdomain** of the public address: `<name>.bizapp365.com`, default `wa` → `wa.bizapp365.com`. It is saved in `.env` as `PUBLIC_SUBDOMAIN`. To change it later:
 
 ```bash
@@ -129,7 +150,7 @@ bash /opt/bizapp-site/whatsapp-ai-bridge/deploy.sh --subdomain chat   # → chat
 
 Then update the Cloudflare tunnel hostname and the Meta webhook URL to the new address (the script prints both). `login`, `www`, `api` and `mail` are refused.
 
-`deploy.sh` finds the ERP container and its network, sets `MCP_SERVER_TOKEN` / `MCP_SERVER_USER_ID` in the ERP (backing up its `.env` first), writes the MCP settings into the bridge `.env`, stops if an OpenRouter/WhatsApp secret is still empty, then builds, starts and checks the bridge. Run it again after filling in secrets or pulling updates. HTTPS and the Meta webhook (steps 3–4 below) are still up to you.
+`deploy.sh` finds the ERP container and its network, sets `MCP_SERVER_TOKEN` / `MCP_SERVER_USER_ID` (and `MCP_MANAGER_PHONES` when given) in the ERP (backing up its `.env` first), writes the MCP settings into the bridge `.env`, stops if an OpenRouter/WhatsApp secret is still empty, then builds, starts and checks the bridge. Run it again after filling in secrets or pulling updates. HTTPS and the Meta webhook (steps 3–4 below) are still up to you.
 
 **Cloudflare Tunnel (how the live ERP at `login.bizapp365.com` is published):** no nginx or certbot needed. In Cloudflare Zero Trust → Networks → Tunnels → your tunnel → **Public hostnames → Add**: `<subdomain>.bizapp365.com` (e.g. `wa.bizapp365.com`) → type **HTTP**, URL `localhost:3100` (or `whatsapp-bridge:3100` if `cloudflared` runs as a container on the ERP's Docker network). Don't protect it with Cloudflare Access, and if a WAF / Bot Fight rule blocks Meta's POSTs, add a skip rule for `/webhook` on that hostname. Meta webhook URL: `https://<subdomain>.bizapp365.com/webhook`.
 
@@ -161,8 +182,9 @@ Memory, rate limits and duplicate filtering are in memory, so run **one instance
 
 ## Security – read before going live
 
-- **Anyone can message a WhatsApp number.** Every MCP tool you expose can be used by any stranger. Set `MCP_ALLOWED_TOOLS` to read-only, customer-safe tools only – never tools that edit data, show other customers' records, or reveal costs/margins.
-- The customer's phone number is given to the AI as *context*, not proof of identity. If a tool returns personal data (invoices, balances), the **MCP tool itself** should check the phone number against the customer record – don't rely on the AI to do it.
+- **Anyone can message a WhatsApp number.** Only the tools for unregistered senders (products, prices, contact details) are open to strangers. Never expose tools that edit data.
+- Access depends on the WhatsApp number, so keep numbers in the ERP correct: a wrong number on a salesman or account gives its holder that access. Managers see profit, costs and every customer – list only trusted numbers in `MCP_MANAGER_PHONES`. Remove a person's number when they leave.
+- The sender's number is given to the AI as *context*, not proof of identity. The **ERP** checks the number and role on every tool call – the AI cannot widen access.
 - Always set `WHATSAPP_APP_SECRET` in production, so forged webhook calls are rejected.
 - Use `WHATSAPP_ALLOWED_NUMBERS` while testing so only your team gets answers.
 
